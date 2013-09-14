@@ -14,3 +14,5 @@ defined('YII_DEBUG') or define('YII_DEBUG',true);
 //add by shenyuede test
 require_once($yii);
 Yii::createWebApplication($config)->run();
+
+//add by shenyuede for test git pull
