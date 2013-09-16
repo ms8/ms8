@@ -14,20 +14,64 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/font-awesome/css/font-awesome.css" />
+    <?php
+    Yii::app()->bootstrap->register();
+    ?>
+    <!-- 百度地图js script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2fce860d4f8d37ec4e70626f59ccf9ca"></script-->
+    <style type="text/css">
+       .row-fluid input[class*='span'] {min-height: 20px}
+        #content{padding: 40px 0 0 0;}
+        #footer{border: none}
+      .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
+    </style>
+    <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
-
-<div class="container" id="page">
-
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+        <?php
+         $this->widget('bootstrap.widgets.TbNavbar', array(
+           // 'type'=>'inverse', // null or 'inverse'
+            'brand'=>'面试吧',
+            'brandUrl'=>'#',
+            'collapse'=>true, // requires bootstrap-responsive.css
+            'items'=>array(
+                array(
+                    'class'=>'bootstrap.widgets.TbMenu',
+                    'items'=>array(
+                        array('label'=>'首页', 'url'=>array('/site/index')),
+                        array('label'=>'面试达人', 'url'=>array('/site/page', 'view'=>'about')),
+                        array('label'=>'人品', 'url'=>'#', 'items'=>array(
+                            array('label'=>'Action', 'url'=>'#'),
+                            array('label'=>'Another action', 'url'=>'#'),
+                            array('label'=>'Something else here', 'url'=>'#'),
+                            '---',
+                            array('label'=>'NAV HEADER'),
+                            array('label'=>'Separated link', 'url'=>'#'),
+                            array('label'=>'One more separated link', 'url'=>'#'),
+                        )),
+                    ),
+                ),
+                array(
+                    'class'=>'bootstrap.widgets.TbMenu',
+                    'htmlOptions'=>array('class'=>'pull-right'),
+                    'items'=>array(
+                        array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'注册', 'url'=>array('/site/register'),
+                    ),
+                ),
+            ),
+        ))) ?>
+        <!--
+		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>-->
 	</div><!-- header -->
 
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
+        <!--
+		<?php
+        $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
@@ -36,6 +80,8 @@
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
+		-->
+
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
@@ -47,13 +93,15 @@
 
 	<div class="clear"></div>
 
-	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
-		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
-	</div><!-- footer -->
-
-</div><!-- page -->
-
+<div id="footer">
+    <p>
+        <a href="#">关于面试吧</a> |
+        <a href="#">面试达人</a> |
+        <a href="#">联系我们</a> |
+        <a href="#">友情链接</a> |
+        <a href="#">意见反馈</a>
+    </p>
+     &copy; <?php echo date('Y'); ?> MIANSHI8.COM 京ICP备1102461-7<br/>
+</div><!-- footer -->
 </body>
 </html>
