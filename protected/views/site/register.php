@@ -15,34 +15,54 @@ $this->pageTitle=Yii::app()->name . ' - 注册';
 </style>
 <div class="form" style="min-height: 400px;margin: 40px 0;">
 <?php
-    $inputattr = array("class"=>"input-xlarge focused");
+    $loginUrl=$this->createUrl('site/login');
+    $inputAttr = array("class"=>"input-xlarge focused");
     $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'register-form',
 	'enableClientValidation'=>true,
+    'enableAjaxValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
-
-    <fieldset>
-        <div class="control-group">
-            <?php echo $form->labelEx($model,'username'); ?>
-            <?php echo $form->textField($model,'username',$inputattr); ?>
-            <?php echo $form->error($model,'username',$inputattr); ?>
-        </div>
-        <div class="control-group">
-            <?php echo $form->labelEx($model,'password'); ?>
-            <?php echo $form->passwordField($model,'password',$inputattr); ?>
-            <?php echo $form->error($model,'password',$inputattr); ?>
-        </div>
-        <div class="control-group">
-            <?php echo $form->labelEx($model,'email'); ?>
-            <?php echo $form->textField($model,'email',$inputattr); ?>
-            <?php echo $form->error($model,'email',$inputattr); ?>
-        </div>
-        <input type="submit" class="btn btn-primary" name="yt0" value="注册" />
-
-    </fieldset>
+<div class="row-fluid">
+    <div class="span6">
+        <h2>快速注册</h2>
+        <fieldset>
+            <div class="control-group">
+                <?php echo $form->labelEx($model,'username'); ?>
+                <?php echo $form->textField($model,'username',$inputAttr); ?>
+                <?php echo $form->error($model,'username',$inputAttr); ?>
+            </div>
+            <div class="control-group">
+                <?php echo $form->labelEx($model,'password'); ?>
+                <?php echo $form->passwordField($model,'password',$inputAttr); ?>
+                <?php echo $form->error($model,'password',$inputAttr,false); ?>
+            </div>
+            <div class="control-group">
+                <?php echo $form->labelEx($model,'confirmpassword'); ?>
+                <?php echo $form->passwordField($model,'confirmpassword',$inputAttr); ?>
+                <?php echo $form->error($model,'confirmpassword',$inputAttr,false); ?>
+            </div>
+            <div class="control-group">
+                <?php echo $form->labelEx($model,'email'); ?>
+                <?php echo $form->textField($model,'email',$inputAttr); ?>
+                <?php echo $form->error($model,'email',$inputAttr); ?>
+            </div>
+            <input type="submit" class="btn btn-primary" name="yt0" value="注册" />
+        </fieldset>
+     </div>
+    <div class="span6 pull-right">
+        <h2>使用合作网站账号登录</h2>
+        <fieldset>
+            已有账号？<a class="btn btn-primary" href="<?php echo  $loginUrl; ?>">请登录</a>
+            <hr>
+            <div class="control-group  outers-site">
+                <a href="dashboard.html"><i class="icon-weibo"></i></a>
+                <a href="dashboard.html"><i class="icon-renren"></i></a>
+            </div>
+        </fieldset>
+    </div>
 
    <!--
     <div class="row-fluid">

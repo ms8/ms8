@@ -58,4 +58,27 @@ class UserManagement {
         $userModel->password = crypt($userModel->password, $this->blowfishSalt());
         $userModel->save();
     }
+
+    /**
+     * 检查数据库中是否已经存在此用户
+     * @param $userModel
+     * @return boolean
+     */
+    public function checkUser($userModel){
+        $user = User::model()->findByAttributes(array('username' => $userModel->username));
+        if($user==null){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    public function checkEmail($userModel){
+        $user = User::model()->findByAttributes(array('email' => $userModel->email));
+        if($user==null){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

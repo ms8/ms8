@@ -61,15 +61,15 @@ class User extends CActiveRecord
 	{
 		return array(
 			'userID' => 'User',
-			'username' => 'Username',
-			'email' => 'Email',
-			'password' => 'Password',
-			'pic' => 'Pic',
-			'sex' => 'Sex',
-			'school' => 'School',
-			'major' => 'Major',
-			'score' => 'Score',
-			'selfintroduction' => 'Selfintroduction',
+			'username' => '用户',
+			'email' => '邮箱',
+			'password' => '密码',
+			'pic' => '头像',
+			'sex' => '性别',
+			'school' => '学校',
+			'major' => '专业',
+			'score' => '积分',
+			'selfintroduction' => '自我介绍',
 		);
 	}
 

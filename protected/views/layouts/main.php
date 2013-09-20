@@ -42,6 +42,7 @@
                     'items'=>array(
                         array('label'=>'首页', 'url'=>array('/site/index')),
                         array('label'=>'面试达人', 'url'=>array('/site/page', 'view'=>'about')),
+                        array('label'=>'我的面试', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                         array('label'=>'人品', 'url'=>'#', 'items'=>array(
                             array('label'=>'Action', 'url'=>'#'),
                             array('label'=>'Another action', 'url'=>'#'),
