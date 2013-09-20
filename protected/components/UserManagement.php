@@ -16,6 +16,7 @@ class UserManagement {
     const ERROR_PASSWORD_INVALID=2;
     const ERROR_UNKNOWN_IDENTITY=100;
 
+
     /**
      * Generate a random salt in the crypt(3) standard Blowfish format.
      * 生成加密用的加密盐，即加密参数
@@ -43,6 +44,7 @@ class UserManagement {
     public function authenticate($userModel)
     {
         $record = User::model()->findByAttributes(array('username' => $userModel->username));
+        
         if($record == null){
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         }elseif($record->password === crypt($userModel->password, $record->password)){
