@@ -92,7 +92,8 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+				//$this->redirect(Yii::app()->user->returnUrl);
+                $this->redirect('index.php');
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
@@ -111,7 +112,33 @@ class SiteController extends Controller
      */
     public function actionRegister()
     {
-        $this->render('register');
+        $model=new RegisterForm();
+
+        // if it is ajax validation request
+        if(isset($_POST['ajax']) && $_POST['ajax']==='register-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+
+        // collect user input data
+        if(isset($_POST['RegisterForm']))
+        {
+            $model->attributes=$_POST['RegisterForm'];
+            // validate user input and redirect to the previous page if valid
+            /*if($model->validate() && $model->login())
+                $this->redirect(Yii::app()->user->returnUrl);
+            */
+            $model->register();
+            $this->redirect('index.php');
+            //注册成功后跳到首页
+        }
+        // display the login form
+        //$this->render('login',array('model'=>$model));
+        /**/
+        $tmp = "";
+        $this->render('register',array('model'=>$model));
+
     }
 
 }

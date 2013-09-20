@@ -17,7 +17,17 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$users=array(
+        $userManagement = new UserManagement();
+        $user = new User();
+        $user->username=$this->username;
+        $user->password=$this->password;
+
+        if(!$userManagement->authenticate($user))
+            $this->errorCode=self::ERROR_PASSWORD_INVALID;
+        else
+            $this->errorCode=self::ERROR_NONE;
+        return !$this->errorCode;
+		/*$users=array(
 			// username => password
 			'demo'=>'demo',
 			'admin'=>'admin',
@@ -28,6 +38,7 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 			$this->errorCode=self::ERROR_NONE;
-		return !$this->errorCode;
+		return !$this->errorCode;*/
+
 	}
 }

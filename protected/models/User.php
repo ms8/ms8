@@ -1,32 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "tbl_user".
+ * This is the model class for table "user".
  *
- * The followings are the available columns in table 'tbl_user':
- * @property integer $id
+ * The followings are the available columns in table 'user':
+ * @property string $userID
  * @property string $username
- * @property string $password
  * @property string $email
+ * @property string $password
+ * @property string $pic
+ * @property string $sex
+ * @property string $school
+ * @property string $major
+ * @property integer $score
+ * @property string $selfintroduction
  */
 class User extends CActiveRecord
 {
-	/**
-	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return User the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
-
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'tbl_user';
+		return 'user';
 	}
 
 	/**
@@ -37,11 +33,13 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, password, email', 'required'),
-			array('username, password, email', 'length', 'max'=>128),
+			array('username, email, password', 'required'),
+			array('score', 'numerical', 'integerOnly'=>true),
+			array('username, email, password, pic, sex, school, major', 'length', 'max'=>100),
+			array('selfintroduction', 'length', 'max'=>10000),
 			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, username, password, email', 'safe', 'on'=>'search'),
+			// @todo Please remove those attributes that should not be searched.
+			array('userID, username, email, password, pic, sex, school, major, score, selfintroduction', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,31 +60,61 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
+			'userID' => 'User',
 			'username' => 'Username',
-			'password' => 'Password',
 			'email' => 'Email',
+			'password' => 'Password',
+			'pic' => 'Pic',
+			'sex' => 'Sex',
+			'school' => 'School',
+			'major' => 'Major',
+			'score' => 'Score',
+			'selfintroduction' => 'Selfintroduction',
 		);
 	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
-	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 *
+	 * Typical usecase:
+	 * - Initialize the model fields with values from filter form.
+	 * - Execute this method to get CActiveDataProvider instance which will filter
+	 * models according to data in model fields.
+	 * - Pass data provider to CGridView, CListView or any similar widget.
+	 *
+	 * @return CActiveDataProvider the data provider that can return the models
+	 * based on the search/filter conditions.
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
+		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
+		$criteria->compare('userID',$this->userID,true);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('password',$this->password,true);
 		$criteria->compare('email',$this->email,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('pic',$this->pic,true);
+		$criteria->compare('sex',$this->sex,true);
+		$criteria->compare('school',$this->school,true);
+		$criteria->compare('major',$this->major,true);
+		$criteria->compare('score',$this->score);
+		$criteria->compare('selfintroduction',$this->selfintroduction,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return User the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
 	}
 }
