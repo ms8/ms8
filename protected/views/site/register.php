@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <?php
 /* @var $this SiteController */
-/* @var $model LoginForm */
+/* @var $model RegisterForm */
 /* @var $form CActiveForm  */
 
 $this->pageTitle=Yii::app()->name . ' - 注册';
@@ -14,13 +14,37 @@ $this->pageTitle=Yii::app()->name . ' - 注册';
     .outers-site i {color: darkslateblue;}
 </style>
 <div class="form" style="min-height: 400px;margin: 40px 0;">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'login-form',
+<?php
+    $inputattr = array("class"=>"input-xlarge focused");
+    $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'register-form',
 	'enableClientValidation'=>true,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
+
+    <fieldset>
+        <div class="control-group">
+            <?php echo $form->labelEx($model,'username'); ?>
+            <?php echo $form->textField($model,'username',$inputattr); ?>
+            <?php echo $form->error($model,'username',$inputattr); ?>
+        </div>
+        <div class="control-group">
+            <?php echo $form->labelEx($model,'password'); ?>
+            <?php echo $form->passwordField($model,'password',$inputattr); ?>
+            <?php echo $form->error($model,'password',$inputattr); ?>
+        </div>
+        <div class="control-group">
+            <?php echo $form->labelEx($model,'email'); ?>
+            <?php echo $form->textField($model,'email',$inputattr); ?>
+            <?php echo $form->error($model,'email',$inputattr); ?>
+        </div>
+        <input type="submit" class="btn btn-primary" name="yt0" value="注册" />
+
+    </fieldset>
+
+   <!--
     <div class="row-fluid">
 
         <div class="span6">
@@ -52,8 +76,7 @@ $this->pageTitle=Yii::app()->name . ' - 注册';
                             <input type="password" placeholder="再次输入密码" id="confirm_password" class="input-xlarge">
                         </div>
                     </div>
-
-                    <a class="btn btn-primary" href="dashboard.html">注册</a>
+                    <input type="submit" class="btn btn-primary" name="yt0" value="注册" />
                 </fieldset>
             </form>
 
@@ -76,7 +99,7 @@ $this->pageTitle=Yii::app()->name . ' - 注册';
 
     </div>
 
-
+    -->
 
 
     <?php $this->endWidget(); ?>
