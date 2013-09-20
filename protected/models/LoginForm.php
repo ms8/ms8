@@ -38,7 +38,7 @@ class LoginForm extends CFormModel
 		return array(
             'username'=>'用户名',
             'password'=>'密码',
-			'rememberMe'=>'Remember me next time',
+			'rememberMe'=>'记住我',
 		);
 	}
 
@@ -52,7 +52,7 @@ class LoginForm extends CFormModel
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
 			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+				$this->addError('password','错误的用户名或密码。');
 		}
 	}
 

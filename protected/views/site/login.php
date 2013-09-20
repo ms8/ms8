@@ -7,11 +7,7 @@
 $this->pageTitle=Yii::app()->name . ' - Login';
 ?>
 
-<h1>Login</h1>
-
-<p>Please fill out the following form with your login credentials:</p>
-
-<div class="form">
+<div class="row-fluid form" style="height: 400px;margin-top: 50px;">
     <?php
      $inputattr = array("class"=>"input-xlarge focused");
      $form=$this->beginWidget('CActiveForm', array(
@@ -21,7 +17,8 @@ $this->pageTitle=Yii::app()->name . ' - Login';
             'validateOnSubmit'=>true,
         ),
     )); ?>
-    <fieldset>
+    <div class="span2"></div>
+    <fieldset class="span8">
         <div class="control-group">
             <?php echo $form->labelEx($model,'username'); ?>
             <?php echo $form->textField($model,'username',$inputattr); ?>
@@ -36,10 +33,12 @@ $this->pageTitle=Yii::app()->name . ' - Login';
             <?php echo $form->checkBox($model,'rememberMe'); ?>
             <?php echo $form->label($model,'rememberMe'); ?>
             <?php echo $form->error($model,'rememberMe'); ?>
+            <a class="offset1" href="forgetPassword.php">忘记密码？</a>
         </div>
-        <input type="submit" class="btn btn-primary" name="yt0" value="注册" />
+        <input type="submit" class="btn btn-primary" name="yt0" value="登录" />
 
     </fieldset>
+    <div class="span2"></div>
     <?php $this->endWidget(); ?>
 
 </div><!-- form -->

@@ -36,14 +36,14 @@ $this->pageTitle=Yii::app()->name;
                                 </div>
 
                                 <div class="span2">
-                                    <a class="btn btn-primary btn-success search_btn" href="browse.html">查找</a>
+                                    <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <br>
-                    <div class="row-fluid">
+                    <!--div class="row-fluid">
                         <div class="span12">
 
                             <div class="row-fluid">
@@ -62,7 +62,7 @@ $this->pageTitle=Yii::app()->name;
                             </div>
 
                         </div>
-                    </div>
+                    </div-->
                 </div>
 
 
@@ -85,11 +85,11 @@ $this->pageTitle=Yii::app()->name;
     <div class="row-fluid">
 
         <div class="span12">
-            <h2>featured jobs</h2>
+            <h2>热点面试&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="#">（更多）</a></h2>
             <table class="table table-striped">
                 <tbody>
                 <tr class="success">
-                    <td> <span class="label label-warning">Full time</span> </td>
+                    <td> <img src="../../extensions/user/1.jpg" class="img-polaroid" width="100" /> </td>
                     <td><strong><a href="view-job.html">Mobile Software Engineer</a></strong><br>
                         <a href="#">Teleworm Corp</a> – Posted by <a href="#">Teleworm</a>
                     </td>
@@ -142,7 +142,7 @@ $this->pageTitle=Yii::app()->name;
     <div class="row-fluid">
 
         <div class="span12">
-            <h2>latest jobs</h2>
+            <h2>自我介绍&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="#">（更多）</a></h2>
             <table class="table table-striped">
                 <tbody>
                 <tr>
