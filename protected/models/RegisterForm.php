@@ -23,12 +23,22 @@ class RegisterForm extends CFormModel{
         return array(
             // username and password are required
             array('username, password,email', 'required'),
-            // password needs to be authenticated
-            //array('password', 'authenticate'),
+            array('username', 'checkUser'),
+            array('email', 'checkEmail'),
         );
     }
 
+    public function checkUser($attribute,$params){
+        $this->_userManagement=new UserManagement();
+        if($this->_userManagement->checkUser($this))
+            $this->addError('username','已经存在此用户');
+    }
 
+    public function checkEmail($attribute,$params){
+        $this->_userManagement=new UserManagement();
+        if($this->_userManagement->checkEmail($this))
+            $this->addError('email','此邮箱已被注册');
+    }
 
     /**
      * Logs in the user using the given username and password in the model.
