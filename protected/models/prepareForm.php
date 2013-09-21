@@ -7,7 +7,7 @@
  * 用于传递给首页的用户最新面试信息
  */
 
-class prepareForm {
+class PrepareForm {
     public $userID;
     public $username;
     public $picPath;
