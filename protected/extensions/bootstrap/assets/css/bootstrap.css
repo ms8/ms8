@@ -1726,7 +1726,7 @@ table {
     padding: 8px;
     line-height: 20px;
     text-align: left;
-    vertical-align: top;
+    vertical-align: middle;
     border-top: 1px solid #dddddd;
 }
 .table th {
@@ -7257,27 +7257,27 @@ h1 {
     text-transform: none;
 }
 h2 {
-    font-size: 16px;
+    font-size: 20px;
     letter-spacing: 0px;
 }
 h3 {
-    font-size: 14px;
+    font-size: 18px;
     line-height: 0px;
 }
 h4 {
-    font-size: 13px;
+    font-size: 16px;
     line-height: 20px;
     text-transform: none;
     margin-bottom: 0px;
 }
 h5 {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 20px;
     text-align: center;
     margin-top: 7px;
 }
 h6 {
-    font-size: 10px;
+    font-size: 12px;
     line-height: 20px;
 }
 h2 {
@@ -7331,7 +7331,7 @@ blockquote.pull-right small:after {
     line-height: 30px;
     text-align: center;
     width: auto;
-    margin-top: 8px;
+    margin-top: 5px;
 }
 .navbar .nav > li > a {
     border-right: 1px solid #222222;
@@ -7348,9 +7348,9 @@ blockquote.pull-right small:after {
     background-color: none;
     background: none;
     border: 5px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     padding: 0px 15px;
     margin-left: 10px;
 }
@@ -7381,9 +7381,9 @@ blockquote.pull-right small:after {
     color: #00a0e2;
     background-color: #fff;
     border: 5px;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
     padding-bottom: 0px;
     color: #0060a1;
 }
