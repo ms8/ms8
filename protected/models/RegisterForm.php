@@ -10,6 +10,7 @@
 class RegisterForm extends CFormModel{
     public $username;
     public $password;
+    public $confirmpassword;
     public $email;
 
     private $_userManagement;
@@ -22,9 +23,12 @@ class RegisterForm extends CFormModel{
     {
         return array(
             // username and password are required
-            array('username, password,email', 'required'),
+            array('username, password,confirmpassword,email', 'required'),
             array('username', 'checkUser'),
             array('email', 'checkEmail'),
+            array('confirmpassword', 'compare', 'compareAttribute'=>'password')
+            // password needs to be authenticated
+            //array('password', 'authenticate'),
         );
     }
 
@@ -39,6 +43,35 @@ class RegisterForm extends CFormModel{
         if($this->_userManagement->checkEmail($this))
             $this->addError('email','此邮箱已被注册');
     }
+
+/*
+    public function getErrors($attribute=null)
+    {
+        $errors = array(
+            'username' => '用户名',
+            'email' => '邮箱',
+            'password' => '密码'
+        );
+        if($attribute===null)
+            return $this->_errors;
+        else
+            return isset($this->_errors[$attribute]) ? $this->_errors[$attribute] : array();
+    }
+*/
+    /**
+     * @return array customized attribute labels (name=>label)
+     */
+    public function attributeLabels()
+    {
+        return array(
+            'username' => '用户名',
+            'email' => '邮箱',
+            'password' => '密码',
+            'confirmpassword'=>'确认密码'
+        );
+    }
+
+
 
     /**
      * Logs in the user using the given username and password in the model.

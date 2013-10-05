@@ -36,14 +36,14 @@ $this->pageTitle=Yii::app()->name;
                                 </div>
 
                                 <div class="span2">
-                                    <a class="btn btn-primary btn-success search_btn" href="browse.html">查找</a>
+                                    <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <br>
-                    <div class="row-fluid">
+                    <!--div class="row-fluid">
                         <div class="span12">
 
                             <div class="row-fluid">
@@ -62,19 +62,10 @@ $this->pageTitle=Yii::app()->name;
                             </div>
 
                         </div>
-                    </div>
+                    </div-->
                 </div>
-
-
-
-
             </div>
-
-
-
         </div>
-
-
     </div>
 </div><!-- end hero -->
 <div class="container-fluid home_main_content">
@@ -85,121 +76,68 @@ $this->pageTitle=Yii::app()->name;
     <div class="row-fluid">
 
         <div class="span12">
-            <h2>featured jobs</h2>
-            <table class="table table-striped">
-                <tbody>
-                <tr class="success">
-                    <td> <span class="label label-warning">Full time</span> </td>
-                    <td><strong><a href="view-job.html">Mobile Software Engineer</a></strong><br>
-                        <a href="#">Teleworm Corp</a> – Posted by <a href="#">Teleworm</a>
-                    </td>
-                    <td>Austin<br>Texas, United States</td>
-                    <td> 10 Jan 2013</td>
-                </tr>
-                <tr class="success">
-                    <td><span class="label label-success">Part time</span></td>
-                    <td><strong><a href="view-job.html">Lead UI Programmer</a></strong><br>
-                        <a href="#">ArmySpy Corp</a> – Posted by <a href="#">ArmySpy</a>
-                    </td>
-                    <td>New York<br>NY, United States</td>
-                    <td> 12 Jan 2013</td>
-                </tr>
-                <tr class="">
-                    <td><span class="label label-info">Temporary</span></td>
-                    <td><strong><a href="view-job.html">PHP (Zend, Magento) Developer (Permanent)</a></strong><br>
-                        <a href="#">DayRep Corp</a> – Posted by <a href="#">DayRep</a>
-                    </td>
-                    <td>Montreal<br>QC, Canada</td>
-                    <td> 17 Jan 2013</td>
-                </tr>
-                <tr class="">
-                    <td><span class="label label-info">Temporary</span></td>
-                    <td><strong><a href="view-job.html">Node.js developer (6+ month project)</a></strong><br>
-                        <a href="#">BioWare</a> – Posted by <a href="#">RevivalToys</a>
-                    </td>
-                    <td>London<br>Tottenham, Great Britain</td>
-                    <td> 23 Jan 2013</td>
-                </tr>	                <tr class="">
-                    <td><span class="label label-inverse">Freelance</span></td>
-                    <td><strong><a href="view-job.html">Refrigeration Repair Technician</a></strong><br>
-                        <a href="#">DietDisorder Corp</a> – Posted by <a href="#">DietDisorder</a>
-                    </td>
-                    <td>Cambridge<br>Cambridge, Great Britain</td>
-                    <td> 23 Jan 2013</td>
-                </tr>	                <tr class="">
-                    <td><span class="label label-inverse">Freelance</span></td>
-                    <td><strong><a href="view-job.html">Senior Windows Administrator</a></strong><br>
-                        <a href="#">BioWare</a> – Posted by <a href="#">RevivalToys</a>
-                    </td>
-                    <td>Hong Kong, China</td>
-                    <td> 23 Jan 2013</td>
-                </tr>
-                </tbody>
-            </table>
+            <h2>热点面试&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="#">（更多）</a></h2>
+            <?php
+            $this->widget('zii.widgets.CListView', array(
+                'dataProvider'=>$preparedata,
+                'itemView'=>'_prepareview',
+                "itemsCssClass"=>"row-fluid items",
+                'template'=>'<div class="list">{items}</div>',
+                'sorterCssClass'=>'sorter_container',//定义sorter的div容器的class
+                'sorterHeader'=>'更改排序：',//定义的文字显示在sorter可排序属性的前面
+                'sorterFooter'=>'',//定义的文字显示在sorter可排序属性的后面
+            ));
+            ?>
         </div>
 
     </div>
     <div class="row-fluid">
-
         <div class="span12">
-            <h2>latest jobs</h2>
-            <table class="table table-striped">
-                <tbody>
-                <tr>
-                    <td><span class="label label-success">Part time</span></td>
-                    <td><strong><a href="view-job.html">Refrigeration Repair Technician</a></strong><br>
-                        <a href="#">Sears Corp</a> – Posted by <a href="#">appthemedemo</a>
-                    </td>
-                    <td>Austin<br>Texas, United States</td>
-                    <td> 23 Jan 2013</td>
-                </tr>
-                <tr class="success">
-                    <td><span class="label label-warning">Full time</span></td>
-                    <td><strong><a href="view-job.html">UI Developer</a></strong><br>
-                        <a href="#">BioWare Intl</a> – Posted by <a href="#">Bio</a>
-                    </td>
-                    <td>New York<br>NY, United States</td>
-                    <td> 23 Jan 2013</td>
-                </tr>
-                <tr class="">
-                    <td><span class="label label-success">Part time</span></td>
-                    <td><strong><a href="view-job.html">Refrigeration Repair Technician</a></strong><br>
-                        <a href="#">Sears Corp</a> – Posted by <a href="#">Casino</a>
-                    </td>
-                    <td>London<br>Tottenham, Great Britain</td>
-                    <td> 23 Jan 2013</td>
-                </tr>
-                <tr class="">
-                    <td><span class="label label-success">Part time</span></td>
-                    <td><strong><a href="view-job.html">Sr. Information Security Analyst</a></strong><br>
-                        <a href="#">Pivotal Labs</a> – Posted by <a href="#">Paul Smith</a>
-                    </td>
-                    <td>Austin<br>Texas, United States</td>
-                    <td> 23 Jan 2013</td>
-                </tr>	                <tr class="success">
-                    <td><span class="label label-inverse">Freelance</span></td>
-                    <td><strong><a href="view-job.html">Linux System Administrator</a></strong><br>
-                        <a href="#">Poker Studios</a> – Posted by <a href="#">Moker man</a>
-                    </td>
-                    <td>London<br>Tottenham, Great Britain</td>
-                    <td> 23 Jan 2013</td>
-                </tr><tr class="">
-                    <td><span class="label label-inverse">Freelance</span></td>
-                    <td><strong><a href="view-job.html">Front-end Developer</a></strong><br>
-                        <a href="#">Scripts Snapper</a> – Posted by <a href="#">Snapper</a>
-                    </td>
-                    <td>Hong Kong, China</td>
-                    <td> 23 Jan 2013</td>
-                </tr><tr class="">
-                    <td><span class="label label-inverse">Freelance</span></td>
-                    <td><strong><a href="view-job.html">Software Developer PHP and/or C# and .NET</a></strong><br>
-                        <a href="#">Sears Corp</a> – Posted by <a href="#">appthemedemo</a>
-                    </td>
-                    <td>Austin<br>Texas, United States</td>
-                    <td> 23 Jan 2013</td>
-                </tr>
-                </tbody>
-            </table>
+            <h2>自我介绍&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="#">（更多）</a></h2>
+            <?php
+
+            //格式化为图片
+            function formaterImage(){
+                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."$data[picPath]","",array("class"=>"img-polaroid")),"#",array("class"=>""))';
+            }
+            //格式化为链接
+            function formaterLink(){
+                return 'CHtml::tag("p",array(),
+                                 CHtml::tag("strong",array(),CHtml::link("$data[username]","#",array("class"=>""))." -- $data[address] -- $data[major]",true),true)
+                                 .CHtml::tag("p",array("class"=>"introduction"),"$data[selfintroduction]",true)';
+            }
+            //格式化为按钮
+            function formaterButton(){
+                return 'CHtml::htmlButton("求指定",array("class"=>"btn btn-small"))';
+            }
+
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'type'=>'striped',
+                'dataProvider'=>$introductiondata,
+                'hideHeader'=>false,
+                'template'=>"{items}",
+                'columns'=>array(
+                    array(
+                        'name'=>'id',
+                        'header'=>'发起人',
+                        'type'=>'raw',
+                        'htmlOptions'=>array("width"=>"60"),
+                        'value'=> formaterImage() ,
+                    ),
+                    array('name'=>'prepareID', 'header'=>'介绍',
+                        'type'=>'raw',
+                        'value'=>formaterLink() ,
+                    ),
+                    array('name'=>'time',
+                        'header'=>'时间',
+                        'type'=>'date',
+                    ),
+                    array('name'=>'title', 'header'=>'联系',
+                        'type'=>'raw',
+                        'value'=>formaterButton() ,),
+                ),
+            ));
+            ?>
         </div>
 
     </div>

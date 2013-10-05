@@ -24,6 +24,14 @@
         #content{padding: 40px 0 0 0;}
         #footer{border: none}
       .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
+       .items{padding-bottom: 20px;}
+        .items li{list-style: none;display: inline-block;width:49%;margin-bottom: 20px;}
+        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 5px 5px 5px 15px;}
+        .items .info a:hover{ text-decoration: none;}
+        .items .info .datetime{margin-top:5px;font: 13px Helvetica,Arial,sans-serif;}
+        .home_wrapper .list-view{padding-top: 0;}
+        .table thead th{background: white;}
+        .table .introduction{color:gray;}
     </style>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -42,6 +50,7 @@
                     'items'=>array(
                         array('label'=>'首页', 'url'=>array('/site/index')),
                         array('label'=>'面试达人', 'url'=>array('/site/page', 'view'=>'about')),
+                        array('label'=>'我的面试', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                         array('label'=>'人品', 'url'=>'#', 'items'=>array(
                             array('label'=>'Action', 'url'=>'#'),
                             array('label'=>'Another action', 'url'=>'#'),

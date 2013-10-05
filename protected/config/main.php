@@ -10,7 +10,7 @@ Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'面试吧',
-
+    'language'=>'zh_cn',
 	// preloading 'log' component
 	'preload'=>array('log'),
 
@@ -34,6 +34,14 @@ return array(
 		),
 
 	),
+    /*coreMessages=>array(
+        'language'=>'de',
+        'components'=>array(
+        'coreMessages'=>array(
+            'basePath'=>null,
+        ),
+    ),
+),*/
     //'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 	// application components
 	'components'=>array(
@@ -61,7 +69,7 @@ return array(
 		// uncomment the following to use a MySQL database
 
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=test',
+			'connectionString' => 'mysql:host=localhost;dbname=ms8',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '1',
