@@ -12,14 +12,15 @@ class PrepareManagement {
     public $prepares = array();
     public function getLatestPrepare(){
         $users = Yii::app()->db->createCommand()
-            ->select('prepareID, prepare.userID, username, pic,companyName,position,prepare.time')
+            ->select('prepareID, prepare.userID, username, pic,companyName,position,from_unixtime(prepare.time) time')
             ->from('prepare,user')
             ->where('prepare.userID=user.userID')
             ->order('prepare.time desc')
             ->limit(10)
             ->queryAll();
-
+        $i=1;
         foreach ($users as $user ){
+
             $prepareID = $user['prepareID'];
             $userID = $user['userID'];
             $username = $user['username'];
@@ -28,8 +29,11 @@ class PrepareManagement {
             $position = $user['position'];
             $time = $user['time'];
             $address = '北京';
-            $prepareForm = new PrepareForm($userID,$username,$pic,$prepareID,$time,$address,$companyName,$position);
-            array_push($prepares,$prepareForm);
+            $prepareForm = new PrepareForm($i,$userID,$username,$pic,$prepareID,$time,$address,$companyName,$position);
+            $tmp = TransformUtil::objectToArray($prepareForm);
+            $prepares[] = $tmp;
+            $i++;
         }
+        return $prepares;
     }
 }

@@ -8,6 +8,7 @@
  */
 
 class PrepareForm {
+    public $id;
     public $userID;
     public $username;
     public $picPath;
@@ -17,7 +18,8 @@ class PrepareForm {
     public $companyName;
     public $position;
 
-    public function __construct($userID,$username,$picPath,$prepareID,$time,$address,$companyName,$position){
+    public function __construct($id,$userID,$username,$picPath,$prepareID,$time,$address,$companyName,$position){
+        $this->id = $id;
         $this->userID = $userID;
         $this->username = $username;
         $this->picPath = $picPath;
