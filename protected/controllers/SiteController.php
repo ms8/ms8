@@ -21,59 +21,27 @@ class SiteController extends Controller
         );
     }
 
-    /**
-     * This is the default 'index' action that is invoked
-     * when an action is not explicitly requested by users.
-     */
-    public function actionIndex()
-    {
-        // renders the view file 'protected/views/site/index.php'
-        // using the default layout 'protected/views/layouts/main.php'
-        $preparedata= new CArrayDataProvider(array(
-            array('id'=>1, 'username'=>'古大飞','picPath'=>'/assets/user/1.jpg',
-                'companyName'=>'华为科技有限公司','position'=>'客服经理',
-                'prepareID'=>'01', 'address'=>'北京', 'time'=>'2013-02-10'),
-            array('id'=>2,'userID'=>'2',  'username'=>'王天好','picPath'=>'/assets/user/10.jpg',
-                'companyName'=>'百度科技有限公司','position'=>'高级产品经理',
-                'prepareID'=>'02','address'=>'上海', 'time'=>'2013-02-10'),
-            array('id'=>3, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/2.jpg',
-                'companyName'=>'微软科技有限公司','position'=>'开发工程师',
-                'prepareID'=>'03','address'=>'深圳', 'time'=>'2013-02-10'),
-            array('id'=>4, 'username'=>'古大飞','picPath'=>'/assets/user/3.jpg',
-                'companyName'=>'华为科技有限公司','position'=>'客服经理',
-                'prepareID'=>'01', 'address'=>'北京', 'time'=>'2013-02-10'),
-            array('id'=>5,'userID'=>'2',  'username'=>'王天好','picPath'=>'/assets/user/4.jpg',
-                'companyName'=>'百度科技有限公司','position'=>'高级产品经理',
-                'prepareID'=>'02','address'=>'上海', 'time'=>'2013-02-10'),
-            array('id'=>6, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/5.jpg',
-                'companyName'=>'微软科技有限公司','position'=>'开发工程师',
-                'prepareID'=>'03','address'=>'深圳', 'time'=>'2013-02-10'),
-            array('id'=>7, 'username'=>'古大飞','picPath'=>'/assets/user/6.jpg',
-                'companyName'=>'华为科技有限公司','position'=>'客服经理',
-                'prepareID'=>'01', 'address'=>'北京', 'time'=>'2013-02-10'),
-            array('id'=>8,'userID'=>'2',  'username'=>'王天好','picPath'=>'/assets/user/7.jpg',
-                'companyName'=>'百度科技有限公司','position'=>'高级产品经理',
-                'prepareID'=>'02','address'=>'上海', 'time'=>'2013-02-10'),
-            array('id'=>9, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/8.jpg',
-                'companyName'=>'微软科技有限公司','position'=>'开发工程师',
-                'prepareID'=>'03','address'=>'深圳', 'time'=>'2013-02-10'),
-            array('id'=>10, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/9.jpg',
-                'companyName'=>'微软科技有限公司','position'=>'开发工程师',
-                'prepareID'=>'03','address'=>'深圳', 'time'=>'2013-02-10'),
-        ));
-        $introductiondata = new CArrayDataProvider(array(
-            array('id'=>1,'userID'=>'1', 'username'=>'古大飞','picPath'=>'/assets/user/5.jpg',
-                'school'=>'清华大学','major'=>'计算机',
-                'selfintroduction'=>'北航计算机硕士，创业公司www.souchang.com 搜畅网络技术公司(已经关闭)技术负责人,阿里巴巴高级工程师，京东商城技术经理，高级架构师. 我关注的项目特点：技术密集，功能简单，现有的主流应用，用新技术去颠覆。其他项目尽量不要ping 我. . . . . .', 'address'=>'上海', 'time'=>'2013-02-10'),
-            array('id'=>2,'userID'=>'2',  'username'=>'王天好','picPath'=>'/assets/user/3.jpg',
-                'school'=>'北京大学','major'=>'动漫设计',
-                'selfintroduction'=>'互联网资深产品经理，曾经在雅虎、腾讯等大型互联网公司工作过，对于互联网产品丰富的实战经验；也曾独立创业过。目前在有道云笔记担任高级产品经理，负责有道云笔记的产品。. . . . . .','address'=>'杭州', 'time'=>'2013-02-10'),
-            array('id'=>3, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/7.jpg',
-                'school'=>'华南理工大学','major'=>'动物医学',
-                'selfintroduction'=>'1、六年资深教师，对中小学教育领悟深刻； 2、创业三年，拥有建班子、定战略、带队伍的成功经历； 3、目前正在二次创业，筹建一个将教育融入互联网的网站； ——创业资金、办公场地等都准备就绪，急需一个建站经验丰富的技术合伙人，有诚意者欢迎站内联系！. . . . . .','address'=>'天津', 'time'=>'2013-02-10'),
-        ));
+	/**
+	 * This is the default 'index' action that is invoked
+	 * when an action is not explicitly requested by users.
+	 */
+	public function actionIndex()
+	{
+		// renders the view file 'protected/views/site/index.php'
+		// using the default layout 'protected/views/layouts/main.php'
+        //进入首页时，取1.最新10条用户动态，即最新的面试准备信息；2.最新的10条自我介绍 3.最新10条求人品
+        /* */
+        $management = new PrepareManagement();
+        $prepareForms = $management->getLatestPrepare();
+        $userManagement = new UserManagement();
+        $selfIntroductions = $userManagement->getLatestIntroduction();
+        $preparedata= new CArrayDataProvider($prepareForms);
+        $introductiondata = new CArrayDataProvider($selfIntroductions);
+
         $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata));
+
     }
+
 
     /**
      * This is the action to handle external exceptions.
