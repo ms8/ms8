@@ -161,17 +161,17 @@ $this->pageTitle=Yii::app()->name;
                 ),
             )); ?>
             <div class="control-group">
-                <?php echo $form->textField($loginModel,'username',$usernameattr); ?>
-                <?php echo $form->error($loginModel,'username',$usernameattr); ?>
+                <?php echo $form->textField($loginForm,'username',$usernameattr); ?>
+                <?php echo $form->error($loginForm,'username',$usernameattr); ?>
             </div>
             <div class="control-group">
-                <?php echo $form->passwordField($loginModel,'password',$passwordattr); ?>
-                <?php echo $form->error($loginModel,'password',$passwordattr); ?>
+                <?php echo $form->passwordField($loginForm,'password',$passwordattr); ?>
+                <?php echo $form->error($loginForm,'password',$passwordattr); ?>
             </div>
             <div class="row rememberMe">
-                <?php echo $form->checkBox($loginModel,'rememberMe'); ?>
-                <?php echo $form->label($loginModel,'rememberMe'); ?>
-                <?php echo $form->error($loginModel,'rememberMe'); ?>
+                <?php echo $form->checkBox($loginForm,'rememberMe'); ?>
+                <?php echo $form->label($loginForm,'rememberMe'); ?>
+                <?php echo $form->error($loginForm,'rememberMe'); ?>
                 <a class="offset1" href="forgetPassword.php">忘记密码？</a>
             </div>
             <input type="submit" class="btn btn-primary" name="yt0" value="登录" />

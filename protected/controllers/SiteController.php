@@ -37,8 +37,9 @@ class SiteController extends Controller
         $selfIntroductions = $userManagement->getLatestIntroduction();
         $preparedata= new CArrayDataProvider($prepareForms);
         $introductiondata = new CArrayDataProvider($selfIntroductions);
+        $loginForm = new LoginForm();
 
-        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata));
+        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm));
 
     }
 
