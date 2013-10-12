@@ -72,7 +72,8 @@ class SiteController extends Controller
                 'school'=>'华南理工大学','major'=>'动物医学',
                 'selfintroduction'=>'1、六年资深教师，对中小学教育领悟深刻； 2、创业三年，拥有建班子、定战略、带队伍的成功经历； 3、目前正在二次创业，筹建一个将教育融入互联网的网站； ——创业资金、办公场地等都准备就绪，急需一个建站经验丰富的技术合伙人，有诚意者欢迎站内联系！. . . . . .','address'=>'天津', 'time'=>'2013-02-10'),
         ));
-        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata));
+        $loginModel=new LoginForm;
+        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginModel'=>$loginModel));
     }
 
     /**
