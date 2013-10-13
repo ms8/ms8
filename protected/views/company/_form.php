@@ -1,5 +1,5 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'self-introduction-form',
+	'id'=>'company-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -7,11 +7,13 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'intro_id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'fullname',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php echo $form->textFieldRow($model,'user_id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'shortname',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php echo $form->textFieldRow($model,'self_introduction',array('class'=>'span5','maxlength'=>10000)); ?>
+	<?php echo $form->textFieldRow($model,'industryID',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'address',array('class'=>'span5','maxlength'=>100)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

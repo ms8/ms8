@@ -1,15 +1,12 @@
 <?php
-/* @var $this SelfIntroductionController */
-/* @var $model SelfIntroduction */
-
 $this->breadcrumbs=array(
 	'Self Introductions'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List SelfIntroduction', 'url'=>array('index')),
-	array('label'=>'Manage SelfIntroduction', 'url'=>array('admin')),
+	array('label'=>'List SelfIntroduction','url'=>array('index')),
+	array('label'=>'Manage SelfIntroduction','url'=>array('admin')),
 );
 ?>
 

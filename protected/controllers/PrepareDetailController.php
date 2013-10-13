@@ -1,6 +1,6 @@
 <?php
 
-class SelfIntroductionController extends Controller
+class PrepareDetailController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,16 +61,16 @@ class SelfIntroductionController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new SelfIntroduction;
+		$model=new PrepareDetail;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['SelfIntroduction']))
+		if(isset($_POST['PrepareDetail']))
 		{
-			$model->attributes=$_POST['SelfIntroduction'];
+			$model->attributes=$_POST['PrepareDetail'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->intro_id));
+				$this->redirect(array('view','id'=>$model->detailID));
 		}
 
 		$this->render('create',array(
@@ -90,11 +90,11 @@ class SelfIntroductionController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['SelfIntroduction']))
+		if(isset($_POST['PrepareDetail']))
 		{
-			$model->attributes=$_POST['SelfIntroduction'];
+			$model->attributes=$_POST['PrepareDetail'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->intro_id));
+				$this->redirect(array('view','id'=>$model->detailID));
 		}
 
 		$this->render('update',array(
@@ -127,7 +127,7 @@ class SelfIntroductionController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('SelfIntroduction');
+		$dataProvider=new CActiveDataProvider('PrepareDetail');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -138,10 +138,10 @@ class SelfIntroductionController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new SelfIntroduction('search');
+		$model=new PrepareDetail('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['SelfIntroduction']))
-			$model->attributes=$_GET['SelfIntroduction'];
+		if(isset($_GET['PrepareDetail']))
+			$model->attributes=$_GET['PrepareDetail'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -155,7 +155,7 @@ class SelfIntroductionController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=SelfIntroduction::model()->findByPk($id);
+		$model=PrepareDetail::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -167,7 +167,7 @@ class SelfIntroductionController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='self-introduction-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='prepare-detail-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

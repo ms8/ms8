@@ -1,5 +1,5 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'self-introduction-form',
+	'id'=>'renpin-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -7,11 +7,11 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'intro_id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'userID',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<?php echo $form->textFieldRow($model,'user_id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'content',array('class'=>'span5','maxlength'=>1000)); ?>
 
-	<?php echo $form->textFieldRow($model,'self_introduction',array('class'=>'span5','maxlength'=>10000)); ?>
+	<?php echo $form->textFieldRow($model,'time',array('class'=>'span5')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Self Introductions'=>array('index'),
+	'Prepare Details'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List SelfIntroduction','url'=>array('index')),
-	array('label'=>'Create SelfIntroduction','url'=>array('create')),
+	array('label'=>'List PrepareDetail','url'=>array('index')),
+	array('label'=>'Create PrepareDetail','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('self-introduction-grid', {
+	$.fn.yiiGridView.update('prepare-detail-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Self Introductions</h1>
+<h1>Manage Prepare Details</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -38,13 +38,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'self-introduction-grid',
+	'id'=>'prepare-detail-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'intro_id',
-		'user_id',
-		'self_introduction',
+		'prepareID',
+		'title',
+		'url',
+		'type',
+		'detailID',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
