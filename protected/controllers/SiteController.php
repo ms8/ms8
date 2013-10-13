@@ -38,6 +38,7 @@ class SiteController extends Controller
         $preparedata= new CArrayDataProvider($prepareForms);
         $introductiondata = new CArrayDataProvider($selfIntroductions);
         $loginForm = new LoginForm();
+        //$prepareForm = new PrepareForm();
 
         $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm));
 

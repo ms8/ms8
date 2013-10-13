@@ -22,22 +22,32 @@ $this->pageTitle=Yii::app()->name;
                                 </div>
                             </div>
 
-                            <div class="row-fluid">
+                            <div class="row-fluid form">
+                                <?php
+                                $inputattr = array("class"=>"input-xlarge focused");
+                                $form=$this->beginWidget('CActiveForm', array(
+                                    'id'=>'prepare-form',
+                                    "action"=>array("prepare/index"),
+                                    'enableClientValidation'=>false,
+                                    'clientOptions'=>array(
+                                        'validateOnSubmit'=>false,
+                                    ),
+                                )); ?>
+                                    <div class="span5">
+                                        <input type="text" name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
+                                    </div>
 
-                                <div class="span5">
-                                    <input type="text" class="span12 search_input" placeholder="您将面试的公司?">
-                                </div>
+                                    <div class="span4">
+                                        <select name="PrapareForm[position]" class="home_select">
+                                            <option value="客户经理">客户经理</option>
+                                            <option value="0">开发人员</option>
+                                        </select>
+                                    </div>
 
-                                <div class="span4">
-                                    <select class="home_select">
-                                        <option value="0">客户经理</option>
-                                        <option value="0">开发人员</option>
-                                    </select>
-                                </div>
-
-                                <div class="span2">
-                                    <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
-                                </div>
+                                    <div class="span2">
+                                        <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
+                                    </div>
+                                <?php $this->endWidget(); ?>
 
                             </div>
                         </div>
