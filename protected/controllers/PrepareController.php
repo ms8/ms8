@@ -1,12 +1,11 @@
 <?php
-
 class PrepareController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column3';
 
 	/**
 	 * @return array action filters
@@ -127,10 +126,18 @@ class PrepareController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Prepare');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+        $information  = new GetInformation;$inforesult = "";
+        // collect user input data
+        if(isset($_POST['PrapareForm']))
+        {
+            $information->company=$_POST['PrapareForm']['company'];
+            $information->position=$_POST['PrapareForm']['position'];
+            $inforesult =  $information->getCompanyIntro();
+        }
+        $dataProvider=new CActiveDataProvider('Prepare');
+
+        // display the login form
+        $this->render('index',array('information'=>$inforesult,'dataProvider'=>$dataProvider,));
 	}
 
 	/**
