@@ -21,14 +21,14 @@ class SiteController extends Controller
         );
     }
 
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-	 */
-	public function actionIndex()
-	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
+    /**
+     * This is the default 'index' action that is invoked
+     * when an action is not explicitly requested by users.
+     */
+    public function actionIndex()
+    {
+        // renders the view file 'protected/views/site/index.php'
+        // using the default layout 'protected/views/layouts/main.php'
         //进入首页时，取1.最新10条用户动态，即最新的面试准备信息；2.最新的10条自我介绍 3.最新10条求人品
         /* */
         $management = new PrepareManagement();
@@ -37,8 +37,9 @@ class SiteController extends Controller
         $selfIntroductions = $userManagement->getLatestIntroduction();
         $preparedata= new CArrayDataProvider($prepareForms);
         $introductiondata = new CArrayDataProvider($selfIntroductions);
+        $loginForm = new LoginForm();
 
-        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata));
+        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm));
 
     }
 
