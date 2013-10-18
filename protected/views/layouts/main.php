@@ -22,6 +22,7 @@
     <style type="text/css">
        .row-fluid input[class*='span'] {min-height: 20px}
         #content{padding: 40px 0 0 0;}
+       #sidebar {padding: 40px 20px 20px 0;}
         #footer{border: none}
       .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
        .items{padding-bottom: 20px;}
@@ -92,12 +93,13 @@
 		-->
 
 	</div><!-- mainmenu -->
+    <!--
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
+		)); ?>
 	<?php endif?>
-
+    -->
 	<?php echo $content; ?>
 
 	<div class="clear"></div>
