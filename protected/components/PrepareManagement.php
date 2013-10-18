@@ -34,6 +34,6 @@ class PrepareManagement {
             $prepares[] = $tmp;
             $i++;
         }
-        return $prepares;
+        return $this->prepares;
     }
 }

@@ -2,23 +2,22 @@
 header("Content-Type:text/html; charset=utf-8");  
 include 'simple_html_dom.php';
 
-Class GetInformation()
-{
+Class GetInformation{
 	public $company;
 	public $position;
 	//获取公司信息
-	function getCompanyIntro($company)
+	function getCompanyIntro()
 	{
-		$sourceURL = "www.baidu.com?wd="+"site:baike.baidu.com"+" "+$company;
-		$articles = getinfoList($sourceURL);
+		$sourceURL = "http://www.baidu.com/s?wd=site%3Abaike.baidu.com+".$this->company;
+		$articles = $this->getinfoList($sourceURL);
 		return $articles[0];
 	}
 
 	//获取面试信息，$type 是面试，笔试，(工资,薪酬)
 	function getResultList($company,$position,$type)
 	{
-		$sourceURL = "www.baidu.com?wd="+$company+" "+$position+" "+$type;
-		$articles = getinfoList($sourceURL)
+		$sourceURL = "www.baidu.com/s?wd="+$company+" "+$position+" "+$type;
+		$articles = getinfoList($sourceURL);
 		$newarticles= array();
 		foreach($articles as $mj)
 		{
@@ -46,17 +45,14 @@ Class GetInformation()
 			$item['url']     = $article->find('a', 0)->href;
 			$item['title']    = $article->find('a', 0)->plaintext;
 	
-		//将em中的关键词索引取出来
-		//foreach($article->find('em') as $keyword)
-		//	$keywords[]=$keyword->plaintext;
-		//$item['keyword']=$keywords;
-		$articles[] = $item;
-		return $articles;
-	}
-	
-}//end of Class
-
-
+            //将em中的关键词索引取出来
+            //foreach($article->find('em') as $keyword)
+            //	$keywords[]=$keyword->plaintext;
+            //$item['keyword']=$keywords;
+            $articles[] = $item;
+            return $articles;
+        }
+    }
+}//class end
 
 ?>
-

@@ -22,22 +22,32 @@ $this->pageTitle=Yii::app()->name;
                                 </div>
                             </div>
 
-                            <div class="row-fluid">
+                            <div class="row-fluid form">
+                                <?php
+                                $inputattr = array("class"=>"input-xlarge focused");
+                                $form=$this->beginWidget('CActiveForm', array(
+                                    'id'=>'prepare-form',
+                                    "action"=>array("prepare/index"),
+                                    'enableClientValidation'=>false,
+                                    'clientOptions'=>array(
+                                        'validateOnSubmit'=>false,
+                                    ),
+                                )); ?>
+                                    <div class="span5">
+                                        <input type="text" name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
+                                    </div>
 
-                                <div class="span5">
-                                    <input type="text" class="span12 search_input" placeholder="您将面试的公司?">
-                                </div>
+                                    <div class="span4">
+                                        <select name="PrapareForm[position]" class="home_select">
+                                            <option value="客户经理">客户经理</option>
+                                            <option value="0">开发人员</option>
+                                        </select>
+                                    </div>
 
-                                <div class="span4">
-                                    <select class="home_select">
-                                        <option value="0">客户经理</option>
-                                        <option value="0">开发人员</option>
-                                    </select>
-                                </div>
-
-                                <div class="span2">
-                                    <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
-                                </div>
+                                    <div class="span2">
+                                        <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
+                                    </div>
+                                <?php $this->endWidget(); ?>
 
                             </div>
                         </div>
@@ -108,7 +118,7 @@ $this->pageTitle=Yii::app()->name;
             }
             //格式化为按钮
             function formaterButton(){
-                return 'CHtml::htmlButton("求指定",array("class"=>"btn btn-small"))';
+                return 'CHtml::htmlButton("求指点",array("class"=>"btn btn-small"))';
             }
 
             $this->widget('bootstrap.widgets.TbGridView', array(
@@ -134,6 +144,7 @@ $this->pageTitle=Yii::app()->name;
                     ),
                     array('name'=>'title', 'header'=>'联系',
                         'type'=>'raw',
+                        'htmlOptions'=>array("width"=>"100"),
                         'value'=>formaterButton() ,),
                 ),
             ));
@@ -144,83 +155,53 @@ $this->pageTitle=Yii::app()->name;
 </div>
 
 <div class="span3">
-    <h2>&nbsp;</h2>
+    <?php if(!Yii::app()->user->isGuest) echo "<div style='display: none'>"; ?>
+    <h2>登陆</h2>
     <div class="row-fluid">
-        <div class="span12 center">
-            <a class="btn btn-primary btn-large post_job" href="post-job.html">post a job<br><small>(it's free!)</small></a>
+        <div class="span12 form left alert home_content">
+            <?php
+            $usernameattr = array("class"=>"input-medium focused","placeholder"=>"用户名");
+            $passwordattr = array("class"=>"input-medium focused","placeholder"=>"密码");
+            $form=$this->beginWidget('CActiveForm', array(
+                'id'=>'login-form',
+                'action'=>array('site/login'),
+                'enableClientValidation'=>true,
+                'clientOptions'=>array(
+                    'validateOnSubmit'=>true,
+                ),
+            )); ?>
+            <div class="control-group">
+                <?php echo $form->textField($loginForm,'username',$usernameattr); ?>
+                <?php echo $form->error($loginForm,'username',$usernameattr); ?>
+            </div>
+            <div class="control-group">
+                <?php echo $form->passwordField($loginForm,'password',$passwordattr); ?>
+                <?php echo $form->error($loginForm,'password',$passwordattr); ?>
+            </div>
+            <div class="row rememberMe">
+                <?php echo $form->checkBox($loginForm,'rememberMe'); ?>
+                <?php echo $form->label($loginForm,'rememberMe'); ?>
+                <?php echo $form->error($loginForm,'rememberMe'); ?>
+                <a class="offset1" href="forgetPassword.php">忘记密码？</a>
+            </div>
+            <input type="submit" class="btn btn-primary" name="yt0" value="登录" />
+            <?php $this->endWidget(); ?>
         </div>
     </div>
     <br>
-    <h2>Browse jobs</h2>
+    <?php if(!Yii::app()->user->isGuest) echo "</div>";?>
+    <h2>求人品</h2>
     <div class="row-fluid">
         <div class="span12">
-            <select class="span12" id="job_term_cat" name="job_term_cat">
-                <option value="">Job category...</option>
-                <option value="38" class="level-0">Automotive</option>
-                <option value="43" class="level-1">&nbsp;&nbsp;&nbsp;Electrical</option>
-                <option value="40" class="level-1">&nbsp;&nbsp;&nbsp;Inspection</option>
-                <option value="41" class="level-1">&nbsp;&nbsp;&nbsp;Painting</option>
-                <option value="39" class="level-1">&nbsp;&nbsp;&nbsp;Service</option>
-                <option value="42" class="level-1">&nbsp;&nbsp;&nbsp;Upholstry</option>
-                <option value="20" class="level-0">Construction</option>
-                <option value="29" class="level-1">&nbsp;&nbsp;&nbsp;Carpenter</option>
-                <option value="44" class="level-1">&nbsp;&nbsp;&nbsp;Electrician</option>
-                <option value="34" class="level-1">&nbsp;&nbsp;&nbsp;Flooring</option>
-                <option value="36" class="level-1">&nbsp;&nbsp;&nbsp;Foundation Repair</option>
-                <option value="33" class="level-1">&nbsp;&nbsp;&nbsp;General Maintence</option>
-                <option value="37" class="level-1">&nbsp;&nbsp;&nbsp;Inspections</option>
-                <option value="35" class="level-1">&nbsp;&nbsp;&nbsp;Insulation</option>
-                <option value="31" class="level-1">&nbsp;&nbsp;&nbsp;Mason</option>
-                <option value="32" class="level-1">&nbsp;&nbsp;&nbsp;Painter</option>
-                <option value="30" class="level-1">&nbsp;&nbsp;&nbsp;Plumber</option>
-                <option value="50" class="level-0">Fashion</option>
-                <option value="23" class="level-0">Food Service</option>
-                <option value="24" class="level-1">&nbsp;&nbsp;&nbsp;Bartender</option>
-                <option value="28" class="level-1">&nbsp;&nbsp;&nbsp;Cook</option>
-                <option value="25" class="level-1">&nbsp;&nbsp;&nbsp;Hosting</option>
-                <option value="26" class="level-1">&nbsp;&nbsp;&nbsp;Waiter</option>
-                <option value="21" class="level-0">Insurance</option>
-                <option value="22" class="level-0">Realtors</option>
-                <option value="19" class="level-0">Technology</option>
-                <option value="45" class="level-1">&nbsp;&nbsp;&nbsp;Engineering</option>
-                <option value="46" class="level-1">&nbsp;&nbsp;&nbsp;Programming</option>
-                <option value="47" class="level-1">&nbsp;&nbsp;&nbsp;Sys Admin</option>
-            </select>
-
-
-            <select id="job_type" name="job_type" class="span12">
-                <option>Job type...</option>
-                <option>&nbsp;&nbsp;&nbsp;Freelance</option>
-                <option>&nbsp;&nbsp;&nbsp;Full-Time</option>
-                <option>&nbsp;&nbsp;&nbsp;Internship</option>
-                <option>&nbsp;&nbsp;&nbsp;Part-Time</option>
-                <option>&nbsp;&nbsp;&nbsp;Temporary</option>
-            </select>
-
-
-            <select class="span12" id="job_term_salary" name="job_term_salary">
-                <option value="">Job salary...</option>
-                <option value="9" class="level-0">&nbsp;&nbsp;&nbsp;Less than 20,000</option>
-                <option value="10" class="level-0">&nbsp;&nbsp;&nbsp;20,000 – 40,000</option>
-                <option value="11" class="level-0">&nbsp;&nbsp;&nbsp;40,000 – 60,000</option>
-                <option value="12" class="level-0">&nbsp;&nbsp;&nbsp;60,000 – 80,000</option>
-                <option value="13" class="level-0">&nbsp;&nbsp;&nbsp;80,000 – 100,000</option>
-                <option value="14" class="level-0">&nbsp;&nbsp;&nbsp;100,000 and above</option>
-            </select>
-
-            <select class="span12" id="job_term_salary2" name="job_term_salary2">
-                <option value="">Date posted...</option>
-                <option value="">Today</option>
-                <option value="">This week</option>
-                <option value="">Last week</option>
-                <option value="">This month</option>
-            </select>
-
-            <a class="btn btn-large pull-right search_btn" href="browse.html">Search</a>
+            <div class="alert alert-info home_content" style="padding-right: 8px"><a href="regist.html">
+                    小白的求人品:我就要参加华为的面试了，希望我能过，我过了以后会把面试经历分享给大家。求过。。。
+                </a><br/>
+                <button class="btn">祝福</button>  <button class="btn">忽略</button>
+            </div>
 
         </div>
     </div>
-    <h2>Stay connected</h2>
+    <h2>关注我们</h2>
     <div class="row-fluid">
         <div class="span12">
             <ul class="social-icons">
@@ -230,7 +211,7 @@ $this->pageTitle=Yii::app()->name;
                 <li><a href="#"><i class="icon-linkedin-sign icon-2x"></i></a></li>
                 <li><a href="#"><i class="icon-pinterest-sign icon-2x"></i></a></li>
             </ul>
-            <p>Stay connected to the latest jobs, events and career advice.</p>
+            <p></p>
         </div>
     </div>
 
