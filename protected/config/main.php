@@ -70,9 +70,10 @@ return array(
 
 		'db'=>array(
 			'connectionString' => 'mysql:host=localhost;dbname=ms',
+
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '1',
+			'password' => '111111',
 			'charset' => 'utf8',
 		),
 
