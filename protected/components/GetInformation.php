@@ -8,16 +8,19 @@ Class GetInformation{
 	//获取公司信息
 	function getCompanyIntro()
 	{
-		$sourceURL = "http://www.baidu.com/s?wd=site%3Abaike.baidu.com+".$this->company;
-		$articles = $this->getinfoList($sourceURL);
+		//$sourceURL = "http://www.baidu.com/s?wd=site%3Abaike.baidu.com+".$this->company;
+		//$articles = $this->getinfoList($sourceURL);
+        $articles = $this->getResultList($this->company,$this->position,"面试");
 		return $articles[0];
+       // return $articles;
 	}
 
 	//获取面试信息，$type 是面试，笔试，(工资,薪酬)
 	function getResultList($company,$position,$type)
 	{
-		$sourceURL = "www.baidu.com/s?wd="+$company+" "+$position+" "+$type;
-		$articles = getinfoList($sourceURL);
+		$sourceURL = "http://www.baidu.com/s?wd=".$company."+".$position."+".$type;
+        //$sourceURL = "http://www.baidu.com/s?wd=".$this->company;
+		$articles = $this->getinfoList($sourceURL);
 		$newarticles= array();
 		foreach($articles as $mj)
 		{
@@ -38,8 +41,10 @@ Class GetInformation{
 	function getInfoList($sourceURL)
 	{
 		// Create DOM from URL
+        $stime=microtime(true); //获取程序开始执行的时间
 		$html = file_get_html($sourceURL);
-
+        $etime=microtime(true);//获取程序执行结束的时间
+        $total=$etime-$stime;   //计算差值
 		// Find all article blocks
 		foreach($html->find('h3') as $article) {
 			$item['url']     = $article->find('a', 0)->href;
@@ -50,8 +55,12 @@ Class GetInformation{
             //	$keywords[]=$keyword->plaintext;
             //$item['keyword']=$keywords;
             $articles[] = $item;
-            return $articles;
         }
+        //usleep(3000*1000);
+        $etime=microtime(true);//获取程序执行结束的时间
+        $total=$etime-$stime;   //计算差值
+        echo $total;
+        return $articles;
     }
 }//class end
 
