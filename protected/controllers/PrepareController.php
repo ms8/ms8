@@ -132,12 +132,23 @@ class PrepareController extends Controller
         {
             $information->company=$_POST['PrapareForm']['company'];
             $information->position=$_POST['PrapareForm']['position'];
-            $inforesult =  $information->getCompanyIntro();
+            $infoCompany =  $information->getCompanyIntro();
+            $information->type= "薪酬";
+            $infoRemuneration = $information->getResultList();
+            $information->type= "面试";
+            $infoInterview = $information->getResultList();
+            $information->type= "笔试";
+            $infoPaperTest = $information->getResultList();
         }
         $dataProvider=new CActiveDataProvider('Prepare');
+        $dataCompany = new CArrayDataProvider($infoCompany);
+        $dataRemuneration=new CArrayDataProvider($infoRemuneration);
+        $dataInterview = new CArrayDataProvider($infoInterview);
+        $dataPaperTest = new CArrayDataProvider($infoPaperTest);
 
         // display the login form
-        $this->render('index',array('information'=>$inforesult,'dataProvider'=>$dataProvider,));
+        $this->render('index',array('dataProvider'=>$dataProvider,'dataCompany'=>$dataCompany,'company'=>$information->company,'position'=>$information->position,
+            'dataRemuneration'=>$dataRemuneration,'dataInterview'=>$dataInterview,'dataPaperTest'=>$dataPaperTest));
 	}
 
 	/**

@@ -1,9 +1,12 @@
-
 <?php
 $this->breadcrumbs=array(
 	'Prepares',
 );
-
+    /*array(array(
+   "id"=>1,
+    "url"=>"http://www.baidu.com/link?url=V6weCqeXVf5XWzmAg64jIhIM-bVSFPPLhu48JcBlSYSg_zRFB7vEXXSWOnCaswjnYY6p52cElOvQmre3oPFLE_",
+    "title"=>"华为技术有限公司_百度百科")
+));*/
 /*$this->menu=array(
 	array('label'=>'我的面试','url'=>array('create')),
 	array('label'=>'自我介绍','url'=>array('admin')),
@@ -20,7 +23,7 @@ $this->menu= array(
     array('label'=>'我关注的面试', 'icon'=>'user', 'url'=>'#'),
     array('label'=>'个人信息', 'icon'=>'cog', 'url'=>'#'),
 );
-if(isset($information)){
+if($dataCompany->rawData != "" && $dataCompany->rawData[0]["title"] != ""){
     array_unshift($this->menu,array('label'=>'我的面试', 'icon'=>'home', 'url'=>array('create')));
 }else{
     array_unshift($this->menu,array('label'=>'我的面试', 'icon'=>'home', 'url'=>array('create'), 'active'=>true));
@@ -35,22 +38,24 @@ if(isset($information)){
 
 <h1>
     <?php
-    if(isset($information["title"])){
-        echo $information["title"];
-        $dataProvider = $information ;
+    if($dataCompany->rawData != "" && $dataCompany->rawData[0]["title"] != ""){
+        echo $company."_".$position;
     }else{
         echo "面试信息";
     }
     ?>
 </h1>
-
+<hr>
+<h2>公司介绍</h2>
+<div class="search-result">
 <?php
-
 $this->widget('bootstrap.widgets.TbListView',array(
-	'dataProvider'=>$dataProvider,
+//	'dataProvider'=>$dataProvider,
+//    'itemView'=>'_view',
+    'dataProvider'=>$dataCompany,
 	'itemView'=>'_search2',
     "itemsCssClass"=>"row-fluid items",
-    'template'=>'<div class="list">{items}</div>',
+    'template'=>'<div class="list company">{items}</div>',
 ));
 /*$this->widget('zii.widgets.CListView', array(
     'dataProvider'=>$preparedata,
@@ -61,6 +66,57 @@ $this->widget('bootstrap.widgets.TbListView',array(
     'sorterHeader'=>'更改排序：',//定义的文字显示在sorter可排序属性的前面
     'sorterFooter'=>'',//定义的文字显示在sorter可排序属性的后面
 ));
-/*echo $information["url"];
-echo $information["title"];*/
+*/
 ?>
+</div>
+    <h2>薪酬待遇</h2>
+    <div class="search-result">
+<?php
+if(!isset($dataRemuneration->rawData) || $dataRemuneration->rawData == ""){
+    echo "没有找到数据";
+}else{
+    $this->widget('bootstrap.widgets.TbListView',array(
+    //	'dataProvider'=>$dataProvider,
+    //    'itemView'=>'_view',
+        'dataProvider'=>$dataRemuneration,
+        'itemView'=>'_search2',
+        "itemsCssClass"=>"row-fluid items",
+        'template'=>'<div class="list remuneration">{items}</div>',
+    ));
+}
+?>
+</div>
+    <h2>笔试</h2>
+    <div class="search-result">
+<?php
+if($dataPaperTest->rawData == ""){
+    echo "没有找到数据";
+}else{
+    $this->widget('bootstrap.widgets.TbListView',array(
+    //	'dataProvider'=>$dataProvider,
+    //    'itemView'=>'_view',
+        'dataProvider'=>$dataPaperTest,
+        'itemView'=>'_search2',
+        "itemsCssClass"=>"row-fluid items",
+        'template'=>'<div class="list papertest">{items}</div>',
+    ));
+}
+?>
+</div>
+    <h2>面试</h2>
+    <div class="search-result">
+<?php
+if($dataCompany->rawData == ""){
+    echo "没有找到数据";
+}else{
+    $this->widget('bootstrap.widgets.TbListView',array(
+//	'dataProvider'=>$dataProvider,
+//    'itemView'=>'_view',
+        'dataProvider'=>$dataInterview,
+        'itemView'=>'_search2',
+        "itemsCssClass"=>"row-fluid items",
+        'template'=>'<div class="list interview">{items}</div>',
+    ));
+}
+?>
+    </div>

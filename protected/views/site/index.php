@@ -38,10 +38,7 @@ $this->pageTitle=Yii::app()->name;
                                     </div>
 
                                     <div class="span4">
-                                        <select name="PrapareForm[position]" class="home_select">
-                                            <option value="客户经理">客户经理</option>
-                                            <option value="0">开发人员</option>
-                                        </select>
+                                        <input type="text" name="PrapareForm[position]"  class="span12 search_input" placeholder="您将面试的职位?">
                                     </div>
 
                                     <div class="span2">
