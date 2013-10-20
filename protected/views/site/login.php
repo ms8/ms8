@@ -1,7 +1,7 @@
 <div class="container-fluid">
 <?php
 /* @var $this SiteController */
-/* @var $model LoginForm */
+/* @var $model LoginForm3 */
 /* @var $form CActiveForm  */
 
 $this->pageTitle=Yii::app()->name . ' - Login';
@@ -12,7 +12,7 @@ $this->pageTitle=Yii::app()->name . ' - Login';
      $inputattr = array("class"=>"input-xlarge focused");
      $form=$this->beginWidget('CActiveForm', array(
         'id'=>'login-form',
-        'enableClientValidation'=>true,
+        'enableClientValidation'=>false,
         'clientOptions'=>array(
             'validateOnSubmit'=>true,
         ),
