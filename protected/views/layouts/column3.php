@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row-fluid">
                     <div id="sidebar" class="span3">
-                        <div class="well">
+                        <div  class="well">
                         <?php
 
                         /*$this->beginWidget('zii.widgets.CPortlet', array(
@@ -29,13 +29,14 @@
                         ?>
                         </div>
                     </div><!-- sidebar -->
-                    <div id="content" class="span9">
+                    <div id="container" class="span9">
                         <div class="well">
                         <?php echo $content; ?>
                         </div>
                     </div><!-- content -->
-                <?php $this->endContent(); ?>
+
             </div>
         </div>
     </div>
 </div>
+<?php $this->endContent(); ?>

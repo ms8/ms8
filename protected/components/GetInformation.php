@@ -27,7 +27,7 @@ Class GetInformation{
             if($this->type == "薪酬") {
                 $mianshi="薪酬";
             }else{
-			$mianshi="面试";
+                $mianshi="面试";
             }
 			//1.百度知道的URL从结果中剔除；--扩展，类似百度知道这样的网站
 			//如果是百度知道的网址，则不加入
@@ -35,11 +35,11 @@ Class GetInformation{
 			{	
                 if(isset($this->type)&& $this->type == "薪酬" && (strpos($mj['title'],"待遇")!==false || strpos($mj['title'],"待遇")!==false ||
                     strpos($mj['title'],"工资")!==false || strpos($mj['title'],"收入")!==false)){
-					$newarticles[]=$mj;
+                    $newarticles[]=$mj;
                 }elseif(strpos($mj['title'],$mianshi)!==false){
                     $newarticles[]=$mj;
+                }
 			}
-		}
 		}
 		return $newarticles;
 	}

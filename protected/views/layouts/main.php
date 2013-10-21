@@ -22,6 +22,7 @@
     <style type="text/css">
        .row-fluid input[class*='span'] {min-height: 20px}
         #content{padding: 40px 0 0 0;}
+        #container{padding: 40px 0 0 0;}
        #sidebar {padding: 40px 20px 20px 0;}
         #footer{border: none}
       .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
@@ -33,6 +34,10 @@
         .home_wrapper .list-view{padding-top: 0;}
         .table thead th{background: white;}
         .table .introduction{color:gray;}
+       .search-result a:visited{color:green;}
+       .search-result a:link{ color:#0060a1;}
+       .search-result a:hover{ color:#00a0e2;}
+       .search-result a:active{ color:#005188;}
     </style>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
