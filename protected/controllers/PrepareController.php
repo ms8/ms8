@@ -126,7 +126,8 @@ class PrepareController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $information  = new GetInformation;$inforesult = "";
+        $information  = new GetInformation;
+        $inforesult = "";
         // collect user input data
         if(isset($_POST['PrapareForm']))
         {
@@ -139,6 +140,19 @@ class PrepareController extends Controller
         // display the login form
         $this->render('index',array('information'=>$inforesult,'dataProvider'=>$dataProvider,));
 	}
+
+    public function actionSave(){
+        $prepare = new Prepare();
+        if(isset($_POST['PrapareForm'])){
+            $prepare->companyName = $_POST['PrapareForm']['company'];
+            $prepare->position = $_POST['PrapareForm']['position'];
+            $prepare->userName = Yii::app()->user->name;
+            $prepare->summary = $_POST['PrapareForm']['summary'];
+            $prepare->time = time();
+        }
+        $prepare->setRelationRecords('prepareDetail',is_array(@$_POST['detailModel']) ? $_POST['detailModel'] : array());
+        $prepare->save();
+    }
 
 	/**
 	 * Manages all models.

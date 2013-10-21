@@ -87,23 +87,22 @@ class UserManagement {
     public function getLatestIntroduction(){
         $selfIntroductions =  array();
         $introductions = Yii::app()->db->createCommand()
-            ->select('intro_id, user.userID, self_introduction.username, pic,self_introduction,school,major')
+            ->select('intro_id, self_introduction.username, pic,self_introduction,school,major')
             ->from('self_introduction,user')
-            ->where('self_introduction.user_id=user.userID')
+            ->where('self_introduction.username=user.username')
             ->order('intro_id desc')
             ->limit(10)
             ->queryAll();
         $i=1;
         foreach ($introductions as $introduction ){
             $intro_id = $introduction['intro_id'];
-            $userID = $introduction['userID'];
             $username = $introduction['username'];
             $pic = $introduction['pic'];
             $self_introduction = $introduction['self_introduction'];
             $school = $introduction['school'];
             $major = $introduction['major'];
             $time = '2013-09-28 19:06:09';
-            $selfIntroductionForm = new SelfIntroductionForm($i,$userID,$username,$pic,$intro_id,$school,$major,$self_introduction,$time);
+            $selfIntroductionForm = new SelfIntroductionForm($i,$username,$pic,$intro_id,$school,$major,$self_introduction,$time);
             $tmp = TransformUtil::objectToArray($selfIntroductionForm);
             $selfIntroductions[] = $tmp;
             $i++;

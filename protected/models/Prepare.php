@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'prepare':
  * @property string $prepareID
- * @property string $userID
+ * @property string $userName
  * @property string $companyName
  * @property string $position
  * @property integer $time
@@ -29,14 +29,14 @@ class Prepare extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userID, companyName, position, time', 'required'),
+			array('userName, companyName, position, time', 'required'),
 			array('time', 'numerical', 'integerOnly'=>true),
-			array('userID, position', 'length', 'max'=>20),
-			array('companyName', 'length', 'max'=>100),
+			array('userName, companyName', 'length', 'max'=>100),
+			array('position', 'length', 'max'=>60),
 			array('summary', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('prepareID, userID, companyName, position, time, summary', 'safe', 'on'=>'search'),
+			array('prepareID, userName, companyName, position, time, summary', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,9 +47,19 @@ class Prepare extends CActiveRecord
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
-		return array(
-		);
+        return array(
+            'prepareDetail'=>array(self::HAS_MANY, 'prepare_detail', 'prepareID'),
+        );
 	}
+
+
+    /**
+     * 用于关联表的数据保存
+     * @return array
+     */
+    public function behaviors(){
+        return array('CSaveRelationsBehavior' => array('class' => 'application.components.CSaveRelationsBehavior'));
+    }
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -58,7 +68,7 @@ class Prepare extends CActiveRecord
 	{
 		return array(
 			'prepareID' => 'Prepare',
-			'userID' => 'User',
+			'userName' => 'User Name',
 			'companyName' => 'Company Name',
 			'position' => 'Position',
 			'time' => 'Time',
@@ -85,7 +95,7 @@ class Prepare extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('prepareID',$this->prepareID,true);
-		$criteria->compare('userID',$this->userID,true);
+		$criteria->compare('userName',$this->userName,true);
 		$criteria->compare('companyName',$this->companyName,true);
 		$criteria->compare('position',$this->position,true);
 		$criteria->compare('time',$this->time);

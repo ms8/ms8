@@ -19,9 +19,8 @@ class SelfIntroductionForm {
     public $time;
     public $address;
 
-    public function __construct($id,$userID,$username,$picPath,$intro_id,$school,$major,$self_introduction,$time){
+    public function __construct($id,$username,$picPath,$intro_id,$school,$major,$self_introduction,$time){
         $this->id = $id;
-        $this->userID = $userID;
         $this->username = $username;
         $this->picPath = $picPath;
         $this->intro_id = $intro_id;
