@@ -87,7 +87,7 @@ class UserManagement {
     public function getLatestIntroduction(){
         $selfIntroductions =  array();
         $introductions = Yii::app()->db->createCommand()
-            ->select('intro_id, user.userID, username, pic,self_introduction,school,major')
+            ->select('intro_id, user.userID, self_introduction.username, pic,self_introduction,school,major')
             ->from('self_introduction,user')
             ->where('self_introduction.user_id=user.userID')
             ->order('intro_id desc')

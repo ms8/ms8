@@ -12,7 +12,7 @@ class PrepareManagement {
     public $prepares = array();
     public function getLatestPrepare(){
         $users = Yii::app()->db->createCommand()
-            ->select('prepareID, prepare.userID, username, pic,companyName,position,from_unixtime(prepare.time) time')
+            ->select('prepareID, prepare.userID, prepare.username, pic,companyName,position,from_unixtime(prepare.time) time')
             ->from('prepare,user')
             ->where('prepare.userID=user.userID')
             ->order('prepare.time desc')
