@@ -12,7 +12,7 @@ class TransformUtil {
         if( gettype($e)!='array' ) return;
         foreach($e as $k=>$v){
             if( gettype($v)=='array' || getType($v)=='object' )
-                $e[$k]=(object)arrayToObject($v);
+                $e[$k]=(object)TransformUtil::arrayToObject($v);
         }
         return (object)$e;
     }
@@ -22,7 +22,7 @@ class TransformUtil {
         foreach($e as $k=>$v){
             if( gettype($v)=='resource' ) return;
             if( gettype($v)=='object' || gettype($v)=='array' )
-                $e[$k]=(array)objectToArray($v);
+                $e[$k]=(array)TransformUtil::objectToArray($v);
         }
         return $e;
     }

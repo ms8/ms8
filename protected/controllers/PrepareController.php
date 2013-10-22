@@ -126,7 +126,8 @@ class PrepareController extends Controller
 	 */
 	public function actionIndex()
 	{
-        $information  = new GetInformation;$inforesult = "";
+        $information  = new GetInformation;
+        $inforesult = "";
         // collect user input data
         if(isset($_POST['PrapareForm']))
         {
@@ -146,10 +147,47 @@ class PrepareController extends Controller
         $dataInterview = new CArrayDataProvider($infoInterview);
         $dataPaperTest = new CArrayDataProvider($infoPaperTest);
 
+        $this->actionSave();
+
         // display the login form
         $this->render('index',array('dataProvider'=>$dataProvider,'dataCompany'=>$dataCompany,'company'=>$information->company,'position'=>$information->position,
             'dataRemuneration'=>$dataRemuneration,'dataInterview'=>$dataInterview,'dataPaperTest'=>$dataPaperTest));
 	}
+
+    public function actionSave(){
+        $prepare = new Prepare();
+//        if(isset($_POST['PrapareForm'])){
+//            $prepare->companyName = $_POST['PrapareForm']['company'];
+//            $prepare->position = $_POST['PrapareForm']['position'];
+//            $prepare->userName = Yii::app()->user->name;
+//            $prepare->summary = $_POST['PrapareForm']['summary'];
+//            $prepare->time = time();
+//        }
+        $prepare->companyName = '华为test';
+        $prepare->position = 'testmanager';
+        $prepare->userName = Yii::app()->user->name;
+        $prepare->summary = 'sum1';
+        $prepare->time = time();
+        $i = 0;
+        $prepares = array();
+        $prepare->save();
+        $prepareId = $prepare->attributes['prepareID'];
+        for (;$i < 8; $i++ ){
+            $detail = new PrepareDetail();
+            $detail->title = 'title'.$i;
+            $detail->url = 'url'.$i;
+            $detail->type = $i % 4;
+            $detail->prepareID = $prepareId;
+            $detail->save();
+           // $tmp = TransformUtil::objectToArray($detail);
+            $prepares[] = $detail;
+        }
+
+        //$prepare->setRelationRecords('prepareDetail',$prepares);
+       // $prepare->setRelationRecords('prepareDetail',is_array(@$_POST['detailModel']) ? $_POST['detailModel'] : array());
+
+
+    }
 
 	/**
 	 * Manages all models.
