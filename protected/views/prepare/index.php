@@ -127,7 +127,7 @@ if($dataCompany->rawData == ""){
 <?php
     $form=$this->beginWidget('CActiveForm', array(
     'id'=>'prepare-form',
-    'action'=>'?r=prepare/save',
+    'action'=>array('prepare/save'),
     'enableClientValidation'=>true,
     'clientOptions'=>array(
         'validateOnSubmit'=>true,
