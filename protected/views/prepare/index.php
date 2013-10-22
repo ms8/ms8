@@ -1,4 +1,6 @@
 <?php
+/* @var $model PrepareForm */
+
 $this->breadcrumbs=array(
 	'Prepares',
 );
@@ -120,3 +122,19 @@ if($dataCompany->rawData == ""){
 }
 ?>
     </div>
+
+    <h2>总结</h2>
+<?php
+    $form=$this->beginWidget('CActiveForm', array(
+    'id'=>'prepare-form',
+    'action'=>'?r=prepare/save',
+    'enableClientValidation'=>true,
+    'clientOptions'=>array(
+        'validateOnSubmit'=>true,
+    ),));
+    $inputattr = array("class"=>"input-xlarge focused");
+?>
+    <input type="input" class="input" name="summary"/>
+    <input type="submit" class="btn btn-primary" name="yt0" value="提交" />
+
+<?php $this->endWidget(); ?>

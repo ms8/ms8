@@ -41,7 +41,12 @@ class PrepareManagement {
         $transaction = $connection->beginTransaction();
         try
         {
-            $prepare->model()->save();
+            $prepare->save();
+            $prepareId = $prepare->attributes['prepareID'];
+            foreach ($prepareDetailArray as $detail ){
+                $detail->prepareID = $prepareId;
+                $detail->save();
+            }
             $transaction->commit();
         } catch(Exception $e) {
             $transaction->rollBack();   // 在异常处理中回滚
