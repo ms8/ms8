@@ -119,6 +119,22 @@ if($dataCompany->rawData == ""){
         "itemsCssClass"=>"row-fluid items",
         'template'=>'<div class="list interview">{items}</div>',
     ));
+    Yii::app()->clientScript->registerScript('collect', "
+        $('#container a').click(function(){
+            $(this).after(\"<button class='btn btn-primary' style='float: right'>收藏</button>\");
+        });
+        $('#container button').live('click',function(){
+            var linkEle = $(this).prev(),linkEleHref = linkEle.attr('href'),linkEleText = linkEle.text();
+            $.ajax({
+                type:'POST',
+                dataType:'json',
+                data:{'url':linkEleHref,'title':linkEleText},
+                url:'site/index',
+                success:function(json) {
+                }
+            });
+        });
+     ");
 }
 ?>
     </div>
