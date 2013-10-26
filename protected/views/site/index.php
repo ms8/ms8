@@ -100,7 +100,7 @@ $this->pageTitle=Yii::app()->name;
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <h2>自我介绍&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="<?php Yii::app()->baseUrl ?>/ms8/ms8/index.php?r=selfIntroduction/indexAll">（更多）</a></h2>
+            <h2>自我介绍&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="<?php Yii::app()->request->baseUrl; ?>index.php?r=selfIntroduction/indexAll">（更多）</a></h2>
             <?php
 
             //格式化为图片
@@ -115,7 +115,9 @@ $this->pageTitle=Yii::app()->name;
             }
             //格式化为按钮
             function formaterButton(){
-                return 'CHtml::htmlButton("求点评",array("class"=>"btn btn-small"))';
+                return 'CHtml::link("求点评","index.php?r=SelfIntroduction/view&id=$data[intro_id]",array("class"=>"btn btn-primary"))';
+
+
             }
 
             $this->widget('bootstrap.widgets.TbGridView', array(

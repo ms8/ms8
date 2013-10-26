@@ -166,7 +166,7 @@ class SelfIntroductionController extends Controller
     public function actionIndexAll()
     {
         $dataProvider=new CActiveDataProvider('SelfIntroduction');
-        $this->render('index',array(
+        $this->render('/site/selfintroductionList',array(
             'dataProvider'=>$dataProvider,
         ));
     }
