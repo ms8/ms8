@@ -43,8 +43,8 @@ class UserManagement {
 
     public function authenticate($userModel)
     {
-        $record = User::model()->findByAttributes(array('username' => $userModel->username));
-        
+        $record = User::model()->findByAttributes(array('user_name' => $userModel->user_name));
+
         if($record == null){
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         }elseif($record->password === crypt($userModel->password, $record->password)){
@@ -66,7 +66,7 @@ class UserManagement {
      * @return boolean
      */
     public function checkUser($userModel){
-        $user = User::model()->findByAttributes(array('username' => $userModel->username));
+        $user = User::model()->findByAttributes(array('user_name' => $userModel->username));
         if($user==null){
             return false;
         }else{
@@ -88,7 +88,7 @@ class UserManagement {
         $introductions = Yii::app()->db->createCommand()
             ->select('intro_id, self_introduction.user_name, pic,self_introduction,school,major')
             ->from('self_introduction,user')
-            ->where('self_introduction.user_name=user.username')
+            ->where('self_introduction.user_name=user.user_name')
             ->order('intro_id desc')
             ->limit(10)
             ->queryAll();

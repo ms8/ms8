@@ -12,9 +12,9 @@ class PrepareManagement {
     public $prepares = array();
     public function getLatestPrepare(){
         $users = Yii::app()->db->createCommand()
-            ->select('prepareID, prepare.username, pic,companyName,position,from_unixtime(prepare.time) time')
+            ->select('prepareID, prepare.user_name, pic,companyName,position,prepare.time time')
             ->from('prepare,user')
-            ->where('prepare.username=user.username')
+            ->where('prepare.user_name=user.user_name')
             ->order('prepare.time desc')
             ->limit(10)
             ->queryAll();
@@ -22,7 +22,7 @@ class PrepareManagement {
         foreach ($users as $user ){
 
             $prepareID = $user['prepareID'];
-            $username = $user['username'];
+            $username = $user['user_name'];
             $pic = $user['pic'];
             $companyName = $user['companyName'];
             $position = $user['position'];
@@ -62,7 +62,7 @@ class PrepareManagement {
     public function getMyPrepare($username,$n){
         $criteria=new CDbCriteria;
         $criteria->select='*';
-        $criteria->condition='username=:username';
+        $criteria->condition='user_name=:username';
         $criteria->order='time desc';
         $criteria->limit=$n;
         $criteria->params=array(':username'=>$username);

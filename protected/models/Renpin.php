@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'renpin':
  * @property string $renpinID
- * @property string $userID
+ * @property string $user_name
  * @property string $content
  * @property integer $time
  */
@@ -27,13 +27,13 @@ class Renpin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userID, content, time', 'required'),
+			array('user_name, content, time', 'required'),
 			array('time', 'numerical', 'integerOnly'=>true),
-			array('userID', 'length', 'max'=>20),
+			array('user_name', 'length', 'max'=>20),
 			array('content', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('renpinID, userID, content, time', 'safe', 'on'=>'search'),
+			array('renpinID, user_name, content, time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,7 +55,7 @@ class Renpin extends CActiveRecord
 	{
 		return array(
 			'renpinID' => 'Renpin',
-			'userID' => 'User',
+			'user_name' => 'User',
 			'content' => 'Content',
 			'time' => 'Time',
 		);
@@ -80,7 +80,7 @@ class Renpin extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('renpinID',$this->renpinID,true);
-		$criteria->compare('userID',$this->userID,true);
+		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('content',$this->content,true);
 		$criteria->compare('time',$this->time);
 

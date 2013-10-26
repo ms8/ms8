@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'prepare':
  * @property string $prepareID
- * @property string $userName
+ * @property string $user_name
  * @property string $companyName
  * @property string $position
  * @property integer $time
@@ -29,14 +29,14 @@ class Prepare extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userName, companyName, position, time', 'required'),
+			array('user_name, companyName, position, time', 'required'),
 			array('time', 'numerical', 'integerOnly'=>true),
-			array('userName, companyName', 'length', 'max'=>100),
+			array('user_name, companyName', 'length', 'max'=>100),
 			array('position', 'length', 'max'=>60),
 			array('summary', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('prepareID, userName, companyName, position, time, summary', 'safe', 'on'=>'search'),
+			array('prepareID, user_name, companyName, position, time, summary', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,7 +68,7 @@ class Prepare extends CActiveRecord
 	{
 		return array(
 			'prepareID' => 'Prepare',
-			'userName' => 'User Name',
+			'user_name' => 'User Name',
 			'companyName' => 'Company Name',
 			'position' => 'Position',
 			'time' => 'Time',
@@ -95,7 +95,7 @@ class Prepare extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('prepareID',$this->prepareID,true);
-		$criteria->compare('userName',$this->userName,true);
+		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('companyName',$this->companyName,true);
 		$criteria->compare('position',$this->position,true);
 		$criteria->compare('time',$this->time);
