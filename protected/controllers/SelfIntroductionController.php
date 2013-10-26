@@ -6,7 +6,7 @@ class SelfIntroductionController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column3';
 
 	/**
 	 * @return array action filters
@@ -27,16 +27,16 @@ class SelfIntroductionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','indexAll'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'users'=>array('*'),//原来是@
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('*'),//原来是admin
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -50,8 +50,22 @@ class SelfIntroductionController extends Controller
 	 */
 	public function actionView($id)
 	{
+
+        //获取该自我介绍ID下的所有的评论信息
+        $dataProvider=new CActiveDataProvider('SelfIntroductionComment', array(
+            'criteria'=>array(
+                //这里的user_id要用当前登录用户的
+                'condition'=>'intro_id='."'".$id."'",
+                'order'=>'time DESC',
+            ),
+            'pagination'=>array(
+                'pageSize'=>5,
+            ),
+        ));
+        //获得该id下的自我介绍内容
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+            'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -69,6 +83,7 @@ class SelfIntroductionController extends Controller
 		if(isset($_POST['SelfIntroduction']))
 		{
 			$model->attributes=$_POST['SelfIntroduction'];
+            $model->user_name=Yii::app()->user->name;
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->intro_id));
 		}
@@ -123,15 +138,38 @@ class SelfIntroductionController extends Controller
 	}
 
 	/**
-	 * Lists all models.
+	 * Lists all models.当前用户的自我介绍，用于个人中心
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('SelfIntroduction');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+        //获取当前登录用户下的自我介绍列表；
+            $user_name=Yii::app()->user->name;
+
+        $dataProvider=new CActiveDataProvider('SelfIntroduction', array(
+            'criteria'=>array(
+                //这里的user_id要用当前登录用户的
+                'condition'=>'user_name='."'".$user_name."'",
+                'order'=>'intro_id DESC',
+            ),
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+        ));
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
 	}
+    /**
+     * Lists all models.用于首页的更多，这个方法要放到site里去
+     *
+     */
+    public function actionIndexAll()
+    {
+        $dataProvider=new CActiveDataProvider('SelfIntroduction');
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
+    }
 
 	/**
 	 * Manages all models.

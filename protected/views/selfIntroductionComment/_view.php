@@ -4,8 +4,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->commentID),array('view','id'=>$data->commentID)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('posterID')); ?>:</b>
-	<?php echo CHtml::encode($data->posterID); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('posterName')); ?>:</b>
+	<?php echo CHtml::encode($data->posterName); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('content')); ?>:</b>
