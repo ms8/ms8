@@ -6,7 +6,7 @@ class SelfIntroductionCommentController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column3';
 
 	/**
 	 * @return array action filters
@@ -32,11 +32,11 @@ class SelfIntroductionCommentController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -69,8 +69,16 @@ class SelfIntroductionCommentController extends Controller
 		if(isset($_POST['SelfIntroductionComment']))
 		{
 			$model->attributes=$_POST['SelfIntroductionComment'];
+            //从url中获取intro_id 和 toComment
+            $model->intro_id=$_REQUEST['intro_id'];
+            $model->toComment=$_REQUEST['toComment'];
+            //从当前登陆用户中获取用户名称
+            //$model->posterName=Yii::app()->user->name;
+            $model->posterName="hohowu";
+            //设置当前时间
+            $model->time=date("Y-m-d H:i:s");
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->commentID));
+				$this->redirect(array('selfIntroduction/view','id'=>$model->intro_id));
 		}
 
 		$this->render('create',array(

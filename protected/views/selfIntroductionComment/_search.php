@@ -3,7 +3,7 @@
 	'method'=>'get',
 )); ?>
 
-	<?php echo $form->textFieldRow($model,'posterID',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'posterName',array('class'=>'span5','maxlength'=>20)); ?>
 
 	<?php echo $form->textFieldRow($model,'content',array('class'=>'span5','maxlength'=>500)); ?>
 

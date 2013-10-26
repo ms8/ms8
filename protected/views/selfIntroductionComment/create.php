@@ -10,6 +10,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create SelfIntroductionComment</h1>
+<h1>回复</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

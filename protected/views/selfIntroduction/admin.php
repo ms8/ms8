@@ -43,7 +43,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'intro_id',
-		'user_id',
+		'user_name',
 		'self_introduction',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
