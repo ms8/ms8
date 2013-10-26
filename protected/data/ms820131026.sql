@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2013-10-26 11:29:16
+Date: 2013-10-26 14:16:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,7 +37,7 @@ CREATE TABLE `company` (
 DROP TABLE IF EXISTS `concern`;
 CREATE TABLE `concern` (
   `concernID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
   `prepareID` varchar(100) NOT NULL,
   PRIMARY KEY (`concernID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -98,7 +98,7 @@ CREATE TABLE `position` (
 DROP TABLE IF EXISTS `prepare`;
 CREATE TABLE `prepare` (
   `prepareID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
   `companyName` varchar(100) NOT NULL,
   `position` varchar(60) NOT NULL,
   `time` datetime NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE `prepare_detail` (
 DROP TABLE IF EXISTS `renpin`;
 CREATE TABLE `renpin` (
   `renpinID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
   `content` varchar(1000) NOT NULL,
   `time` datetime NOT NULL,
   PRIMARY KEY (`renpinID`)
@@ -163,7 +163,7 @@ CREATE TABLE `renpin_detail` (
 DROP TABLE IF EXISTS `self_introduction`;
 CREATE TABLE `self_introduction` (
   `intro_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `userName` varchar(100) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
   `self_introduction` varchar(10000) NOT NULL,
   PRIMARY KEY (`intro_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
@@ -198,8 +198,8 @@ CREATE TABLE `self_introduction_comment` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` bigint(20) NOT NULL AUTO_INCREMENT,
-  `username` varchar(100) NOT NULL,
-  `nickName` varchar(100) DEFAULT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `nick_name` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `pic` varchar(100) DEFAULT NULL,
