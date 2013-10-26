@@ -4,7 +4,7 @@
  * This is the model class for table "concern".
  *
  * The followings are the available columns in table 'concern':
- * @property string $userID
+ * @property string $user_name
  * @property string $prepareID
  */
 class Concern extends CActiveRecord
@@ -25,12 +25,12 @@ class Concern extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userID, prepareID', 'required'),
-			array('userID', 'length', 'max'=>20),
+			array('user_name, prepareID', 'required'),
+			array('user_name', 'length', 'max'=>20),
 			array('prepareID', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('userID, prepareID', 'safe', 'on'=>'search'),
+			array('user_name, prepareID', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,7 +51,7 @@ class Concern extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'userID' => 'User',
+			'user_name' => 'User',
 			'prepareID' => 'Prepare',
 		);
 	}
@@ -74,7 +74,7 @@ class Concern extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('userID',$this->userID,true);
+		$criteria->compare('user_name',$this->user_name,true);
 		$criteria->compare('prepareID',$this->prepareID,true);
 
 		return new CActiveDataProvider($this, array(

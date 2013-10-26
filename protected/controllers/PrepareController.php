@@ -147,7 +147,7 @@ class PrepareController extends Controller
         $dataInterview = new CArrayDataProvider($infoInterview);
         $dataPaperTest = new CArrayDataProvider($infoPaperTest);
 
-        $this->actionSave();
+        //$this->actionSave();
 
         // display the login form
         $this->render('index',array('dataProvider'=>$dataProvider,'dataCompany'=>$dataCompany,'company'=>$information->company,'position'=>$information->position,
@@ -165,9 +165,9 @@ class PrepareController extends Controller
 //        }
         $prepare->companyName = '华为test';
         $prepare->position = 'testmanager';
-        $prepare->userName = Yii::app()->user->name;
+        $prepare->user_name = Yii::app()->user->name;
         $prepare->summary = 'sum1';
-        $prepare->time = time();
+        $prepare->time = date("Y-m-d H:i:s");
         $i = 0;
         $prepares = array();
         $prepare->save();

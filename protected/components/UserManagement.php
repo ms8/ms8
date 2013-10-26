@@ -43,7 +43,7 @@ class UserManagement {
 
     public function authenticate($userModel)
     {
-        $record = User::model()->findByAttributes(array('username' => $userModel->username));
+        $record = User::model()->findByAttributes(array('user_name' => $userModel->user_name));
         
         if($record == null){
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
@@ -66,7 +66,7 @@ class UserManagement {
      * @return boolean
      */
     public function checkUser($userModel){
-        $user = User::model()->findByAttributes(array('username' => $userModel->username));
+        $user = User::model()->findByAttributes(array('user_name' => $userModel->username));
         if($user==null){
             return false;
         }else{
@@ -86,16 +86,16 @@ class UserManagement {
     public function getLatestIntroduction(){
         $selfIntroductions =  array();
         $introductions = Yii::app()->db->createCommand()
-            ->select('intro_id, self_introduction.username, pic,self_introduction,school,major')
+            ->select('intro_id, self_introduction.user_name, pic,self_introduction,school,major')
             ->from('self_introduction,user')
-            ->where('self_introduction.username=user.username')
+            ->where('self_introduction.user_name=user.user_name')
             ->order('intro_id desc')
             ->limit(10)
             ->queryAll();
         $i=1;
         foreach ($introductions as $introduction ){
             $intro_id = $introduction['intro_id'];
-            $username = $introduction['username'];
+            $username = $introduction['user_name'];
             $pic = $introduction['pic'];
             $self_introduction = $introduction['self_introduction'];
             $school = $introduction['school'];

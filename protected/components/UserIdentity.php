@@ -19,7 +19,7 @@ class UserIdentity extends CUserIdentity
 	{
         $userManagement = new UserManagement();
         $user = new User();
-        $user->username=$this->username;
+        $user->user_name=$this->username;
         $user->password=$this->password;
 
         if(!$userManagement->authenticate($user))
