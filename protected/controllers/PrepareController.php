@@ -26,7 +26,7 @@ class PrepareController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view',"save"),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -163,26 +163,25 @@ class PrepareController extends Controller
 //            $prepare->summary = $_POST['PrapareForm']['summary'];
 //            $prepare->time = time();
 //        }
-        $prepare->companyName = '华为test';
-        $prepare->position = 'testmanager';
-        $prepare->user_name = Yii::app()->user->name;
-        $prepare->summary = 'sum1';
-        $prepare->time = date("Y-m-d H:i:s");
-        $i = 0;
-        $prepares = array();
-        $prepare->save();
-        $prepareId = $prepare->attributes['prepareID'];
-        for (;$i < 8; $i++ ){
-            $detail = new PrepareDetail();
-            $detail->title = 'title'.$i;
-            $detail->url = 'url'.$i;
-            $detail->type = $i % 4;
-            $detail->prepareID = $prepareId;
-            $detail->save();
-           // $tmp = TransformUtil::objectToArray($detail);
-            $prepares[] = $detail;
+        $prepareId = $_POST['prepareId'];
+        //第一次保存，这时候创建prepare主表信息，并将prepareId传回去
+        if($prepareId == ""){
+            $prepare->companyName = $_POST['company'];
+            $prepare->position = $_POST['position'];
+            $prepare->user_name = Yii::app()->user->name;
+            $prepare->time = date("Y-m-d H:i:s");
+            $prepare->summary = "";
+            $prepare->save();
+            $prepareId = $prepare->attributes['prepareID'];
         }
-
+        $prepareDetail = new PrepareDetail();
+        $prepareDetail->prepareID = $prepareId;
+        $prepareDetail->title = $_POST['title'];
+        $prepareDetail->url = $_POST['url'];
+        $prepareDetail->type = $_POST['type'];
+        $prepareDetail->save();
+        $prepareId = json_encode(array("prepareId"=>$prepareId));
+        echo $prepareId;
         //$prepare->setRelationRecords('prepareDetail',$prepares);
        // $prepare->setRelationRecords('prepareDetail',is_array(@$_POST['detailModel']) ? $_POST['detailModel'] : array());
 

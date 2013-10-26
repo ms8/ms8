@@ -12,7 +12,7 @@ Class GetInformation{
 	function getCompanyIntro()
 	{
 		$sourceURL = "http://www.baidu.com/s?wd=site%3Abaike.baidu.com+".$this->company;
-		$articles = $this->getinfoList($sourceURL);
+		$articles = $this->getinfoList($sourceURL,"0");
 		return $articles;
 	}
 
@@ -20,20 +20,27 @@ Class GetInformation{
 	function getResultList()
 	{
 		$sourceURL = "http://www.baidu.com/s?wd=".$this->company ."%20".$this->position."%20".$this->type;
-		$articles = $this->getinfoList($sourceURL);
+        $mianshi = "";
+        $type="";
+        if($this->type == "薪酬") {
+            $mianshi="薪酬";
+            $type = "1";
+        }else if($this->type == "面试"){
+            $mianshi="面试";
+            $type = "2";
+        }else if($this->type == "笔试"){
+            $mianshi="笔试";
+            $type = "3";
+        }
+		$articles = $this->getinfoList($sourceURL,$type);
 		$newarticles= array();
 		foreach($articles as $mj)
 		{
 			$needle ="百度知道";
-            if($this->type == "薪酬") {
-                $mianshi="薪酬";
-            }else{
-                $mianshi="面试";
-            }
 			//1.百度知道的URL从结果中剔除；--扩展，类似百度知道这样的网站
 			//如果是百度知道的网址，则不加入
 			if(strpos($mj['title'],$needle)===false && strpos($mj['title'],$this->position)!==false)
-			{	
+			{
                 if(isset($this->type)&& $this->type == "薪酬" && (strpos($mj['title'],"待遇")!==false || strpos($mj['title'],"待遇")!==false ||
                     strpos($mj['title'],"工资")!==false || strpos($mj['title'],"收入")!==false)){
                     $newarticles[]=$mj;
@@ -46,7 +53,7 @@ Class GetInformation{
 	}
 
 	//获取百度的第一页列表
-	function getInfoList($sourceURL)
+	function getInfoList($sourceURL,$type)
 	{
 		// Create DOM from URL
 		//$html = file_get_html($sourceURL);
@@ -97,6 +104,7 @@ Class GetInformation{
             $tmp = str_replace("</p>","",$tmp);
 
             $item['title']  = $tmp;
+            $item['type'] = $type;
             $temp_str = substr($temp_str,$afPos+4,strlen($temp_str));
 
             $index++;

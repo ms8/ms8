@@ -117,7 +117,7 @@ DROP TABLE IF EXISTS `prepare_detail`;
 CREATE TABLE `prepare_detail` (
   `prepareID` bigint(20) NOT NULL,
   `title` varchar(100) NOT NULL COMMENT 'url对于的标题',
-  `url` varchar(100) NOT NULL,
+  `url` varchar(500) NOT NULL,
   `type` varchar(100) NOT NULL,
   `detailID` bigint(20) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`detailID`)
