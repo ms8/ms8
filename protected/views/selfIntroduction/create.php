@@ -10,6 +10,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create SelfIntroduction</h1>
+<h1>新建自我介绍</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

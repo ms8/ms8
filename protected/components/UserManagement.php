@@ -60,7 +60,6 @@ class UserManagement {
         $userModel->password = crypt($userModel->password, $this->blowfishSalt());
         $userModel->save();
     }
-
     /**
      * 检查数据库中是否已经存在此用户
      * @param $userModel

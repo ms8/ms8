@@ -5,7 +5,7 @@
 
 	<?php echo $form->textFieldRow($model,'intro_id',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<?php echo $form->textFieldRow($model,'user_id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'user_name',array('class'=>'span5','maxlength'=>100)); ?>
 
 	<?php echo $form->textFieldRow($model,'self_introduction',array('class'=>'span5','maxlength'=>10000)); ?>
 
