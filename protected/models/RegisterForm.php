@@ -80,7 +80,7 @@ class RegisterForm extends CFormModel{
     public function register()
     {
         $user = new User();
-        $user->username=$this->username;
+        $user->user_name=$this->username;
         $user->password=$this->password;
         $user->email=$this->email;
         if($this->_userManagement===null)
