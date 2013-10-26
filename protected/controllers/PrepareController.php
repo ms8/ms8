@@ -147,7 +147,7 @@ class PrepareController extends Controller
         $dataInterview = new CArrayDataProvider($infoInterview);
         $dataPaperTest = new CArrayDataProvider($infoPaperTest);
 
-        $this->actionSave();
+       // $this->actionSave();
 
         // display the login form
         $this->render('index',array('dataProvider'=>$dataProvider,'dataCompany'=>$dataCompany,'company'=>$information->company,'position'=>$information->position,
