@@ -165,7 +165,7 @@ class PrepareController extends Controller
 //        }
         $prepare->companyName = '华为test';
         $prepare->position = 'testmanager';
-        $prepare->userName = Yii::app()->user->name;
+        $prepare->user_nameame = Yii::app()->user->name;
         $prepare->summary = 'sum1';
         $prepare->time = time();
         $i = 0;
