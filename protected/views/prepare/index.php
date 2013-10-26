@@ -37,7 +37,9 @@ if($dataCompany->rawData != "" && $dataCompany->rawData[0]["title"] != ""){
     array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
     array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 );*/ ?>
-
+<input type="hidden" name="company" id="company" value="<?php echo $company?>"/>
+<input type="hidden" name="position" id="position" value="<?php echo $position?>"/>
+<input type="hidden" name="prepareId" id="prepareId" value=""/>
 <h1>
     <?php
     if($dataCompany->rawData != "" && $dataCompany->rawData[0]["title"] != ""){
@@ -129,13 +131,19 @@ if($dataCompany->rawData == ""){
           }
         );
         $('#container button').live('click',function(){
-            var linkEle = $(this).prev(),linkEleHref = linkEle.attr('href'),linkEleText = linkEle.text();
+            var linkEle = $(this).prev().children('a'),linkEleHref = linkEle.attr('href'),linkEleText = linkEle.text();
+            var type = linkEle.attr('type');
+            var company = $('#company').val();
+            var position = $('#position').val();
+            var prepareId = $('#prepareId').val();
             $.ajax({
                 type:'POST',
                 dataType:'json',
-                data:{'url':linkEleHref,'title':linkEleText},
-                url:'site/index',
+                data:{'url':linkEleHref,'title':linkEleText,'company':company,'position':position,'prepareId':prepareId,'type':type},
+                url:'?r=prepare/save',
                 success:function(json) {
+                    var prepareId = json.prepareId;
+                    $('#prepareId').val(prepareId);
                 }
             });
         });
@@ -144,18 +152,3 @@ if($dataCompany->rawData == ""){
 ?>
     </div>
 
-    <h2>总结</h2>
-<?php
-    $form=$this->beginWidget('CActiveForm', array(
-    'id'=>'prepare-form',
-    'action'=>array('prepare/save'),
-    'enableClientValidation'=>true,
-    'clientOptions'=>array(
-        'validateOnSubmit'=>true,
-    ),));
-    $inputattr = array("class"=>"input-xlarge focused");
-?>
-    <input type="input" class="input" name="summary"/>
-    <input type="submit" class="btn btn-primary" name="yt0" value="提交" />
-
-<?php $this->endWidget(); ?>

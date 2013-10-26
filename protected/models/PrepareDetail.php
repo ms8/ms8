@@ -30,7 +30,8 @@ class PrepareDetail extends CActiveRecord
 		return array(
 			array('prepareID, title, url, type', 'required'),
 			array('prepareID', 'length', 'max'=>20),
-			array('title, url, type', 'length', 'max'=>100),
+            array('url', 'length','max'=>500),
+			array('title, type', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('prepareID, title, url, type, detailID', 'safe', 'on'=>'search'),
