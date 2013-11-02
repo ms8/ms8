@@ -154,6 +154,12 @@ $this->pageTitle=Yii::app()->name;
 </div>
 
 <div class="span3">
+    <h2>&nbsp;</h2>
+    <div class="row-fluid">
+        <div class="span12 center">
+            <a class="btn btn-primary btn-large post_job" href="#">记录面试经历<br><small>(总结自己不断提升!)</small></a>
+        </div>
+    </div>
     <?php if(!Yii::app()->user->isGuest) echo "<div style='display: none'>"; ?>
     <h2>登陆</h2>
     <div class="row-fluid">

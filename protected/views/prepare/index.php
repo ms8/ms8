@@ -31,12 +31,6 @@ if($dataCompany->rawData != "" && $dataCompany->rawData[0]["title"] != ""){
     array_unshift($this->menu,array('label'=>'我的面试', 'icon'=>'home', 'url'=>array('create'), 'active'=>true));
 }
 ?>
-<?php
-/*$this->menu=array(
-    array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
-    array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
-    array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
-);*/ ?>
 <input type="hidden" name="company" id="company" value="<?php echo $company?>"/>
 <input type="hidden" name="position" id="position" value="<?php echo $position?>"/>
 <input type="hidden" name="prepareId" id="prepareId" value=""/>
