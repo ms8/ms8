@@ -133,7 +133,7 @@ class PrepareController extends Controller
         {
             $information->company=$_POST['PrapareForm']['company'];
             $information->position=$_POST['PrapareForm']['position'];
-            $infoCompany =  $information->getResultList();
+            $infoCompany =  $information->getCompanyIntro();
             $information->type= "薪酬";
             $infoRemuneration = $information->getResultList();
             $information->type= "面试";
