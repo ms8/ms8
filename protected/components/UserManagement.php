@@ -44,7 +44,7 @@ class UserManagement {
     public function authenticate($userModel)
     {
         $record = User::model()->findByAttributes(array('user_name' => $userModel->user_name));
-        
+
         if($record == null){
             $this->errorCode=self::ERROR_PASSWORD_INVALID;
         }elseif($record->password === crypt($userModel->password, $record->password)){

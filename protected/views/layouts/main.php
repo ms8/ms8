@@ -23,7 +23,7 @@
        .row-fluid input[class*='span'] {min-height: 20px}
         #content{padding: 40px 0 0 0;}
         #container{padding: 40px 0 0 0;}
-       #sidebar {padding: 40px 20px 20px 0;}
+       #sidebar {padding: 40px 20px 20px 0;min-height:800px;}
         #footer{border: none}
       .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
        .items{padding-bottom: 20px;}
@@ -56,7 +56,7 @@
                     'items'=>array(
                         array('label'=>'首页', 'url'=>array('/site/index')),
                         array('label'=>'面试达人', 'url'=>array('/site/page', 'view'=>'about')),
-                        array('label'=>'我的面试', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+//                        array('label'=>'我的面试', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                         array('label'=>'人品', 'url'=>'#', 'items'=>array(
                             array('label'=>'Action', 'url'=>'#'),
                             array('label'=>'Another action', 'url'=>'#'),
@@ -73,7 +73,14 @@
                     'htmlOptions'=>array('class'=>'pull-right'),
                     'items'=>array(
                         array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>'退出 ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'('.Yii::app()->user->name.')', 'url'=>'#', 'visible'=>!Yii::app()->user->isGuest,
+                                'items'=>array(
+                                array('label'=>'我的面试', 'url'=>array('/prepare/interview')),
+                                array('label'=>'自我介绍', 'url'=>array('/selfIntroduction/index')),
+                                array('label'=>'站内信', 'url'=>'#'),
+                                array('label'=>'我关注的面试', 'url'=>'#'),
+                                array('label'=>'个人信息', 'url'=>array('/user/index')),
+                                array('label'=>'退出', 'url'=>array('/site/logout')))),
                         array('label'=>'注册', 'url'=>array('/site/register'),
                     ),
                 ),
