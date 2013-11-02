@@ -155,6 +155,7 @@ class SelfIntroductionController extends Controller
                 'pageSize'=>20,
             ),
         ));
+
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));
