@@ -126,8 +126,12 @@ class PrepareController extends Controller
 	 */
 	public function actionIndex()
 	{
+        $bgTime = time();
         $information  = new GetInformation;
         $inforesult = "";
+        $infoRemuneration = array();
+        $infoInterview = array();
+        $infoPaperTest = array();
         // collect user input data
         if(isset($_POST['PrapareForm']))
         {
@@ -135,11 +139,11 @@ class PrepareController extends Controller
             $information->position=$_POST['PrapareForm']['position'];
             $infoCompany =  $information->getCompanyIntro();
             $information->type= "薪酬";
-            $infoRemuneration = $information->getResultList();
+            //$infoRemuneration = $information->getResultList();
             $information->type= "面试";
-            $infoInterview = $information->getResultList();
+            //$infoInterview = $information->getResultList();
             $information->type= "笔试";
-            $infoPaperTest = $information->getResultList();
+            //$infoPaperTest = $information->getResultList();
         }
         $dataProvider=new CActiveDataProvider('Prepare');
         $dataCompany = new CArrayDataProvider($infoCompany);
@@ -148,7 +152,8 @@ class PrepareController extends Controller
         $dataPaperTest = new CArrayDataProvider($infoPaperTest);
 
         //$this->actionSave();
-
+        $endTime = time();
+        $total = $endTime - $bgTime;
         // display the login form
         $this->render('index',array('dataProvider'=>$dataProvider,'dataCompany'=>$dataCompany,'company'=>$information->company,'position'=>$information->position,
             'dataRemuneration'=>$dataRemuneration,'dataInterview'=>$dataInterview,'dataPaperTest'=>$dataPaperTest));
