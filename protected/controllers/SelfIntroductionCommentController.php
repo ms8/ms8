@@ -31,7 +31,7 @@ class SelfIntroductionCommentController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','createIndex'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -73,8 +73,8 @@ class SelfIntroductionCommentController extends Controller
             $model->intro_id=$_REQUEST['intro_id'];
             $model->toComment=$_REQUEST['toComment'];
             //从当前登陆用户中获取用户名称
-            //$model->posterName=Yii::app()->user->name;
-            $model->posterName="hohowu";
+            $model->posterName=Yii::app()->user->name;
+
             //设置当前时间
             $model->time=date("Y-m-d H:i:s");
 			if($model->save())
@@ -85,7 +85,30 @@ class SelfIntroductionCommentController extends Controller
 			'model'=>$model,
 		));
 	}
+    public function actionCreateIndex()
+    {
+        $model=new SelfIntroductionComment;
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
+        if(isset($_POST['SelfIntroductionComment']))
+        {
+            $model->attributes=$_POST['SelfIntroductionComment'];
+            //从url中获取intro_id 和 toComment
+            //$model->intro_id=$_POST['intro_id'];
+            //从当前登陆用户中获取用户名称
+            $model->posterName=Yii::app()->user->name;
+            //设置当前时间
+            $model->time=date("Y-m-d H:i:s");
+            if($model->save())
+                $this->redirect(array('selfIntroduction/view','id'=>$model->intro_id));
+        }
+
+        $this->render('create',array(
+            'model'=>$model,
+        ));
+
+    }
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.

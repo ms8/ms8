@@ -30,7 +30,7 @@ class Prepare extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_name, companyName, position, time', 'required'),
-			array('time', 'numerical', 'integerOnly'=>true),
+			//array('time', 'numerical', 'integerOnly'=>true),
 			array('user_name, companyName', 'length', 'max'=>100),
 			array('position', 'length', 'max'=>60),
 			array('summary', 'length', 'max'=>1000),
