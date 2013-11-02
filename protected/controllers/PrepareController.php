@@ -26,7 +26,7 @@ class PrepareController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view'),
+                'actions'=>array('index','view','interview'),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -202,6 +202,29 @@ class PrepareController extends Controller
         $this->render('admin',array(
             'model'=>$model,
         ));
+    }
+
+    /**
+     * Lists all models.
+     */
+    public function actionInterview()
+    {
+        $gridDataProvider = new CArrayDataProvider(array(
+            array('id'=>1,'userID'=>'1', 'username'=>'古大飞','picPath'=>'/assets/user/1.jpg',
+                'companyName'=>'华为科技有限公司','position'=>'客服经理',
+                'prepareID'=>'01', 'title'=>'Otto', 'time'=>'2013-02-10'),
+            array('id'=>2,'userID'=>'2',  'username'=>'王天好','picPath'=>'/assets/user/1.jpg',
+                'companyName'=>'百度科技有限公司','position'=>'高级产品经理',
+                'prepareID'=>'02','title'=>'Thornton', 'time'=>'2013-02-10'),
+            array('id'=>3, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/1.jpg',
+                'companyName'=>'微软科技有限公司','position'=>'开发工程师',
+                'prepareID'=>'03','title'=>'Dent', 'time'=>'2013-02-10'),
+        ));
+
+        //$this->actionSave();
+
+        // display the login form
+        $this->render('interview',array('dataInterview'=>$gridDataProvider));
     }
 
     /**
