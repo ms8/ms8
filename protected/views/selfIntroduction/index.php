@@ -11,22 +11,19 @@ $this->menu=array(
 
 <h1>自我介绍</h1>
 
-<?php //$this->widget('bootstrap.widgets.TbListView',array(
-	//'dataProvider'=>$dataProvider,
-	//'itemView'=>'_view',
-//)); ?>
+
 
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
     'dataProvider'=>$dataProvider,
     'type'=>'striped bordered condensed',
+    'hideHeader'=>true,
     'template'=>"{items}",
     'columns'=>array(
-        array('name'=>'self_introduction', 'header'=>'自我介绍内容'),
+        array('name'=>'self_introduction','value'=>'mb_substr($data->self_introduction,0,100,"utf-8")."......"',),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'htmlOptions'=>array('style'=>'width: 50px'),
-            'header'=>'操作',
         ),
     ),
 ))  ?>

@@ -1,4 +1,4 @@
-<?php
+ <?php
 $this->breadcrumbs=array(
 	'Self Introductions'=>array('index'),
 	$model->intro_id,
@@ -12,32 +12,18 @@ $this->menu=array(
 	array('label'=>'管理自我介绍','url'=>array('admin')),
 );
 ?>
-
-<h1>自我介绍<?php //echo $model->intro_id; ?></h1>
-
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+<?/*php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
-		'self_introduction',
+		'self_introduction:html:',
 	),
-)); ?>
+)); */?>
 
-<?php
-/*
-Yii::app()->clientScript->registerScript('collect', "
-    $('#submit').live('click',function(){
-    var linkEle = $('#content').text();
-    $.ajax({
-    type:'POST',
-    dataType:'json',
-    data:{'url':linkEle},
-    url:'?r=SelfIntroductionComment/createIndex',
-    success:function(json) {
-    alert('aaa');
-    }
-    });
-    });
-    ");*/?>
+ <div class="jumbotron">
+     <h1>自我介绍</h1>
+     <p><?php echo $model->self_introduction; ?></p>
+     <p><a class="btn btn-primary btn-lg" role="button" href="index.php?r=SelfIntroduction/update&id=<?php echo $model->intro_id; ?>">编辑</a></p>
+ </div>
 
 <?php
 $form=$this->beginWidget('CActiveForm', array(
@@ -48,8 +34,9 @@ $form=$this->beginWidget('CActiveForm', array(
         'validateOnSubmit'=>false,
     ),
 )); ?>
-    <div class="span12">
-        <input type="textArea" name="SelfIntroductionComment[content]" rows=5>
+
+    <div>
+        <input type="textArea" name="SelfIntroductionComment[content]" rows=5 class="span12">
         <input type="hidden" name="SelfIntroductionComment[intro_id]" value=<?php echo $model->intro_id ?> >
     </div>
 
