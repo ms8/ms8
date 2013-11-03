@@ -1,6 +1,10 @@
+<style type="text/css">
+    #company-map{height:400px;width:70%;float:left;border-right:2px solid #bcbcbc;}
+    #company-result{height:400px;width:29%;float:left;}
+</style>
 <?php
 /* @var $model PrepareForm */
-
+Yii::app()->clientScript->registerScriptFile("http://api.map.baidu.com/api?v=1.5&ak=2fce860d4f8d37ec4e70626f59ccf9ca");
 $this->breadcrumbs=array(
 	'Prepares',
 );
@@ -67,6 +71,11 @@ $this->widget('bootstrap.widgets.TbListView',array(
 */
 ?>
 </div>
+    <h2>公司位置</h2>
+    <div class="search-result">
+        <div id="company-map" style="margin-bottom: 20px;"></div>
+        <div id="company-result" style="margin-bottom: 20px;"></div>
+    </div>
     <h2>薪酬待遇</h2>
     <div class="search-result">
 <?php
@@ -145,4 +154,13 @@ if($dataCompany->rawData == ""){
 }
 ?>
     </div>
-
+<script type="text/javascript">
+     // 百度地图API功能
+     var map = new BMap.Map("company-map");            // 创建Map实例
+     map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+     var local = new BMap.LocalSearch(map, {
+     renderOptions: {map: map, panel: "company-result"}
+     });
+     local.setPageCapacity(4);
+     local.search("<?php echo $company?>");
+</script>
