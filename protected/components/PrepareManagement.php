@@ -33,7 +33,7 @@ class PrepareManagement {
             $prepares[] = $tmp;
             $i++;
         }
-        return $this->prepares;
+        return $prepares;
     }
 
     public function savePrepare($prepare,$prepareDetailArray){

@@ -9,11 +9,16 @@
                     </div><!-- content -->
                     <div id="sidebar" class="span4 sidebar">
                         <?php
-                        /*
-                        $this->widget('bootstrap.widgets.TbMenu', array(
-                            'type'=>'list',
-                            'items'=>$this->menu,
-                        ));*/
+//                        $this->widget('bootstrap.widgets.TbMenu', array(
+//                            'type'=>'list',
+//                            'items'=>$this->menu,
+//                        ));
+//                        $this->widget('bootstrap.widgets.TbListView',array(
+//                            'dataProvider'=>$sidebarData,
+//                            'itemView'=>'_search2',
+//                            "itemsCssClass"=>"row-fluid items",
+//                            'template'=>'<div class="list papertest">{items}</div>',
+//                        ));
                         ?>
                     </div><!-- sidebar -->
                 </div>

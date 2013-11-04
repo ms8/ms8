@@ -7,6 +7,7 @@
 // CWebApplication properties can be configured here.
 //引入bootstrap
 Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+Yii::setPathOfAlias('timeline', dirname(__FILE__).'/../extensions/timeline');
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'面试吧',

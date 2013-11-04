@@ -8,18 +8,6 @@ Yii::app()->clientScript->registerScriptFile("http://api.map.baidu.com/api?v=1.5
 $this->breadcrumbs=array(
 	'Prepares',
 );
-    /*array(array(
-   "id"=>1,
-    "url"=>"http://www.baidu.com/link?url=V6weCqeXVf5XWzmAg64jIhIM-bVSFPPLhu48JcBlSYSg_zRFB7vEXXSWOnCaswjnYY6p52cElOvQmre3oPFLE_",
-    "title"=>"华为技术有限公司_百度百科")
-));*/
-/*$this->menu=array(
-	array('label'=>'我的面试','url'=>array('create')),
-	array('label'=>'自我介绍','url'=>array('admin')),
-    array('label'=>'站内信','url'=>array('create')),
-    array('label'=>'我关注的面试','url'=>array('admin')),
-    array('label'=>'个人信息','url'=>array('admin')),
-);*/
 $this->menu= array(
     //array('label'=>'LIST HEADER'),
 
