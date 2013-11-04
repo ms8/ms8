@@ -141,7 +141,8 @@ class PrepareController extends Controller
             $information->type= "笔试";
             $infoPaperTest = $information->getResultList();
         }
-        $dataProvider=new CActiveDataProvider('Prepare');
+        //$dataProvider=new CActiveDataProvider('Prepare');
+        $dataProvider=array();
         $dataCompany = new CArrayDataProvider($infoCompany);
         $dataRemuneration=new CArrayDataProvider($infoRemuneration);
         $dataInterview = new CArrayDataProvider($infoInterview);

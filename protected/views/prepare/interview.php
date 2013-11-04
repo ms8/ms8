@@ -1,7 +1,8 @@
 <?php
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/protected/extensions/timeline/js/libs.combined.min.js");
-Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/protected/extensions/timeline/js/jquery-veritcal-timeline.min.js");
-Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/protected/extensions/timeline/css/style.css");
+//Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/protected/extensions/timeline/js/timeline.js");
+//Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/protected/extensions/timeline/css/style.css");
+//Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/protected/extensions/timeline/js/timeline.js");
+Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/timeline/css/style.css");
 /* @var $model PrepareForm */
 
 $this->breadcrumbs=array(

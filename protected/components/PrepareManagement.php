@@ -20,7 +20,6 @@ class PrepareManagement {
             ->queryAll();
         $i=1;
         foreach ($users as $user ){
-
             $prepareID = $user['prepareID'];
             $username = $user['user_name'];
             $pic = $user['pic'];
@@ -33,7 +32,7 @@ class PrepareManagement {
             $prepares[] = $tmp;
             $i++;
         }
-        return $this->prepares;
+        return $prepares;
     }
 
     public function savePrepare($prepare,$prepareDetailArray){
@@ -54,12 +53,23 @@ class PrepareManagement {
     }
 
     /**
-     * 获取该用户最近n条准备的面试
+     * 获取该用户最近n条准备的面试主表信息
      * @param $username 用户名
      * @param $n
      * @return Prepare对象数组
      */
     public function getMyPrepare($username,$n){
+        $criteria=new CDbCriteria;
+        $criteria->select='*';
+        $criteria->condition='user_name=:username';
+        $criteria->order='time desc';
+        $criteria->limit=$n;
+        $criteria->params=array(':username'=>$username);
+        $prepareArray=Prepare::model()->find($criteria);
+        return $prepareArray;
+    }
+
+    public function getMyPrepareDetail($username){
         $criteria=new CDbCriteria;
         $criteria->select='*';
         $criteria->condition='user_name=:username';
