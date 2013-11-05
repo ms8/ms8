@@ -38,7 +38,7 @@ $this->menu= array(
 <hr>
 <div class="search-result">
     <?php
-    $dataInterview = new CArrayDataProvider(array(
+    /*$dataInterview = new CArrayDataProvider(array(
         array('id'=>1,'type'=>'prepare', 'date'=>'2009-09-09',
             'companyName'=>'华为科技有限公司','position'=>'客服经理',
             'prepareUrl'=>array(array('title'=>'华为科技公司','url'=>"www.baidu.com"),array('title'=>'华为科技公司面试题','url'=>"www.baidu.com"))),
@@ -48,7 +48,7 @@ $this->menu= array(
         array('id'=>3,'type'=>'summary', 'date'=>'2013-09-09',
             'companyName'=>'百度','position'=>'客服经理',
             'content'=>"阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。"),
-    ));
+    ));*/
     $this->widget('bootstrap.widgets.TbListView',array(
         'dataProvider'=>$dataInterview,
         'itemView'=>'_interview',

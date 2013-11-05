@@ -12,7 +12,7 @@ Class GetInformation{
 	function getCompanyIntro()
 	{
 		$sourceURL = "http://www.baidu.com/s?wd=site%3Abaike.baidu.com+".$this->company;
-		$articles = $this->getinfoList($sourceURL,"0");
+		$articles = $this->getinfoList($sourceURL,"0",5);
 		return $articles;
 	}
 
@@ -32,7 +32,7 @@ Class GetInformation{
             $mianshi="笔试";
             $type = "3";
         }
-		$articles = $this->getinfoList($sourceURL,$type);
+		$articles = $this->getinfoList($sourceURL,$type,10);
 		$newarticles= array();
 		foreach($articles as $mj)
 		{
@@ -53,7 +53,7 @@ Class GetInformation{
 	}
 
 	//获取百度的第一页列表
-	function getInfoList($sourceURL,$type)
+	function getInfoList($sourceURL,$type,$n)
 	{
 		// Create DOM from URL
 		//$html = file_get_html($sourceURL);
@@ -65,28 +65,25 @@ Class GetInformation{
             return null;
         }
         //匹配解析
-//        $prePos = strpos($contents,"<h3 class=\"t\"><a",0);
-//        $prePos = $prePos + 15;
         $temp_str = $contents;
         $plantxt = "";
-        //$prePos=0;
         $afPos=0;
+        //百度结果列表的开始标志
         $text1="<h3 class=\"t\"><a";
         $text2="";
         $index = 1;
-        //while($prePos == true && $index <=10){
-        while(strpos($temp_str,$text1,0) && $index <=10){
+        while(strpos($temp_str,$text1,0) && $index <=$n){
             $item['id'] = $index;
             $prePos = strpos($temp_str,$text1,0)+15;
-
+            //从开始标志往后截取
             $temp_str = substr($temp_str,$prePos,strlen($temp_str));
+            //寻找url
             $prePos = strpos($temp_str,"href=\"",0)+6;
             $temp_str = substr($temp_str,$prePos,strlen($temp_str));
             $afPos = strpos($temp_str,"\"",0);
-            //$plantxt = $plantxt.substr($temp_str,0,$afPos);
             $item['url']  = substr($temp_str,0,$afPos);
 
-            //取关键字
+            //取关键字，关键字一定是在<a>..</a>这对标志之内
             $afPos = strpos($temp_str,"</a>",0);
             $tmp = substr($temp_str,0,$afPos);
             $prePos = strpos($tmp,"<em>",0);
@@ -94,10 +91,7 @@ Class GetInformation{
                 continue;
             }
             $prePos = $prePos +4;
-            //$prePos = strpos($temp_str,"<em>",0)+4;
             $tmp = substr($tmp,$prePos,strlen($tmp));
-            //$afPos = strpos($temp_str,"</a>",0);
-            //$tmp = substr($temp_str,0,$afPos);
             $tmp = str_replace("<em>","",$tmp);
             $tmp = str_replace("</em>","",$tmp);
             $tmp = str_replace("<p>","",$tmp);
@@ -111,20 +105,6 @@ Class GetInformation{
             $articles[] = $item;
         }
         //*************************************************************
-
-//        $index = 1;
-//		// Find all article blocks
-//		foreach($html->find('h3') as $article) {
-//            $item['id']     = $index;
-//			$item['url']     = $article->find('a', 0)->href;
-//			$item['title']    = $article->find('a', 0)->plaintext;
-//            $index++;
-//            //将em中的关键词索引取出来
-//            //foreach($article->find('em') as $keyword)
-//            //	$keywords[]=$keyword->plaintext;
-//            //$item['keyword']=$keywords;
-//            $articles[] = $item;
-//        }
         return $articles;
     }
 }//class end

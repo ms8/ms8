@@ -59,42 +59,40 @@ class PrepareManagement {
      * @return Prepare对象数组
      */
     public function getMyPrepare($username,$n){
-        $criteria=new CDbCriteria;
-        $criteria->select='*';
-        $criteria->condition='user_name=:username';
-        $criteria->order='time desc';
-        $criteria->limit=$n;
-        $criteria->params=array(':username'=>$username);
-        $prepareArray=Prepare::model()->find($criteria);
+        $prepareArray = Yii::app()->db->createCommand()
+            ->select('prepareID,user_name,companyName,position,date_format(time,\'%Y-%c-%d\') time')
+            ->from('prepare')
+            ->where('user_name=\''.$username.'\'')
+            ->order('time desc')
+            ->limit($n)
+            ->queryAll();
         return $prepareArray;
     }
 
-    public function getMyPrepareDetail($username){
-        $criteria=new CDbCriteria;
-        $criteria->select='*';
-        $criteria->condition='user_name=:username';
-        $criteria->order='time desc';
-        $criteria->limit=$n;
-        $criteria->params=array(':username'=>$username);
-        $prepareArray=Prepare::model()->find($criteria);
-        return $prepareArray;
+    /**
+     * 根据面试准备ID获取具体的url信息
+     * @param $prepareID
+     * @return
+     */
+    public function getMyPrepareDetail($prepareID){
+        $details = Yii::app()->db->createCommand()
+            ->select('title,url')
+            ->from('prepare_detail')
+            ->where('prepareID='.$prepareID)
+            ->queryAll();
+        return $details;
     }
 
-//    /**
-//     * 根据准备ID获取该次面试准备的url极其对应标题
-//     * @param $prepareID
-//     * @return PrepareDetail对象数组
-//     */
-//    public function getPrepareDetail($prepareID){
-//        $criteria=new CDbCriteria;
-//        $criteria->select='*'; // select all
-//        $criteria->condition='prepareID=:prepareID';
-//        $criteria->order='type';
-//        $criteria->params=array(':prepareID'=>$prepareID);
-//        $prepareDetailArray=PrepareDetail::model()->find($criteria);
-//        return $prepareDetailArray;
-//    }
-
+    public function getRelatePrepare($company,$position){
+        $relates = Yii::app()->db->createCommand()
+            ->select('user_name,companyName,position')
+            ->from('prepare')
+            ->where('(companyName=\''.$company.'\' and position=\''.$position.'\') or(position=\''.$position.'\')')
+            ->order('time desc')
+            ->limit(10)
+            ->queryAll();
+        return $relates;
+    }
 
     /**
      * 获取该用户最近一条准备的面试
