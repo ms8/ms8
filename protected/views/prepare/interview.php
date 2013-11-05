@@ -1,17 +1,14 @@
 <?php
-//Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/protected/extensions/timeline/js/timeline.js");
-//Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/protected/extensions/timeline/css/style.css");
-//Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl."/protected/extensions/timeline/js/timeline.js");
-Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/timeline/css/style.css");
+Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl."/css/timeline.css");
 /* @var $model PrepareForm */
 
 $this->breadcrumbs=array(
-	'Prepares',
+    'Prepares',
 );
-    /*array(array(
-   "id"=>1,
-    "url"=>"http://www.baidu.com/link?url=V6weCqeXVf5XWzmAg64jIhIM-bVSFPPLhu48JcBlSYSg_zRFB7vEXXSWOnCaswjnYY6p52cElOvQmre3oPFLE_",
-    "title"=>"华为技术有限公司_百度百科")
+/*array(array(
+"id"=>1,
+"url"=>"http://www.baidu.com/link?url=V6weCqeXVf5XWzmAg64jIhIM-bVSFPPLhu48JcBlSYSg_zRFB7vEXXSWOnCaswjnYY6p52cElOvQmre3oPFLE_",
+"title"=>"华为技术有限公司_百度百科")
 ));*/
 /*$this->menu=array(
 	array('label'=>'我的面试','url'=>array('create')),
@@ -39,26 +36,26 @@ $this->menu= array(
 
 <h1>我的面试</h1>
 <hr>
-    <div class="search-result">
-<?php
-        $dataInterview = new CArrayDataProvider(array(
-            array('id'=>1,'type'=>'prepare', 'date'=>'2009-09-09',
-                'companyName'=>'华为科技有限公司','position'=>'客服经理',
-                'prepareUrl'=>array(array('title'=>'华为科技公司','url'=>"www.baidu.com"),array('title'=>'华为科技公司面试题','url'=>"www.baidu.com"))),
-            array('id'=>2,'type'=>'summary', 'date'=>'2009-09-20',
-                'companyName'=>'华为科技有限公司','position'=>'客服经理',
-                'content'=>"阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。"),
-            array('id'=>3,'type'=>'summary', 'date'=>'2013-09-09',
-                'companyName'=>'百度','position'=>'客服经理',
-                'content'=>"阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。"),
-        ));
-        $this->widget('bootstrap.widgets.TbListView',array(
-            'dataProvider'=>$dataInterview,
-            'itemView'=>'_interview',
-            "itemsCssClass"=>"",
-            'template'=>'<ul class="timeline">{items}</ul>',
-        ));
-        Yii::app()->clientScript->registerScript('collect', "
+<div class="search-result">
+    <?php
+    $dataInterview = new CArrayDataProvider(array(
+        array('id'=>1,'type'=>'prepare', 'date'=>'2009-09-09',
+            'companyName'=>'华为科技有限公司','position'=>'客服经理',
+            'prepareUrl'=>array(array('title'=>'华为科技公司','url'=>"www.baidu.com"),array('title'=>'华为科技公司面试题','url'=>"www.baidu.com"))),
+        array('id'=>2,'type'=>'summary', 'date'=>'2009-09-20',
+            'companyName'=>'华为科技有限公司','position'=>'客服经理',
+            'content'=>"阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。"),
+        array('id'=>3,'type'=>'summary', 'date'=>'2013-09-09',
+            'companyName'=>'百度','position'=>'客服经理',
+            'content'=>"阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。阿毛接到华为通知后通过面试吧查找了阿猫的面试总结，太牛逼了，然后就华丽丽的拿到了offer。"),
+    ));
+    $this->widget('bootstrap.widgets.TbListView',array(
+        'dataProvider'=>$dataInterview,
+        'itemView'=>'_interview',
+        "itemsCssClass"=>"",
+        'template'=>'<ul class="timeline">{items}</ul>',
+    ));
+    Yii::app()->clientScript->registerScript('collect', "
         var data = [
   {
     'title': '华为-客户经理',
@@ -80,5 +77,5 @@ $this->menu= array(
   },
 ];
      ");
-?>
-    </div>
+    ?>
+</div>
