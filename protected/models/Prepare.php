@@ -8,7 +8,7 @@
  * @property string $user_name
  * @property string $companyName
  * @property string $position
- * @property integer $time
+ * @property datetime $time
  * @property string $summary
  */
 class Prepare extends CActiveRecord
