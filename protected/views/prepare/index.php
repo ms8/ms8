@@ -8,6 +8,24 @@ Yii::app()->clientScript->registerScriptFile("http://api.map.baidu.com/api?v=1.5
 $this->breadcrumbs=array(
 	'Prepares',
 );
+$sidebarData = new CArrayDataProvider(array(
+    array('id'=>1, 'username'=>'古大飞','picPath'=>'/assets/user/1.jpg',
+        'companyName'=>'华为科技有限公司','position'=>'客服经理',
+        'prepareID'=>'01', 'address'=>'北京', 'time'=>'2013-02-10'),
+    array('id'=>2,'userID'=>'2',  'username'=>'王天好','picPath'=>'/assets/user/1.jpg',
+        'companyName'=>'百度科技有限公司','position'=>'高级产品经理',
+        'prepareID'=>'02','address'=>'上海', 'time'=>'2013-02-10'),
+    array('id'=>3, 'userID'=>'3', 'username'=>'沈中期','picPath'=>'/assets/user/1.jpg',
+        'companyName'=>'微软科技有限公司','position'=>'开发工程师',
+        'prepareID'=>'03','address'=>'深圳', 'time'=>'2013-02-10'),
+));
+
+$this->sidebar = array("widgets"=>"bootstrap.widgets.TbListView","options"=>array(
+    'dataProvider'=>$sidebarData,
+    'itemView'=>'_indexSidebar',
+    "itemsCssClass"=>"items",
+    'template'=>'<h2>猜你喜欢</h2>{items}',
+));
 $this->menu= array(
     //array('label'=>'LIST HEADER'),
 
@@ -118,15 +136,19 @@ if($dataCompany->rawData == ""){
            $('button',this).css('display','block');
           },
           function () {
-             $('button',this).css('display','none');
+             $('button[class*=btn-primary]',this).css('display','none');
           }
         );
         $('#container button').live('click',function(){
-            var linkEle = $(this).prev().children('a'),linkEleHref = linkEle.attr('href'),linkEleText = linkEle.text();
-            var type = linkEle.attr('type');
-            var company = $('#company').val();
-            var position = $('#position').val();
-            var prepareId = $('#prepareId').val();
+            if($(this).attr('disable'))return;
+            var that = this,
+                linkEle = $(this).prev().children('a'),
+                linkEleHref = linkEle.attr('href'),
+                linkEleText = linkEle.text(),
+                type = linkEle.attr('type'),
+                company = $('#company').val(),
+                position = $('#position').val(),
+                prepareId = $('#prepareId').val();
             $.ajax({
                 type:'POST',
                 dataType:'json',
@@ -135,6 +157,7 @@ if($dataCompany->rawData == ""){
                 success:function(json) {
                     var prepareId = json.prepareId;
                     $('#prepareId').val(prepareId);
+                    $(that).attr('disabled',true).removeClass('btn-primary').html('已收藏').css('display','block');
                 }
             });
         });

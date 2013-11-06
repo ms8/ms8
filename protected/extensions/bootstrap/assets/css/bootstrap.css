@@ -7247,8 +7247,16 @@ h5,
 h6 {
     text-transform: uppercase;
     text-align: left;
-    font-family: 'Open Sans', 'Helvetica Neue', Arial sans-serif;
+    font-family:'微软雅黑','Open Sans', 'Helvetica Neue', Arial sans-serif;
     font-weight: bold;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    font-weight: normal;
 }
 h1 {
     font-size: 36px;
@@ -7905,7 +7913,7 @@ body {
     padding-bottom: 0px;
     color: #333333;
     color: #000000;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.5em;
     background-position: fixed;
     overflow-x: hidden;

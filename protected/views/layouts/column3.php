@@ -13,12 +13,16 @@
 //                            'type'=>'list',
 //                            'items'=>$this->menu,
 //                        ));
+                        if( isset($this->sidebar) && !empty($this->sidebar)){
+                            $this->widget($this->sidebar['widgets'],$this->sidebar['options']);
+                        }
 //                        $this->widget('bootstrap.widgets.TbListView',array(
 //                            'dataProvider'=>$sidebarData,
 //                            'itemView'=>'_search2',
 //                            "itemsCssClass"=>"row-fluid items",
 //                            'template'=>'<div class="list papertest">{items}</div>',
 //                        ));
+
                         ?>
                     </div><!-- sidebar -->
                 </div>

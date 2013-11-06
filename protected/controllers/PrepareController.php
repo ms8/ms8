@@ -6,7 +6,7 @@ class PrepareController extends Controller
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout='//layouts/column3';
-
+    public $sidebar=array();
     /**
      * @return array action filters
      */
@@ -140,8 +140,13 @@ class PrepareController extends Controller
             $infoInterview = $information->getResultList();
             $information->type= "笔试";
             $infoPaperTest = $information->getResultList();
+            $pm  = new PrepareManagement();
+            $relates = $pm->getRelatePrepare($information->company,$information->position);
+            $i = 1;
         }
-        $dataProvider=new CActiveDataProvider('Prepare');
+
+        //$dataProvider=new CActiveDataProvider('Prepare');
+        $dataProvider=array();
         $dataCompany = new CArrayDataProvider($infoCompany);
         $dataRemuneration=new CArrayDataProvider($infoRemuneration);
         $dataInterview = new CArrayDataProvider($infoInterview);
@@ -156,13 +161,6 @@ class PrepareController extends Controller
 
     public function actionSave(){
         $prepare = new Prepare();
-//        if(isset($_POST['PrapareForm'])){
-//            $prepare->companyName = $_POST['PrapareForm']['company'];
-//            $prepare->position = $_POST['PrapareForm']['position'];
-//            $prepare->userName = Yii::app()->user->name;
-//            $prepare->summary = $_POST['PrapareForm']['summary'];
-//            $prepare->time = time();
-//        }
         $prepareId = $_POST['prepareId'];
         //第一次保存，这时候创建prepare主表信息，并将prepareId传回去
         if($prepareId == ""){
@@ -182,10 +180,6 @@ class PrepareController extends Controller
         $prepareDetail->save();
         $prepareId = json_encode(array("prepareId"=>$prepareId));
         echo $prepareId;
-        //$prepare->setRelationRecords('prepareDetail',$prepares);
-        // $prepare->setRelationRecords('prepareDetail',is_array(@$_POST['detailModel']) ? $_POST['detailModel'] : array());
-
-
     }
 
     /**
@@ -233,13 +227,21 @@ class PrepareController extends Controller
      */
     public function actionInterview()
     {
-        /* $model=new Prepare('search');
-         $model->unsetAttributes();  // clear any default values
-         if(isset($_GET['Prepare']))
-             $model->attributes=$_GET['Prepare'];
-         */
+        $ms = array();
+        $pm  = new PrepareManagement();
+        //取该用户最近十条面试准备信息
+        $myPrepares = $pm->getMyPrepare(Yii::app()->user->name,10);
+        foreach($myPrepares as $prepare){
+            //取每条面试准备信息所保存的url和标题信息
+            $details = $pm->getMyPrepareDetail($prepare['prepareID']);
+            $prepares = array('id'=>$prepare['prepareID'],
+                'type'=>'prepare','date'=>$prepare['time'],'companyName'=>$prepare['companyName'],
+                'position'=>$prepare['position'],'prepareUrl'=>$details);
+            $ms[] = $prepares;
+        }
+        $dataInterview = new CArrayDataProvider($ms);
         $this->render('interview',array(
-//            'model'=>$model,
+            'dataInterview'=>$dataInterview
         ));
     }
 }
