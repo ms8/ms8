@@ -8,6 +8,7 @@ Yii::app()->clientScript->registerScriptFile("http://api.map.baidu.com/api?v=1.5
 $this->breadcrumbs=array(
 	'Prepares',
 );
+/*
 $sidebarData = new CArrayDataProvider(array(
     array('id'=>1, 'username'=>'古大飞','picPath'=>'/assets/user/1.jpg',
         'companyName'=>'华为科技有限公司','position'=>'客服经理',
@@ -19,7 +20,7 @@ $sidebarData = new CArrayDataProvider(array(
         'companyName'=>'微软科技有限公司','position'=>'开发工程师',
         'prepareID'=>'03','address'=>'深圳', 'time'=>'2013-02-10'),
 ));
-
+*/
 $this->sidebar = array("widgets"=>"bootstrap.widgets.TbListView","options"=>array(
     'dataProvider'=>$sidebarData,
     'itemView'=>'_indexSidebar',

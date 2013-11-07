@@ -86,13 +86,28 @@ class PrepareManagement {
 
     public function getRelatePrepare($company,$position){
         $relates = Yii::app()->db->createCommand()
-            ->select('user_name,companyName,position')
-            ->from('prepare')
-            ->where('(companyName=\''.$company.'\' and position=\''.$position.'\') or(position=\''.$position.'\')')
-            ->order('time desc')
+            ->select('prepareID,user.user_name,companyName,position,user.pic,prepare.time time')
+            ->from('prepare,user')
+            ->where('prepare.user_name=user.user_name and ((companyName=\''.$company.'\' and position=\''.$position.'\') or(position=\''.$position.'\'))')
+            ->order('prepare.time desc')
             ->limit(10)
             ->queryAll();
-        return $relates;
+        $i = 1;
+        $prepares = array();
+        foreach ($relates as $relate ){
+            $prepareID = $relate['prepareID'];
+            $username = $relate['user_name'];
+            $pic = $relate['pic'];
+            $companyName = $relate['companyName'];
+            $position = $relate['position'];
+            $time = $relate['time'];
+            $address = '北京';
+            $prepareForm = new PrepareForm($i,$username,$pic,$prepareID,$time,$address,$companyName,$position);
+            $tmp = TransformUtil::objectToArray($prepareForm);
+            $prepares[] = $tmp;
+            $i++;
+        }
+        return $prepares;
     }
 
     /**
