@@ -27,12 +27,6 @@ $this->menu= array(
     array('label'=>'个人信息', 'icon'=>'cog', 'url'=>'#'),
 );
 ?>
-<?php
-/*$this->menu=array(
-    array('label'=>'Section 1', 'content'=>'<p>I\'m in Section 1.</p>', 'active'=>true),
-    array('label'=>'Section 2', 'content'=>'<p>Howdy, I\'m in Section 2.</p>'),
-    array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
-);*/ ?>
 
 <h1>
     <?php
@@ -64,27 +58,5 @@ $this->menu= array(
         "itemsCssClass"=>"",
         'template'=>'<ul class="timeline">{items}</ul>',
     ));
-    Yii::app()->clientScript->registerScript('collect', "
-        var data = [
-  {
-    'title': '华为-客户经理',
-    'date': '2009-08-12',
-    'type': 'prepare',
-    'prepareUrl': ['http://builtbybalance.com/github-timeline','http://www.flickr.com/photos/mikebaird/2529507825/']
-  },
-  {
-    'title': '华为-客户经理',
-    'date': '2009-08-20',
-    'type': 'summary',
-    'content': 'Lorem ipsum dolor sit amet, catibus et magnis dis parturient montes, nascetur ridiculus mus. Donec qu'
-  },
-  {
-    'title': 'This timeline uses JSON data directly',
-    'date': '27 Mar 2008',
-    'type': 'prepare',
-    'prepareUrl': ['http://builtbybalance.com/github-timeline','http://www.flickr.com/photos/mikebaird/2529507825/']
-  },
-];
-     ");
     ?>
 </div>

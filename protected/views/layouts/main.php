@@ -6,10 +6,10 @@
 	<meta name="language" content="en" />
 
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+<!--	<link rel="stylesheet" type="text/css" href="--><?php //echo Yii::app()->request->baseUrl; ?><!--/css/screen.css" media="screen, projection" />-->
+<!--	<link rel="stylesheet" type="text/css" href="--><?php //echo Yii::app()->request->baseUrl; ?><!--/css/print.css" media="print" />-->
 	<!--[if lt IE 8]>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+	<!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />-->
 	<![endif]-->
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
@@ -23,15 +23,16 @@
        .row-fluid input[class*='span'] {min-height: 20px}
         #content{padding: 40px 0 0 0;}
         #container{padding: 40px 0 0 0;}
-       #sidebar {padding: 40px 20px 20px 0;min-height:800px;}
+       #sidebar {padding: 20px;min-height:800px;}
         #footer{border: none}
       .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
        .items{padding-bottom: 20px;}
         .items li{list-style: none;display: inline-block;width:49%;margin-bottom: 20px;}
-        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 5px 5px 5px 15px;}
+        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 0px 5px 5px 10px;font-size: 13px;}
         .items .info a:hover{ text-decoration: none;}
         .items .info .datetime{margin-top:5px;font: 13px Helvetica,Arial,sans-serif;}
         .home_wrapper .list-view{padding-top: 0;}
+        .table{font-size: 13px;}
         .table thead th{background: white;}
         .table .introduction{color:gray;}
        .search-result a:visited{color:green;}
