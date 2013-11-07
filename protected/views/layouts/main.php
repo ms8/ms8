@@ -78,7 +78,7 @@
                                 array('label'=>'我的面试', 'url'=>array('/prepare/interview')),
                                 array('label'=>'自我介绍', 'url'=>array('/selfIntroduction/index')),
                                 array('label'=>'站内信', 'url'=>'#'),
-                                array('label'=>'我关注的面试', 'url'=>'#'),
+                                array('label'=>'我关注的面试', 'url'=>array('/concern/index')),
                                 array('label'=>'个人信息', 'url'=>array('/user/index')),
                                 array('label'=>'退出', 'url'=>array('/site/logout')))),
                         array('label'=>'注册', 'url'=>array('/site/register'),

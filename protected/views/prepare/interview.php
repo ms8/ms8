@@ -34,7 +34,16 @@ $this->menu= array(
     array('label'=>'Section 3', 'content'=>'<p>What up girl, this is Section 3.</p>'),
 );*/ ?>
 
-<h1>我的面试</h1>
+<h1>
+    <?php
+        if($userName == ""){
+            echo "我的面试";
+        }else{
+            echo $userName;
+        }
+    ?>
+
+</h1>
 <hr>
 <div class="search-result">
     <?php

@@ -236,12 +236,13 @@ class PrepareController extends Controller
             $details = $pm->getMyPrepareDetail($prepare['prepareID']);
             $prepares = array('id'=>$prepare['prepareID'],
                 'type'=>'prepare','date'=>$prepare['time'],'companyName'=>$prepare['companyName'],
-                'position'=>$prepare['position'],'prepareUrl'=>$details);
+                'position'=>$prepare['position'],'userName'=>$prepare['user_name'],'prepareUrl'=>$details);
             $ms[] = $prepares;
         }
         $dataInterview = new CArrayDataProvider($ms);
         $this->render('interview',array(
-            'dataInterview'=>$dataInterview
+            'dataInterview'=>$dataInterview,
+            'userName'=>""
         ));
     }
 }

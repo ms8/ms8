@@ -15,6 +15,7 @@ class ConcernController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -53,7 +54,7 @@ class ConcernController extends Controller
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
-	}
+    }
 
 	/**
 	 * Creates a new model.
@@ -61,21 +62,19 @@ class ConcernController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Concern;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Concern']))
-		{
-			$model->attributes=$_POST['Concern'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->userID));
-		}
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
+        $concern = new Concern();
+        //关注的是谁的面试准备或总结
+        $concern->prepare_user = $_POST['userName'];
+        //对应了面试准备或总结的ID
+        $concern->prepareID = $_POST['id'];
+        $concern->companyName = $_POST['company'];
+        $concern->position = $_POST['position'];
+        $concern->user_name = Yii::app()->user->name;
+        $concern->time = date("Y-m-d H:i:s");
+        $concern->save();
+        $concernId = $concern->attributes['concernID'];
+        $concernId = json_encode(array("concernId"=>$concernId));
+        echo $concernId;
 	}
 
 	/**
@@ -94,7 +93,7 @@ class ConcernController extends Controller
 		{
 			$model->attributes=$_POST['Concern'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->userID));
+				$this->redirect(array('view','id'=>$model->concernID));
 		}
 
 		$this->render('update',array(
@@ -109,17 +108,11 @@ class ConcernController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+		$this->loadModel($id)->delete();
 
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
@@ -127,10 +120,22 @@ class ConcernController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Concern');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+//		$dataProvider=new CActiveDataProvider('Concern');
+//		$this->render('index',array(
+//			'dataProvider'=>$dataProvider,
+//		));
+        $dataProvider=new CActiveDataProvider('Concern', array(
+            'criteria'=>array(
+                'condition'=>'user_name= :userName',
+                'params'=>array(':userName'=>Yii::app()->user->name),
+            ),
+            'pagination'=>array(
+                'pageSize'=>2,
+            ),
+        ));
+        $this->render('index', array(
+            'dataProvider' => $dataProvider,
+        ));
 	}
 
 	/**
@@ -151,7 +156,9 @@ class ConcernController extends Controller
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer the ID of the model to be loaded
+	 * @param integer $id the ID of the model to be loaded
+	 * @return Concern the loaded model
+	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
@@ -163,7 +170,7 @@ class ConcernController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
+	 * @param Concern $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{

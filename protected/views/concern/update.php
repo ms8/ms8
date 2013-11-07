@@ -1,18 +1,21 @@
 <?php
+/* @var $this ConcernController */
+/* @var $model Concern */
+
 $this->breadcrumbs=array(
 	'Concerns'=>array('index'),
-	$model->userID=>array('view','id'=>$model->userID),
+	$model->concernID=>array('view','id'=>$model->concernID),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List Concern','url'=>array('index')),
-	array('label'=>'Create Concern','url'=>array('create')),
-	array('label'=>'View Concern','url'=>array('view','id'=>$model->userID)),
-	array('label'=>'Manage Concern','url'=>array('admin')),
+	array('label'=>'List Concern', 'url'=>array('index')),
+	array('label'=>'Create Concern', 'url'=>array('create')),
+	array('label'=>'View Concern', 'url'=>array('view', 'id'=>$model->concernID)),
+	array('label'=>'Manage Concern', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Concern <?php echo $model->userID; ?></h1>
+<h1>Update Concern <?php echo $model->concernID; ?></h1>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model)); ?>
