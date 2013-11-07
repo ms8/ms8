@@ -33,7 +33,7 @@ $this->menu= array(
         if($userName == ""){
             echo "我的面试";
         }else{
-            echo $userName;
+            echo $userName."的面试";
         }
     ?>
 

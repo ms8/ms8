@@ -141,22 +141,30 @@ class PrepareController extends Controller
             $information->type= "笔试";
             $infoPaperTest = $information->getResultList();
             $pm  = new PrepareManagement();
-            $relates = $pm->getRelatePrepare($information->company,$information->position);
+            $prepareForms = $pm->getRelatePrepare($information->company,$information->position);
             $i = 1;
         }
 
         //$dataProvider=new CActiveDataProvider('Prepare');
         $dataProvider=array();
+        $dataCompany=array();
+        $dataRemuneration=array();
+        $dataInterview=array();
+        $dataPaperTest=array();
+        $preparedata=array();
         $dataCompany = new CArrayDataProvider($infoCompany);
         $dataRemuneration=new CArrayDataProvider($infoRemuneration);
         $dataInterview = new CArrayDataProvider($infoInterview);
         $dataPaperTest = new CArrayDataProvider($infoPaperTest);
+        $preparedata= new CArrayDataProvider($prepareForms);
 
         //$this->actionSave();
 
         // display the login form
         $this->render('index',array('dataProvider'=>$dataProvider,'dataCompany'=>$dataCompany,'company'=>$information->company,'position'=>$information->position,
-            'dataRemuneration'=>$dataRemuneration,'dataInterview'=>$dataInterview,'dataPaperTest'=>$dataPaperTest));
+            'dataRemuneration'=>$dataRemuneration,'dataInterview'=>$dataInterview,
+            'sidebarData'=>$preparedata,
+            'dataPaperTest'=>$dataPaperTest));
     }
 
     public function actionSave(){
