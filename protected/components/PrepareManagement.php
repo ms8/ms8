@@ -11,6 +11,7 @@ class PrepareManagement {
 
     public $prepares = array();
     public function getLatestPrepare(){
+        $prepares = array();
         $users = Yii::app()->db->createCommand()
             ->select('prepareID, prepare.user_name, pic,companyName,position,prepare.time time')
             ->from('prepare,user')
