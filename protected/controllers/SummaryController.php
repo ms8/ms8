@@ -69,6 +69,9 @@ class SummaryController extends Controller
 		if(isset($_POST['Summary']))
 		{
 			$model->attributes=$_POST['Summary'];
+            $model->user_name=Yii::app()->user->name;
+            $model->time=date("Y-m-d H:i:s");
+            $model->status=1;//0表示草稿 1表示发表
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->summary_id));
 		}
@@ -77,6 +80,27 @@ class SummaryController extends Controller
 			'model'=>$model,
 		));
 	}
+    public function actionCreateDraft()
+    {
+        $model=new Summary;
+
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+
+        if(isset($_POST['Summary']))
+        {
+            $model->attributes=$_POST['Summary'];
+            $model->user_name=Yii::app()->user->name;
+            $model->time=date("Y-m-d H:i:s");
+            $model->status=0;//0表示草稿 1表示发表
+            if($model->save())
+                $this->redirect(array('view','id'=>$model->summary_id));
+        }
+
+        $this->render('create',array(
+            'model'=>$model,
+        ));
+    }
 
 	/**
 	 * Updates a particular model.
@@ -93,6 +117,9 @@ class SummaryController extends Controller
 		if(isset($_POST['Summary']))
 		{
 			$model->attributes=$_POST['Summary'];
+            $model->user_name=Yii::app()->user->name;
+            $model->time=date("Y-m-d H:i:s");
+            $model->status=1;//0表示草稿 1表示发表
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->summary_id));
 		}

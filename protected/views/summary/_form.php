@@ -23,6 +23,11 @@
         array('label'=>'其他'),
     ),
 )); ?>
+
+
+
+
+
 	<?php echo $form->textFieldRow($model,'dress',array('class'=>'span5','maxlength'=>100)); ?>
     <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
     'type' => 'primary',
@@ -33,7 +38,17 @@
     ),
     )); ?>
 
-	<?php echo $form->textFieldRow($model,'format',array('class'=>'span5','maxlength'=>100)); ?>
+
+<label class="radio">
+    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+    Option one is this and that—be sure to include why it's great
+</label>
+<label class="radio">
+    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+    Option two can be something else and selecting it will deselect option one
+</label>
+
+<?php echo $form->textFieldRow($model,'format',array('class'=>'span5','maxlength'=>100)); ?>
 <?php $this->widget('bootstrap.widgets.TbButtonGroup', array(
     'type' => 'primary',
     'toggle' => 'radio', // 'checkbox' or 'radio'
