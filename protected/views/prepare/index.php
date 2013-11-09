@@ -150,15 +150,16 @@ if($dataCompany->rawData == ""){
                 company = $('#company').val(),
                 position = $('#position').val(),
                 prepareId = $('#prepareId').val();
+            $(that).attr('disabled',true).removeClass('btn-primary').html('已收藏').css('display','block');
             $.ajax({
                 type:'POST',
                 dataType:'json',
+                async:false,
                 data:{'url':linkEleHref,'title':linkEleText,'company':company,'position':position,'prepareId':prepareId,'type':type},
                 url:'?r=prepare/save',
                 success:function(json) {
                     var prepareId = json.prepareId;
                     $('#prepareId').val(prepareId);
-                    $(that).attr('disabled',true).removeClass('btn-primary').html('已收藏').css('display','block');
                 }
             });
         });
