@@ -32,7 +32,7 @@ class SummaryController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -80,28 +80,6 @@ class SummaryController extends Controller
 			'model'=>$model,
 		));
 	}
-    public function actionCreateDraft()
-    {
-        $model=new Summary;
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if(isset($_POST['Summary']))
-        {
-            $model->attributes=$_POST['Summary'];
-            $model->user_name=Yii::app()->user->name;
-            $model->time=date("Y-m-d H:i:s");
-            $model->status=0;//0表示草稿 1表示发表
-            if($model->save())
-                $this->redirect(array('view','id'=>$model->summary_id));
-        }
-
-        $this->render('create',array(
-            'model'=>$model,
-        ));
-    }
-
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -119,7 +97,6 @@ class SummaryController extends Controller
 			$model->attributes=$_POST['Summary'];
             $model->user_name=Yii::app()->user->name;
             $model->time=date("Y-m-d H:i:s");
-            $model->status=1;//0表示草稿 1表示发表
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->summary_id));
 		}
@@ -154,10 +131,23 @@ class SummaryController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Summary');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+        //获取当前登录用户下的自我介绍列表；
+        $user_name=Yii::app()->user->name;
+
+        $dataProvider=new CActiveDataProvider('Summary', array(
+            'criteria'=>array(
+                //这里的user_id要用当前登录用户的
+                'condition'=>'user_name='."'".$user_name."'",
+                'order'=>'summary_id DESC',
+            ),
+            'pagination'=>array(
+                'pageSize'=>10,
+            ),
+        ));
+
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
 	}
 
 	/**
