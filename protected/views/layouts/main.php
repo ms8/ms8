@@ -60,17 +60,16 @@
                 'class'=>'bootstrap.widgets.TbMenu',
                 'items'=>array(
                     array('label'=>'首页', 'url'=>array('/site/index')),
-                    array('label'=>'面试达人', 'url'=>array('/site/page', 'view'=>'about')),
-//                        array('label'=>'我的面试', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'人品', 'url'=>'#', 'items'=>array(
-                        array('label'=>'Action', 'url'=>'#'),
-                        array('label'=>'Another action', 'url'=>'#'),
-                        array('label'=>'Something else here', 'url'=>'#'),
-                        '---',
-                        array('label'=>'NAV HEADER'),
-                        array('label'=>'Separated link', 'url'=>'#'),
-                        array('label'=>'One more separated link', 'url'=>'#'),
-                    )),
+                    array('label'=>'面试准备', 'url'=>array('/prepare/list')),
+                    array('label'=>'面试经验', 'url'=>array('/summary/list')),
+                    array('label'=>'求人品', 'url'=>array('/renpin')),
+                    array('label'=>'个人中心', 'url'=>'#', 'visible'=>!Yii::app()->user->isGuest, 'items'=>array(
+                        array('label'=>'我的面试准备', 'url'=>array('/prepare/interview')),
+                        array('label'=>'自我介绍', 'url'=>array('/selfIntroduction')),
+                        array('label'=>'我的面试经验', 'url'=>array('/summary')),
+                        array('label'=>'我关注的面试', 'url'=>array('/concern')),
+                        array('label'=>'个人信息', 'url'=>array('/user')))
+                    ),
                 ),
             ),
             array(
@@ -78,14 +77,7 @@
                 'htmlOptions'=>array('class'=>'pull-right'),
                 'items'=>array(
                     array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                    array('label'=>'('.Yii::app()->user->name.')', 'url'=>'#', 'visible'=>!Yii::app()->user->isGuest,
-                        'items'=>array(
-                            array('label'=>'我的面试', 'url'=>array('/prepare/interview')),
-                            array('label'=>'自我介绍', 'url'=>array('/selfIntroduction/index')),
-                            array('label'=>'站内信', 'url'=>'#'),
-                            array('label'=>'我关注的面试', 'url'=>array('/concern/index')),
-                            array('label'=>'个人信息', 'url'=>array('/user/index')),
-                            array('label'=>'退出', 'url'=>array('/site/logout')))),
+                    array('label'=>'('.Yii::app()->user->name.')退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     array('label'=>'注册', 'url'=>array('/site/register'),
                     ),
                 ),
@@ -137,6 +129,5 @@
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/jquery.tagsinput.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/jquery.placeholder.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/jquery.stacktable.js"></script>
-    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/application.js"></script>
 </body>
 </html>

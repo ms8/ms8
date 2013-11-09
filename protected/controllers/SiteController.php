@@ -51,7 +51,7 @@ class SiteController extends Controller
 //        ));
         //$prepareForm = new PrepareForm();
 
-        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm,'renpin'=>$renpin[0]));
+        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm,'renpin'=>$renpin));
 
     }
 

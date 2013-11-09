@@ -199,7 +199,7 @@ $this->pageTitle=Yii::app()->name;
     <div class="row-fluid">
         <div class="span12">
             <div class="alert alert-info home_content" style="padding-right: 8px">
-                    <?php echo $renpin->content ;?>小白的求人品:我就要参加华为的面试了，希望我能过，我过了以后会把面试经历分享给大家。求过。。。<br/>
+                    <?php if(empty($renpin)){echo "人品爆棚，没有人求!";}else{echo $renpin[0]->content ;}?><br/>
                 <button id="concern" class="btn btn-primary">祝福</button>
             </div>
 

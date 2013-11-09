@@ -8,13 +8,10 @@
 
     <?php echo $form->textFieldRow($model,'title',array('class'=>'span12','maxlength'=>500)); ?>
 
-	<?php// echo $form->textFieldRow($model,'user_name',array('class'=>'span5','maxlength'=>100)); ?>
-
 	<?php echo $form->textFieldRow($model,'company_name',array('class'=>'span5','maxlength'=>200)); ?>
 
  	<?php echo $form->textFieldRow($model,'position_name',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php// echo $form->textFieldRow($model,'language',array('class'=>'span5','maxlength'=>100)); ?>
 
 <label>面试语言</label>
 <div class="col-md-3">
@@ -44,7 +41,6 @@
     </label>
     </div> <!-- /radios col-md-3 -->
 
-	<?php //echo $form->textFieldRow($model,'dress',array('class'=>'span5','maxlength'=>100)); ?>
 
 <label>面试形式</label>
 <div class="col-md-3">
@@ -58,7 +54,6 @@
     </label>
 </div> <!-- /radios col-md-3 -->
 
-<?php //echo $form->textFieldRow($model,'format',array('class'=>'span5','maxlength'=>100)); ?>
 
 <label>面试气氛</label>
 <div class="col-md-3">
@@ -71,7 +66,6 @@
     <label class="radio">
 </div> <!-- /radios col-md-3 -->
 
-<?php //echo $form->textFieldRow($model,'atmosphere',array('class'=>'span5','maxlength'=>100)); ?>
 	<?php echo $form->textFieldRow($model,'rounds',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'impression',array('class'=>'span5','maxlength'=>500)); ?>
@@ -92,7 +86,6 @@
     </label>
 </div> <!-- /radios col-md-3 -->
 
-	<?php //echo $form->textFieldRow($model,'result',array('class'=>'span5','maxlength'=>100)); ?>
 
 <?php echo $form->textAreaRow($model, 'tips', array('class'=>'span8', 'rows'=>5)); ?>
 
@@ -109,14 +102,9 @@
     </label>
 </div> <!-- /radios col-md-3 -->
 
-	<?php //echo $form->textFieldRow($model,'exam',array('class'=>'span5','maxlength'=>100)); ?>
-
-
 <?php echo $form->textAreaRow($model, 'exam_content', array('class'=>'span12', 'rows'=>5)); ?>
 <?php echo $form->textAreaRow($model, 'experience', array('class'=>'span12', 'rows'=>5)); ?>
-	<?php //echo $form->textFieldRow($model,'status',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php //echo $form->textFieldRow($model,'time',array('class'=>'span5','maxlength'=>100)); ?>
 
 <input type="hidden" id="status" name="Summary[status]">
 
