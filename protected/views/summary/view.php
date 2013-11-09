@@ -13,13 +13,11 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Summary #<?php echo $model->summary_id; ?></h1>
+<h1><?php echo $model->title; ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
-		'summary_id',
-		'user_name',
 		'company_name',
 		'position_name',
 		'language',
@@ -30,11 +28,10 @@ $this->menu=array(
 		'impression',
 		'result',
 		'tips',
-		'exam',
 		'exam_content',
 		'experience',
 		'status',
-		'time',
-		'title',
 	),
-)); ?>
+));
+?>
+<a class="btn btn-primary btn-lg" role="button" href="index.php?r=Summary/update&id=<?php echo $model->summary_id; ?>">编辑</a>

@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Summary <?php echo $model->summary_id; ?></h1>
+<h1>更新我的面试总结</h1>
 
 <?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
