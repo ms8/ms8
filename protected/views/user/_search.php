@@ -1,35 +1,34 @@
-<?php
-/* @var $this UserController */
-/* @var $model User */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id'); ?>
-		<?php echo $form->textField($model,'id'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'userID',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'username'); ?>
-		<?php echo $form->textField($model,'username',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'user_name',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nick_name',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'pic',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'sex',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'school',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'major',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'score',array('class'=>'span5')); ?>
+
+	<?php echo $form->textFieldRow($model,'selfintroduction',array('class'=>'span5','maxlength'=>10000)); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

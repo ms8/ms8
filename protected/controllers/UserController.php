@@ -6,7 +6,7 @@ class UserController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column3';
 
 	/**
 	 * @return array action filters
@@ -15,7 +15,6 @@ class UserController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -32,12 +31,12 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('create','update','myscore','changepwd'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -49,10 +48,10 @@ class UserController extends Controller
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView($id)
+	public function actionView($user_name)
 	{
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$this->loadModel($user_name),
 		));
 	}
 
@@ -71,7 +70,7 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->userID));
 		}
 
 		$this->render('create',array(
@@ -84,10 +83,10 @@ class UserController extends Controller
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+	public function actionUpdate()
 	{
+        $id=Yii::app()->user->id;
 		$model=$this->loadModel($id);
-
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -95,7 +94,8 @@ class UserController extends Controller
 		{
 			$model->attributes=$_POST['User'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','user_name'=>$model->user_name));
+
 		}
 
 		$this->render('update',array(
@@ -110,23 +110,38 @@ class UserController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('User');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+    public function actionIndex()
+    {
+        //获取当前登录用户；
+        $user_name=Yii::app()->user->name;
+
+        $dataProvider=new CActiveDataProvider('User', array(
+            'criteria'=>array(
+                //这里的user_id要用当前登录用户的
+                'condition'=>'user_name='."'".$user_name."'",
+            ),
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+        ));
+
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
+    }
 
 	/**
 	 * Manages all models.
@@ -143,24 +158,62 @@ class UserController extends Controller
 		));
 	}
 
-	/**
+    //修改密码
+    public function actionChangepwd()
+    {
+        $id=Yii::app()->user->id;
+        $model=$this->loadModel($id);
+        if(!empty($_POST['User'])){
+            //获取验证错误,需要制定验证字段
+            $ajaxRes = CActiveForm::validate($model, array('oldpass','newpass','queren'),true,true);
+            $ajaxResArr = CJSON::decode($ajaxRes);
+            //验证结果为空入库
+            if(empty($ajaxResArr)){
+
+                $model->password = md5($model->password.$model->salt);
+
+                if($model->save(false)){
+                    $res = $model->attributes;
+                    $res['status'] = 1;
+                    die(CJSON::encode($res));
+                }else{
+                    die(CJSON::encode(array('status'=>0)));
+                }
+            }else{
+                die($ajaxRes);
+            }
+        }
+        $this->render('changepwd',array('model'=>$model));
+    }
+    //我的积分
+    public function actionMyscore(){
+
+        $id=Yii::app()->user->id;
+        $model=$this->loadModel($id);
+        $this->render('myscore',array(
+            'model'=>$model,
+        ));
+
+    }
+
+
+    /**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return User the loaded model
-	 * @throws CHttpException
+	 * @param integer the ID of the model to be loaded
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->findByPk($id);
-		if($model===null)
+		$model=User::model()->findByAttributes( array('user_name' =>$id));
+
+        if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
 	}
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param User $model the model to be validated
+	 * @param CModel the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{

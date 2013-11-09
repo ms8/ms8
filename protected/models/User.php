@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'user':
  * @property string $userID
  * @property string $user_name
+ * @property string $nick_name
  * @property string $email
  * @property string $password
  * @property string $pic
@@ -35,11 +36,11 @@ class User extends CActiveRecord
 		return array(
 			array('user_name, email, password', 'required'),
 			array('score', 'numerical', 'integerOnly'=>true),
-			array('user_name, email, password, pic, sex, school, major', 'length', 'max'=>100),
+			array('user_name, nick_name, email, password, pic, sex, school, major', 'length', 'max'=>100),
 			array('selfintroduction', 'length', 'max'=>10000),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('userID, user_name, email, password, pic, sex, school, major, score, selfintroduction', 'safe', 'on'=>'search'),
+			array('userID, user_name, nick_name, email, password, pic, sex, school, major, score, selfintroduction', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +61,9 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'userID' => 'User',
-			'user_name' => '用户',
+			'userID' => '用户ID',
+			'user_name' => '用户名',
+			'nick_name' => '昵称',
 			'email' => '邮箱',
 			'password' => '密码',
 			'pic' => '头像',
@@ -69,7 +71,7 @@ class User extends CActiveRecord
 			'school' => '学校',
 			'major' => '专业',
 			'score' => '积分',
-			'selfintroduction' => '自我介绍',
+			'selfintroduction' => '简介',
 		);
 	}
 
@@ -93,6 +95,7 @@ class User extends CActiveRecord
 
 		$criteria->compare('userID',$this->userID,true);
 		$criteria->compare('user_name',$this->user_name,true);
+		$criteria->compare('nick_name',$this->nick_name,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('pic',$this->pic,true);
