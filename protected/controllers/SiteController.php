@@ -38,9 +38,20 @@ class SiteController extends Controller
         $preparedata= new CArrayDataProvider($prepareForms);
         $introductiondata = new CArrayDataProvider($selfIntroductions);
         $loginForm = new LoginForm();
+        $renpindata=new CActiveDataProvider('Renpin');
+        $renpin = $renpindata->getData();
+//      $renpindata=new CActiveDataProvider('renpin');// array(
+//            'criteria'=>array(
+////                'condition'=>'user_name='."'".$user_name."'",
+//                'order'=>'time DESC',
+//            ),
+//            'pagination'=>array(
+//                'pageSize'=>1,
+//            ),
+//        ));
         //$prepareForm = new PrepareForm();
 
-        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm));
+        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm,'renpin'=>$renpin[0]));
 
     }
 
