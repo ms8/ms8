@@ -198,10 +198,9 @@ $this->pageTitle=Yii::app()->name;
     <h2>求人品</h2>
     <div class="row-fluid">
         <div class="span12">
-            <div class="alert alert-info home_content" style="padding-right: 8px"><a href="regist.html">
-                    小白的求人品:我就要参加华为的面试了，希望我能过，我过了以后会把面试经历分享给大家。求过。。。
-                </a><br/>
-                <button class="btn">祝福</button>  <button class="btn">忽略</button>
+            <div class="alert alert-info home_content" style="padding-right: 8px">
+                    <?php if(empty($renpin)){echo "人品爆棚，没有人求!";}else{echo $renpin[0]->content ;}?><br/>
+                <button id="concern" class="btn btn-primary">祝福</button>
             </div>
 
         </div>
@@ -224,6 +223,22 @@ $this->pageTitle=Yii::app()->name;
 </div>
 </div>
 </div></div>
+<script type="text/javascript">
+    $("#concern").click(function(){
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            async:false,
+            data:{'url':linkEleHref,'title':linkEleText,'company':company,'position':position,'prepareId':prepareId,'type':type},
+            url:'?r=prepare/save',
+            success:function(json) {
+                var prepareId = json.prepareId;
+                $('#prepareId').val(prepareId);
+            }
+        });
+    });
+
+</script>
 <!--
 <?php $this->widget('bootstrap.widgets.TbButton', array(
     'label'=>'Primary',

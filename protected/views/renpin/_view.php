@@ -4,8 +4,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->renpinID),array('view','id'=>$data->renpinID)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('userID')); ?>:</b>
-	<?php echo CHtml::encode($data->userID); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('user_name')); ?>:</b>
+	<?php echo CHtml::encode($data->user_name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('content')); ?>:</b>

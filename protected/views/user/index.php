@@ -1,20 +1,25 @@
 <?php
-/* @var $this UserController */
-/* @var $dataProvider CActiveDataProvider */
-
 $this->breadcrumbs=array(
 	'Users',
 );
 
 $this->menu=array(
-	array('label'=>'Create User', 'url'=>array('create')),
-	array('label'=>'Manage User', 'url'=>array('admin')),
+	array('label'=>'Create User','url'=>array('create')),
+	array('label'=>'Manage User','url'=>array('admin')),
 );
 ?>
 
-<h1>Users</h1>
+<div class="top3">
+    我的信息
+</div>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<div >
+    <a <?php if($this->action->id == 'info'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/user/update'); ?>">基本设置</a>
+    <a <?php if($this->action->id == 'changepwd'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/user/changepwd'); ?>">修改密码</a>
+    <a <?php if($this->action->id == 'myscore'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/user/myscore'); ?>">我的积分</a>
+</div>
+
+<?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
 )); ?>
