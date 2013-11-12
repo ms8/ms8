@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/images/favicon.ico" />
 
+    <!-- 个人头像 -->
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.imgPre.css" media="screen, projection" />
     <?php
     Yii::app()->bootstrap->register();
     ?>
@@ -129,5 +131,9 @@
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/jquery.tagsinput.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/jquery.placeholder.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/jquery.stacktable.js"></script>
+
+<!-- 个人头像-->
+<script  type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.form.js"></script>
+<script  type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.imgPre.js"></script>
 </body>
 </html>

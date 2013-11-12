@@ -31,7 +31,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','myscore','changepwd'),
+				'actions'=>array('create','update','myscore','changepwd','changePic','savePic'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -196,6 +196,66 @@ class UserController extends Controller
 
     }
 
+    /**
+     * 更换头像
+     */
+    public function actionChangePic(){
+        $id=Yii::app()->user->id;
+        $model=$this->loadModel($id);
+        $this->render('mypic',array(
+            'model'=>$model,
+        ));
+    }
+
+    /**
+     * 保存新头像
+     */
+    public function actionSavePic(){
+        $action = $_GET['act'];
+        $userName=Yii::app()->user->id;
+        $model=$this->loadModel($userName);
+        if($action=='delimg'){
+            $filename = $_POST['imagename'];
+            if(!empty($filename)){
+                unlink('files/'.$filename);
+                echo '1';
+            }else{
+                echo '删除失败.';
+            }
+        }else{
+            $picname = $_FILES['sampleImage']['name'];
+            $picsize = $_FILES['sampleImage']['size'];
+            if ($picname != "") {
+                if ($picsize > 1024000) {
+                    echo '图片大小不能超过1M';
+                    exit;
+                }
+                $type = strstr($picname, '.');
+                if ($type != ".gif" && $type != ".jpg"  && $type != ".pjpeg" && $type != ".jpeg" && $type != ".png" ) {
+                    echo '图片格式不对！';
+                    exit;
+                }
+                $pic_path = "upload/touxiang/".$userName."_". $_FILES["sampleImage"]["name"];
+                move_uploaded_file($_FILES["sampleImage"]["tmp_name"],$pic_path);
+                //删除原有照片
+                unlink( $model->getAttribute("pic"));
+            }
+
+            $model->setAttribute('pic',$pic_path);
+            //更新失败就用系统默认头像
+            if(!$model->update()){
+                $pic_path = 'upload/grava.png';
+            }
+            $size = round($picsize/1024,2);
+            $arr = array(
+                'name'=>$picname,
+                'pic'=>$pic_path,
+                'size'=>$size
+            );
+
+            echo json_encode($arr);
+        }
+    }
 
     /**
 	 * Returns the data model based on the primary key given in the GET variable.

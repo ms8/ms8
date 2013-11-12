@@ -28,7 +28,7 @@ class PrepareManagement {
             $position = $user['position'];
             $time = $user['time'];
             $address = '北京';
-            $prepareForm = new PrepareForm($i,$username,$pic,$prepareID,$time,$address,$companyName,$position);
+            $prepareForm = new PrepareForm($username,$pic,$prepareID,$time,$address,$companyName,$position);
             $tmp = TransformUtil::objectToArray($prepareForm);
             $prepares[] = $tmp;
             $i++;
@@ -102,7 +102,7 @@ class PrepareManagement {
             $position = $relate['position'];
             $time = $relate['time'];
             $address = '北京';
-            $prepareForm = new PrepareForm($i,$username,$pic,$prepareID,$time,$address,$companyName,$position);
+            $prepareForm = new PrepareForm($username,$pic,$prepareID,$time,$address,$companyName,$position);
             $tmp = TransformUtil::objectToArray($prepareForm);
             $prepares[] = $tmp;
             $i++;
