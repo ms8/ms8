@@ -24,11 +24,13 @@ class PrepareManagement {
             $prepareID = $user['prepareID'];
             $username = $user['user_name'];
             $pic = $user['pic'];
+            if($pic == "")
+                $pic = 'upload/grava.png';
             $companyName = $user['companyName'];
             $position = $user['position'];
             $time = $user['time'];
             $address = '北京';
-            $prepareForm = new PrepareForm($i,$username,$pic,$prepareID,$time,$address,$companyName,$position);
+            $prepareForm = new PrepareForm($username,$pic,$prepareID,$time,$address,$companyName,$position);
             $tmp = TransformUtil::objectToArray($prepareForm);
             $prepares[] = $tmp;
             $i++;
@@ -98,11 +100,13 @@ class PrepareManagement {
             $prepareID = $relate['prepareID'];
             $username = $relate['user_name'];
             $pic = $relate['pic'];
+            if($pic == "")
+                $pic = 'upload/grava.png';
             $companyName = $relate['companyName'];
             $position = $relate['position'];
             $time = $relate['time'];
             $address = '北京';
-            $prepareForm = new PrepareForm($i,$username,$pic,$prepareID,$time,$address,$companyName,$position);
+            $prepareForm = new PrepareForm($username,$pic,$prepareID,$time,$address,$companyName,$position);
             $tmp = TransformUtil::objectToArray($prepareForm);
             $prepares[] = $tmp;
             $i++;

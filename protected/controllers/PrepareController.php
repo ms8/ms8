@@ -187,6 +187,8 @@ class PrepareController extends Controller
         $prepareDetail->type = $_POST['type'];
         $prepareDetail->save();
         $prepareId = json_encode(array("prepareId"=>$prepareId));
+
+
         echo $prepareId;
     }
 
