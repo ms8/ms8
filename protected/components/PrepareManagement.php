@@ -24,6 +24,8 @@ class PrepareManagement {
             $prepareID = $user['prepareID'];
             $username = $user['user_name'];
             $pic = $user['pic'];
+            if($pic == "")
+                $pic = 'upload/grava.png';
             $companyName = $user['companyName'];
             $position = $user['position'];
             $time = $user['time'];
@@ -98,6 +100,8 @@ class PrepareManagement {
             $prepareID = $relate['prepareID'];
             $username = $relate['user_name'];
             $pic = $relate['pic'];
+            if($pic == "")
+                $pic = 'upload/grava.png';
             $companyName = $relate['companyName'];
             $position = $relate['position'];
             $time = $relate['time'];

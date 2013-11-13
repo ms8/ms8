@@ -12,7 +12,7 @@
         <div class="demo" style="float: left">
             <div class="files" style="display: none"></div>
             <div style="height: 150px;width: 150px;margin-left:150px ">
-                <img id="showimg" src="upload/grava.png">
+                <img id="showimg" src="<?php echo $model->pic ?>">
                 <h2 style="background: #69BC87;height: 35px;width: 100px;font-size: 15px;text-align: center;color: #FFFFFF;padding: 3px;margin-top: 15px">当前头像</h2>
             </div>
 

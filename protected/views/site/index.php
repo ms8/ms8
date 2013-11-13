@@ -105,7 +105,7 @@ $this->pageTitle=Yii::app()->name;
 
             //格式化为图片
             function formaterImage(){
-                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."$data[picPath]","",array("class"=>"img-polaroid")),"#",array("class"=>""))';
+                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."/"."$data[picPath]","",array("class"=>"img-polaroid")),"#",array("class"=>""))';
             }
             //格式化为链接
             function formaterLink(){
