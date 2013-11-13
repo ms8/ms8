@@ -34,11 +34,11 @@ $this->pageTitle=Yii::app()->name;
                                     ),
                                 )); ?>
                                     <div class="span5">
-                                        <input type="text" name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
+                                        <input type="text" id="company" required name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
                                     </div>
 
                                     <div class="span4">
-                                        <input type="text" name="PrapareForm[position]"  class="span12 search_input" placeholder="您将面试的职位?">
+                                        <input type="text" id="position" required name="PrapareForm[position]"  class="span12 search_input" placeholder="您将面试的职位?">
                                     </div>
 
                                     <div class="span2">
