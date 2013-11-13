@@ -34,11 +34,11 @@ $this->pageTitle=Yii::app()->name;
                                     ),
                                 )); ?>
                                     <div class="span5">
-                                        <input type="text" name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
+                                        <input type="text" id="company" required name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
                                     </div>
 
                                     <div class="span4">
-                                        <input type="text" name="PrapareForm[position]"  class="span12 search_input" placeholder="您将面试的职位?">
+                                        <input type="text" id="position" required name="PrapareForm[position]"  class="span12 search_input" placeholder="您将面试的职位?">
                                     </div>
 
                                     <div class="span2">
@@ -105,7 +105,7 @@ $this->pageTitle=Yii::app()->name;
 
             //格式化为图片
             function formaterImage(){
-                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."$data[picPath]","",array("class"=>"img-polaroid")),"#",array("class"=>""))';
+                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."/"."$data[picPath]","",array("class"=>"img-polaroid")),"#",array("class"=>""))';
             }
             //格式化为链接
             function formaterLink(){
@@ -157,7 +157,7 @@ $this->pageTitle=Yii::app()->name;
     <h2>&nbsp;</h2>
     <div class="row-fluid">
         <div class="span12 center">
-            <a class="btn btn-primary btn-large post_job" href="#">记录面试经历<br><small>(总结自己不断提升!)</small></a>
+            <a class="btn btn-primary btn-large post_job" href="<?php Yii::app()->request->baseUrl; ?>index.php?r=summary/create">记录面试经历<br><small>(总结自己不断提升!)</small></a>
         </div>
     </div>
     <?php if(!Yii::app()->user->isGuest) echo "<div style='display: none'>"; ?>
