@@ -12,7 +12,7 @@ class ScoreCal {
     {
         $time =date("Y-m-d H:i:s");
         $user_name = Yii::app()->user->name;
-        $sql1 = "insert into Score values (".$time."','".$action."','".$user_name."','".$score."')";
+        $sql1 = "insert into Score(time,action,user_name,score) values('".$time."','".$action."','".$user_name."','".$score."')";
         $sql2 ="update User set score =score+'".$score."' where user_name='".$user_name."'";
         $connection = Yii::app()->db;
         $trans = $connection->beginTransaction();
