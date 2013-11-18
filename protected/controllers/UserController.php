@@ -244,7 +244,7 @@ class UserController extends Controller
             $model->setAttribute('pic',$pic_path);
             //更新失败就用系统默认头像
             if(!$model->update()){
-                $pic_path = 'upload/grava.png';
+                $pic_path = 'upload/grava.jpg';
             }
             $size = round($picsize/1024,2);
             $arr = array(
