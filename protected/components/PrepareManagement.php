@@ -25,7 +25,7 @@ class PrepareManagement {
             $username = $user['user_name'];
             $pic = $user['pic'];
             if($pic == "")
-                $pic = 'upload/grava.png';
+                $pic = 'upload/grava.jpg';
             $companyName = $user['companyName'];
             $position = $user['position'];
             $time = $user['time'];
@@ -101,7 +101,7 @@ class PrepareManagement {
             $username = $relate['user_name'];
             $pic = $relate['pic'];
             if($pic == "")
-                $pic = 'upload/grava.png';
+                $pic = 'upload/grava.jpg';
             $companyName = $relate['companyName'];
             $position = $relate['position'];
             $time = $relate['time'];

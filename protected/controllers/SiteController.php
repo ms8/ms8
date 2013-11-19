@@ -40,6 +40,11 @@ class SiteController extends Controller
         $loginForm = new LoginForm();
         $renpindata=new CActiveDataProvider('Renpin');
         $renpin = $renpindata->getData();
+        //获取10条最新的面试总结
+        $summaryManagement=new SummaryManagement();
+        $summaryForms = $summaryManagement->getLatestSummary();
+        $summaryData =new CArrayDataProvider($summaryForms);
+
 //      $renpindata=new CActiveDataProvider('renpin');// array(
 //            'criteria'=>array(
 ////                'condition'=>'user_name='."'".$user_name."'",
@@ -51,7 +56,7 @@ class SiteController extends Controller
 //        ));
         //$prepareForm = new PrepareForm();
 
-        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm,'renpin'=>$renpin));
+        $this->render('index',array('preparedata'=>$preparedata,'introductiondata'=>$introductiondata,'loginForm'=>$loginForm,'renpin'=>$renpin,'summaryData'=>$summaryData));
 
     }
 
