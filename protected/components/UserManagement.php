@@ -98,7 +98,7 @@ class UserManagement {
             $username = $introduction['user_name'];
             $pic = $introduction['pic'];
             if($pic == "")
-                $pic = 'upload/grava.png';
+                $pic = 'upload/grava.jpg';
             $self_introduction = $introduction['self_introduction'];
             $school = $introduction['school'];
             $major = $introduction['major'];
