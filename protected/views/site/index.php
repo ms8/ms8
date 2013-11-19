@@ -99,6 +99,24 @@ $this->pageTitle=Yii::app()->name;
 
     </div>
     <div class="row-fluid">
+
+        <div class="span12">
+            <h2>最新面经&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="#">（更多）</a></h2>
+            <?php
+            $this->widget('zii.widgets.CListView', array(
+                'dataProvider'=>$summaryData,
+                'itemView'=>'_summaryview',
+                "itemsCssClass"=>"row-fluid items",
+                'template'=>'<div class="list">{items}</div>',
+                'sorterCssClass'=>'sorter_container',//定义sorter的div容器的class
+                'sorterHeader'=>'更改排序：',//定义的文字显示在sorter可排序属性的前面
+                'sorterFooter'=>'',//定义的文字显示在sorter可排序属性的后面
+            ));
+            ?>
+        </div>
+
+    </div>
+    <div class="row-fluid">
         <div class="span12">
             <h2>自我介绍&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="<?php Yii::app()->request->baseUrl; ?>index.php?r=selfIntroduction/indexAll">（更多）</a></h2>
             <?php

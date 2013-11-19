@@ -10,9 +10,7 @@ $this->menu=array(
 ?>
 
 <h1>自我介绍</h1>
-
-
-
+<a class="btn btn-primary btn-large post_job" href="index.php?r=selfintroduction/create">新增自我介绍</a>
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
     'dataProvider'=>$dataProvider,

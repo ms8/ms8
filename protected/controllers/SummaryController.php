@@ -27,7 +27,7 @@ class SummaryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','list'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -71,9 +71,14 @@ class SummaryController extends Controller
 			$model->attributes=$_POST['Summary'];
             $model->user_name=Yii::app()->user->name;
             $model->time=date("Y-m-d H:i:s");
-            $model->status=1;//0表示草稿 1表示发表
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->summary_id));
+            {
+                $score= new ScoreCal;
+                $score->scoreCalculate("分享面经",500);
+
+                $this->redirect(array('view','id'=>$model->summary_id));
+            }
+
 		}
 
 		$this->render('create',array(
@@ -150,6 +155,19 @@ class SummaryController extends Controller
         ));
 	}
 
+    public function actionList()
+    {
+
+        $dataProvider=new CActiveDataProvider('Summary', array(
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+        ));
+
+        $this->render('index',array(
+            'dataProvider'=>$dataProvider,
+        ));
+    }
 	/**
 	 * Manages all models.
 	 */
@@ -190,4 +208,5 @@ class SummaryController extends Controller
 			Yii::app()->end();
 		}
 	}
+
 }
