@@ -255,4 +255,27 @@ class PrepareController extends Controller
             'userName'=>""
         ));
     }
+    /**
+     * 面试列表页面.
+     */
+    public function actionList()
+    {
+        $ms = array();
+        $pm  = new PrepareManagement();
+        //取该用户最近十条面试准备信息
+        $myPrepares = $pm->getMyPrepare(Yii::app()->user->name,10);
+        foreach($myPrepares as $prepare){
+            //取每条面试准备信息所保存的url和标题信息
+            $details = $pm->getMyPrepareDetail($prepare['prepareID']);
+            $prepares = array('id'=>$prepare['prepareID'],
+                'type'=>'prepare','date'=>$prepare['time'],'companyName'=>$prepare['companyName'],
+                'position'=>$prepare['position'],'userName'=>$prepare['user_name'],'prepareUrl'=>$details);
+            $ms[] = $prepares;
+        }
+        $dataInterview = new CArrayDataProvider($ms);
+        $this->render('interview',array(
+            'dataInterview'=>$dataInterview,
+            'userName'=>""
+        ));
+    }
 }
