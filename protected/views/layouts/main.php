@@ -70,6 +70,7 @@
                         array('label'=>'自我介绍', 'url'=>array('/selfIntroduction')),
                         array('label'=>'我的面试经验', 'url'=>array('/summary')),
                         array('label'=>'我关注的面试', 'url'=>array('/concern')),
+                        array('label'=>'我的人品', 'url'=>array('/renpin')),
                         array('label'=>'个人信息', 'url'=>array('/user')))
                     ),
                 ),
