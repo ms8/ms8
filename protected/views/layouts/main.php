@@ -80,8 +80,7 @@
                 'items'=>array(
                     array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'('.Yii::app()->user->name.')退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'注册', 'url'=>array('/site/register'),
-                    ),
+                    array('label'=>'注册', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
                 ),
             ),
         ))) ?>
