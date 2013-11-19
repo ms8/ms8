@@ -19,7 +19,8 @@ $this->pageTitle=Yii::app()->name . ' - 注册';
     $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'register-form',
 	'enableClientValidation'=>true,
-	'clientOptions'=>array(
+        'enableAjaxValidation'=>true,
+        'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
 )); ?>
@@ -99,7 +100,7 @@ $this->pageTitle=Yii::app()->name . ' - 注册';
 
     </div>
 
-    -->
+-->
 
 
     <?php $this->endWidget(); ?>
