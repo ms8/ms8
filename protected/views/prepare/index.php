@@ -188,7 +188,7 @@ if($dataCompany->rawData == ""){
     $("#company-result").height($("#company-map").height());
     $("#searchRoad").click(function(){
         var firstSite = $("#company-result li:first div span:first").text();
-        transit.search($("#mySite").val(), "华为数字技术有限公司");
+        transit.search($("#mySite").val(), firstSite);
     });
     $("#company-map span").live("click",function(){
             var toSite = $(this).attr("title");
