@@ -1,11 +1,26 @@
-    <div class="top3">
-        修改密码
-    </div>
-    <div class="mynav">
-        <a <?php if($this->action->id == 'info'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/user/update'); ?>">基本设置</a>
-        <a <?php if($this->action->id == 'changepwd'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/user/changepwd'); ?>">修改密码</a>
-		<a <?php if($this->action->id == 'myscore'){ ?>class="bai"<?php } ?> href="<?php echo $this->createUrl('/user/myscore'); ?>">我的积分</a>
-	</div>
+<!--    <div class="top3">-->
+<!--        修改密码-->
+<!--    </div>-->
+<!--    <div class="mynav">-->
+<!--        <a --><?php //if($this->action->id == 'info'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/update'); ?><!--">基本设置</a>-->
+<!--        <a --><?php //if($this->action->id == 'changepwd'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/changepwd'); ?><!--">修改密码</a>-->
+<!--		<a --><?php //if($this->action->id == 'myscore'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/myscore'); ?><!--">我的积分</a>-->
+<!--	</div>-->
+<ul class="nav nav-tabs" id="myTab">
+    <li >
+        <a href="<?php echo $this->createUrl('/user/update'); ?>">基本设置</a>
+    </li>
+    <li>
+        <a href="<?php echo $this->createUrl('/user/changePic'); ?>">更换头像</a>
+    </li>
+    <li class="active">
+        <a href="<?php echo $this->createUrl('/user/changepwd'); ?>">修改密码</a>
+    </li>
+    <li>
+        <a href="<?php echo $this->createUrl('/user/myscore'); ?>">我的积分</a>
+    </li>
+</ul>
+
     <div class="con clear">
 
             <?php $form=$this->beginWidget('CActiveForm', array(
@@ -33,11 +48,11 @@
                 </div>
             </div>
 
-            <div class="left2c">
-                <div class="left2c21 bgcl2" style="padding-left:75px;">
-                    <a href="javascript:void(0)" id="sub"><img src="<?php echo  IMAGES_PATH; ?>shenqing.jpg" /></a>
-                </div>
-            </div>
+<!--            <div class="left2c">-->
+<!--                <div class="left2c21 bgcl2" style="padding-left:75px;">-->
+<!--                    <a href="javascript:void(0)" id="sub"><img src="--><?php //echo  IMAGES_PATH; ?><!--shenqing.jpg" /></a>-->
+<!--                </div>-->
+<!--            </div>-->
         <?php $this->endWidget(); ?>
         <div class="right5a">
             <!-- <div class="right5a1">小组创建  · · · · · ·</div>
