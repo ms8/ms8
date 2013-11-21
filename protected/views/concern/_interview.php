@@ -6,20 +6,7 @@
         <div class="content">
             <div class="content-inner fa fa-caret-left">
                 <?php if($data['type'] == "prepare"){?>
-                <h4>准备了<strong><?php echo $data['companyName']."-".$data['position'] ?></strong>面试
-                    &nbsp;&nbsp;
-                    <?php
-                    if(Yii::app()->user->name == ""){
-                    ?>
-                        <button class="btn btn-primary"
-                                onclick="concern('<?php echo $data['id']?>',
-                                    '<?php echo $data['userName']?>',
-                                    '<?php echo $data['companyName']?>',
-                                    '<?php echo $data['position']?>')">
-                            关注</button>
-                    <?php
-                    }
-                    ?>
+                <h4><?php echo $data['userName']?>准备的<strong><?php echo $data['companyName']."-".$data['position'] ?></strong>面试
 
                 </h4>
                 <p>
@@ -30,20 +17,6 @@
                 <?php }elseif($data['type'] == "summary"){?>
                 <h4>
                     <a href="javascript:;">对<strong><?php echo $data['companyName']."-".$data['position'] ?></strong>做了面试总结</a>
-                    &nbsp;&nbsp;
-                    <?php
-                    if(Yii::app()->user->name == ""){
-                        ?>
-                        <button class="btn btn-primary"
-                                onclick="concern('<?php echo $data['id']?>',
-                                    '<?php echo $data['userName']?>',
-                                    '<?php echo $data['companyName']?>',
-                                    '<?php echo $data['position']?>')">
-                            关注</button>
-                    <?php
-                    }
-                    ?>
-
                 </h4>
                 <p><?php echo mb_substr($data['content'],0,90,"utf-8")."......<a  href='javascript:;'>详细内容</a>" ?></p>
                 <?php } ?>

@@ -127,19 +127,23 @@ class UserController extends Controller
     {
         //获取当前登录用户；
         $user_name=Yii::app()->user->name;
+        $model=$this->loadModel($user_name);
 
-        $dataProvider=new CActiveDataProvider('User', array(
-            'criteria'=>array(
-                //这里的user_id要用当前登录用户的
-                'condition'=>'user_name='."'".$user_name."'",
-            ),
-            'pagination'=>array(
-                'pageSize'=>20,
-            ),
-        ));
+//        $dataProvider=new CActiveDataProvider('User', array(
+//            'criteria'=>array(
+//                //这里的user_id要用当前登录用户的
+//                'condition'=>'user_name='."'".$user_name."'",
+//            ),
+//            'pagination'=>array(
+//                'pageSize'=>20,
+//            ),
+//        ));
 
+//        $this->render('index',array(
+//            'dataProvider'=>$dataProvider,
+//        ));
         $this->render('index',array(
-            'dataProvider'=>$dataProvider,
+            'model'=>$model,
         ));
     }
 
@@ -161,30 +165,43 @@ class UserController extends Controller
     //修改密码
     public function actionChangepwd()
     {
-        $id=Yii::app()->user->id;
-        $model=$this->loadModel($id);
-        if(!empty($_POST['User'])){
-            //获取验证错误,需要制定验证字段
-            $ajaxRes = CActiveForm::validate($model, array('oldpass','newpass','queren'),true,true);
-            $ajaxResArr = CJSON::decode($ajaxRes);
-            //验证结果为空入库
-            if(empty($ajaxResArr)){
+        $user_name=Yii::app()->user->name;
+        $model=$this->loadModel($user_name);
 
-                $model->password = md5($model->password.$model->salt);
-
-                if($model->save(false)){
-                    $res = $model->attributes;
-                    $res['status'] = 1;
-                    die(CJSON::encode($res));
-                }else{
-                    die(CJSON::encode(array('status'=>0)));
-                }
-            }else{
-                die($ajaxRes);
-            }
-        }
+//        if(!empty($_POST['User'])){
+//            //获取验证错误,需要制定验证字段
+//            $ajaxRes = CActiveForm::validate($model, array('oldpass','newpass','queren'),true,true);
+//            $ajaxResArr = CJSON::decode($ajaxRes);
+//            //验证结果为空入库
+//            if(empty($ajaxResArr)){
+//
+//                $model->password = md5($model->password.$model->salt);
+//
+//                if($model->save(false)){
+//                    $res = $model->attributes;
+//                    $res['status'] = 1;
+//                    die(CJSON::encode($res));
+//                }else{
+//                    die(CJSON::encode(array('status'=>0)));
+//                }
+//            }else{
+//                die($ajaxRes);
+//            }
+//        }
         $this->render('changepwd',array('model'=>$model));
     }
+
+    public function actionChangepwdSave(){
+        $user_name=Yii::app()->user->name;
+        $model=$this->loadModel($user_name);
+
+        $model->password = $_POST['password'];
+        $this->_userManagement=new UserManagement();
+        $this->_userManagement->register($model);
+        $result = json_encode(array("result"=>"ok"));
+        echo $result;
+    }
+
     //我的积分
     public function actionMyscore(){
 
@@ -244,7 +261,7 @@ class UserController extends Controller
             $model->setAttribute('pic',$pic_path);
             //更新失败就用系统默认头像
             if(!$model->update()){
-                $pic_path = 'upload/grava.png';
+                $pic_path = 'upload/grava.jpg';
             }
             $size = round($picsize/1024,2);
             $arr = array(

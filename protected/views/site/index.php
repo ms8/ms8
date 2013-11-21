@@ -216,8 +216,14 @@ $this->pageTitle=Yii::app()->name;
     <h2>求人品</h2>
     <div class="row-fluid">
         <div class="span12">
-            <div class="alert alert-info home_content" style="padding-right: 8px">
-                    <?php if(empty($renpin)){echo "人品爆棚，没有人求!";}else{echo $renpin[0]->content ;}?><br/>
+            <div id="renpin" class="alert alert-info home_content" style="padding-right: 8px">
+                 <p class="info">
+                     <form name="renpin-form">
+                     <?php if(empty($renpin)){echo "人品爆棚，没有人求!";}else{?>
+                     <input  type="hidden" name="RepinForm[renpinID]" value="<?php  echo $renpin[0]->renpinID ;?>"/>
+                     <span><?php echo $renpin[0]->content ;}?></span>
+                     </form>
+                 </p>
                 <button id="concern" class="btn btn-primary">祝福</button>
             </div>
 
@@ -242,19 +248,22 @@ $this->pageTitle=Yii::app()->name;
 </div>
 </div></div>
 <script type="text/javascript">
-    $("#concern").click(function(){
-        $.ajax({
-            type:'POST',
-            dataType:'json',
-            async:false,
-            data:{'url':linkEleHref,'title':linkEleText,'company':company,'position':position,'prepareId':prepareId,'type':type},
-            url:'?r=prepare/save',
-            success:function(json) {
-                var prepareId = json.prepareId;
-                $('#prepareId').val(prepareId);
-            }
-        });
-    });
+ $(function(){
+     $("#concern").click(function(){
+         $.ajax({
+             type:'POST',
+             dataType:'json',
+             async:false,
+             data:{'renpinID':$("#renpin input").val()},
+             url:'?r=renpin/bless',
+             success:function(json) {
+                 $("#renpin input").val(json.renpinID);
+                 $("#renpin span").text(json.content);
+             }
+         });
+     });
+ })
+
 
 </script>
 <!--

@@ -27,7 +27,7 @@ class RenpinController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','bless'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -77,6 +77,29 @@ class RenpinController extends Controller
 			'model'=>$model,
 		));
 	}
+    /**
+     * 求人品祝福
+     */
+    public function actionBless()
+    {
+        $model=new RenpinDetail();
+
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+        if(Yii::app()->request->isAjaxRequest){
+            $renpinID = Yii::app()->request->getParam('renpinID');
+            $model->attributes = array("renpin_id"=>$renpinID,"bless_userName"=>Yii::app()->user->name,"time"=>date('Y-m-d H:i:s'));
+            if($model->save()){
+                $renpindata=new CActiveDataProvider('Renpin',array(
+                    'criteria'=>array(
+                        'condition'=>'renpinID <>'.$renpinID,
+                        'order'=>'time DESC'
+                    )));
+                $renpin = $renpindata->getData();
+                echo json_encode($renpin[0]->attributes);
+            };
+        }
+    }
 
 	/**
 	 * Updates a particular model.

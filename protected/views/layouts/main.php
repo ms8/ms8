@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/font-awesome/css/font-awesome.css" />
+
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/css/flat-ui.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/images/favicon.ico" />
@@ -24,6 +24,7 @@
     <?php
     Yii::app()->bootstrap->register();
     ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/font-awesome/css/font-awesome.css" />
     <!-- 百度地图js script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2fce860d4f8d37ec4e70626f59ccf9ca"></script-->
     <style type="text/css">
         .row-fluid input[class*='span'] {min-height: 20px}
@@ -70,7 +71,8 @@
                         array('label'=>'自我介绍', 'url'=>array('/selfIntroduction')),
                         array('label'=>'我的面试经验', 'url'=>array('/summary')),
                         array('label'=>'我关注的面试', 'url'=>array('/concern')),
-                        array('label'=>'个人信息', 'url'=>array('/user')))
+                        array('label'=>'我的人品', 'url'=>array('/renpin')),
+                        array('label'=>'个人信息', 'url'=>array('/user/update')))
                     ),
                 ),
             ),
@@ -78,10 +80,9 @@
                 'class'=>'bootstrap.widgets.TbMenu',
                 'htmlOptions'=>array('class'=>'pull-right'),
                 'items'=>array(
-                    array('label'=>'登陆', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                    array('label'=>'登录', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                     array('label'=>'('.Yii::app()->user->name.')退出', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-                    array('label'=>'注册', 'url'=>array('/site/register'),
-                    ),
+                    array('label'=>'注册', 'url'=>array('/site/register'),'visible'=>Yii::app()->user->isGuest),
                 ),
             ),
         ))) ?>

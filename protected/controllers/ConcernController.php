@@ -120,22 +120,37 @@ class ConcernController extends Controller
 	 */
 	public function actionIndex()
 	{
-//		$dataProvider=new CActiveDataProvider('Concern');
-//		$this->render('index',array(
-//			'dataProvider'=>$dataProvider,
-//		));
-        $dataProvider=new CActiveDataProvider('Concern', array(
-            'criteria'=>array(
-                'condition'=>'user_name= :userName',
-                'params'=>array(':userName'=>Yii::app()->user->name),
-            ),
-            'pagination'=>array(
-                'pageSize'=>2,
-            ),
+
+//        $dataProvider=new CActiveDataProvider('Concern', array(
+//            'criteria'=>array(
+//                'condition'=>'user_name= :userName',
+//                'params'=>array(':userName'=>Yii::app()->user->name),
+//            ),
+//            'pagination'=>array(
+//                'pageSize'=>2,
+//            ),
+//        ));
+
+        $ms = array();
+        $pm  = new PrepareManagement();
+        //取该用户最近十条面试准备信息
+        $myPrepares = $pm->getMyConcerns(Yii::app()->user->name,10);
+        foreach($myPrepares as $prepare){
+            //取每条面试准备信息所保存的url和标题信息
+            $details = $pm->getMyPrepareDetail($prepare['prepareID']);
+            $prepares = array('id'=>$prepare['prepareID'],
+                'type'=>'prepare','date'=>$prepare['time'],'companyName'=>$prepare['companyName'],
+                'position'=>$prepare['position'],'userName'=>$prepare['prepare_user'],'prepareUrl'=>$details);
+            $ms[] = $prepares;
+        }
+        $dataInterview = new CArrayDataProvider($ms);
+        $this->render('index',array(
+            'dataInterview'=>$dataInterview,
         ));
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+
+//        $this->render('index', array(
+//            'dataProvider' => $dataProvider,
+//        ));
 	}
 
 	/**

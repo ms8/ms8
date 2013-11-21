@@ -159,6 +159,10 @@ class SiteController extends Controller
                 $this->redirect(Yii::app()->user->returnUrl);
             */
             $model->register();
+            $modelLogin=new LoginForm;
+            $modelLogin->username = $model->username;
+            $modelLogin->password = $model->password;
+            $modelLogin->login();
             $this->redirect('index.php');
             //注册成功后跳到首页
         }

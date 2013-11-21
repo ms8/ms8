@@ -25,7 +25,7 @@ class PrepareManagement {
             $username = $user['user_name'];
             $pic = $user['pic'];
             if($pic == "")
-                $pic = 'upload/grava.png';
+                $pic = 'upload/grava.jpg';
             $companyName = $user['companyName'];
             $position = $user['position'];
             $time = $user['time'];
@@ -72,6 +72,17 @@ class PrepareManagement {
         return $prepareArray;
     }
 
+    public function getMyConcerns($username,$n){
+        $concernArray = Yii::app()->db->createCommand()
+            ->select('prepareID,prepare_user,user_name,companyName,position,date_format(time,\'%Y-%c-%d\') time')
+            ->from('concern')
+            ->where('user_name=\''.$username.'\'')
+            ->order('time desc')
+            ->limit($n)
+            ->queryAll();
+        return $concernArray;
+    }
+
     /**
      * 根据面试准备ID获取具体的url信息
      * @param $prepareID
@@ -101,7 +112,7 @@ class PrepareManagement {
             $username = $relate['user_name'];
             $pic = $relate['pic'];
             if($pic == "")
-                $pic = 'upload/grava.png';
+                $pic = 'upload/grava.jpg';
             $companyName = $relate['companyName'];
             $position = $relate['position'];
             $time = $relate['time'];

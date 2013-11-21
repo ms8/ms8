@@ -1,6 +1,7 @@
 <style type="text/css">
     #company-map{height:400px;width:70%;float:left;border-right:2px solid #bcbcbc;}
     #company-result{height:400px;width:29%;float:left;}
+    .search-result img{max-width: 50px;}
 </style>
 <?php
 /* @var $model PrepareForm */
@@ -79,9 +80,14 @@ $this->widget('bootstrap.widgets.TbListView',array(
 ?>
 </div>
     <h2>公司位置</h2>
+    <p>
+        我的地址：<input id="mySite" name="mySite"/>
+        <input id="searchRoad" class="btn btn-primary" type="button" value="查找路线">
+    </p>
     <div class="search-result">
         <div id="company-map" style="margin-bottom: 20px;"></div>
-        <div id="company-result" style="margin-bottom: 20px;"></div>
+        <div id="company-result" style="margin-bottom: 20px;overflow: scroll"></div>
+        <div id="road" style="display: inline-block;max-height: 300px;overflow-y: scroll"></div>
     </div>
     <h2>薪酬待遇</h2>
     <div class="search-result">
@@ -190,9 +196,21 @@ function next()
      // 百度地图API功能
      var map = new BMap.Map("company-map");            // 创建Map实例
      map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+     map.addControl(new BMap.NavigationControl());  //添加默认缩放平移控件
      var local = new BMap.LocalSearch(map, {
-     renderOptions: {map: map, panel: "company-result"}
+         renderOptions: {map: map, panel: "company-result"}
      });
-     local.setPageCapacity(4);
      local.search("<?php echo $company?>");
+     var transit = new BMap.TransitRoute(map, {
+         renderOptions: {map: map,panel: "road"}
+     });
+    $("#company-result").height($("#company-map").height());
+    $("#searchRoad").click(function(){
+        var firstSite = $("#company-result li:first div span:first").text();
+        transit.search($("#mySite").val(), firstSite);
+    });
+    $("#company-map span").live("click",function(){
+            var toSite = $(this).attr("title");
+            transit.search($("#mySite").val(), toSite);
+        });
 </script>
