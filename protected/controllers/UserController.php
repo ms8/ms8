@@ -31,7 +31,7 @@ class UserController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','myscore','changepwd','changePic','savePic'),
+				'actions'=>array('create','update','myscore','changepwd','changePic','savePic','changepwdSave'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -248,21 +248,24 @@ class UserController extends Controller
                     exit;
                 }
                 $type = strstr($picname, '.');
+                $type = strtolower($type);
                 if ($type != ".gif" && $type != ".jpg"  && $type != ".pjpeg" && $type != ".jpeg" && $type != ".png" ) {
                     echo '图片格式不对！';
                     exit;
                 }
                 $pic_path = "upload/touxiang/".$userName."_". $_FILES["sampleImage"]["name"];
                 move_uploaded_file($_FILES["sampleImage"]["tmp_name"],$pic_path);
-                //删除原有照片
-                unlink( $model->getAttribute("pic"));
-            }
 
+            }
+            $oldPath = $model->getAttribute("pic");
             $model->setAttribute('pic',$pic_path);
             //更新失败就用系统默认头像
             if(!$model->update()){
                 $pic_path = 'upload/grava.jpg';
             }
+            //删除原有照片
+            unlink($oldPath);
+
             $size = round($picsize/1024,2);
             $arr = array(
                 'name'=>$picname,
