@@ -101,7 +101,7 @@ $this->pageTitle=Yii::app()->name;
     <div class="row-fluid">
 
         <div class="span12">
-            <h2>最新面经&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="#">（更多）</a></h2>
+            <h2>最新面经&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.&nbsp.<a href="index.php?r=summary/list">（更多）</a></h2>
             <?php
             $this->widget('zii.widgets.CListView', array(
                 'dataProvider'=>$summaryData,

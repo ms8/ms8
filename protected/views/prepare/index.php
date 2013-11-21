@@ -167,6 +167,25 @@ if($dataCompany->rawData == ""){
 }
 ?>
     </div>
+
+<div>
+
+    <input type="button" value="进一步准备！" onclick="next();">
+
+</div>
+<script type="text/javascript">
+function next()
+{
+    var company = document.getElementById("company").value;
+    var position =document.getElementById("position").value;
+    var prepareId = document.getElementById("prepareId").value;
+    //如果prepareid为空，则需要先生成一个，只是preparedetail表为空
+
+   var nexturl ='index.php?r=prepareself/create&company='+ company +'&position='+ position +'&prepareid='+ prepareId;
+    this.window.location.href=nexturl;
+}
+</script>
+
 <script type="text/javascript">
      // 百度地图API功能
      var map = new BMap.Map("company-map");            // 创建Map实例

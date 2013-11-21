@@ -1,6 +1,6 @@
 <?php
 
-class SummaryController extends Controller
+class ScoreController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -27,7 +27,7 @@ class SummaryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','list'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -61,30 +61,23 @@ class SummaryController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Summary;
+		$model=new Score;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Summary']))
+		if(isset($_POST['Score']))
 		{
-			$model->attributes=$_POST['Summary'];
-            $model->user_name=Yii::app()->user->name;
-            $model->time=date("Y-m-d H:i:s");
+			$model->attributes=$_POST['Score'];
 			if($model->save())
-            {
-                $score= new ScoreCal;
-                $score->scoreCalculate("分享面经",500);
-
-                $this->redirect(array('view','id'=>$model->summary_id));
-            }
-
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
 	}
+
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -97,13 +90,11 @@ class SummaryController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Summary']))
+		if(isset($_POST['Score']))
 		{
-			$model->attributes=$_POST['Summary'];
-            $model->user_name=Yii::app()->user->name;
-            $model->time=date("Y-m-d H:i:s");
+			$model->attributes=$_POST['Score'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->summary_id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -136,50 +127,21 @@ class SummaryController extends Controller
 	 */
 	public function actionIndex()
 	{
-        //获取当前登录用户下的自我介绍列表；
-        $user_name=Yii::app()->user->name;
-
-        $dataProvider=new CActiveDataProvider('Summary', array(
-            'criteria'=>array(
-                //这里的user_id要用当前登录用户的
-                'condition'=>'user_name='."'".$user_name."'",
-                'order'=>'summary_id DESC',
-            ),
-            'pagination'=>array(
-                'pageSize'=>10,
-            ),
-        ));
-
-        $this->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
+		$dataProvider=new CActiveDataProvider('Score');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
 	}
 
-    public function actionList()
-    {
-        $count=Yii::app()->db->createCommand('SELECT COUNT(*) FROM summary')->queryScalar();
-        $sql='SELECT summary_id, summary.user_name, pic,company_name,position_name,title,time,experience FROM user,summary
-         where summary.user_name=user.user_name and summary.status=1 order by summary.time
-         desc';
-        $dataProvider=new CSqlDataProvider($sql, array(
-            'totalItemCount'=>$count,
-            'pagination'=>array(
-                'pageSize'=>10,
-            ),
-        ));
-        $this->render('listall',array(
-            'dataProvider'=>$dataProvider,
-        ));
-    }
 	/**
 	 * Manages all models.
 	 */
 	public function actionAdmin()
 	{
-		$model=new Summary('search');
+		$model=new Score('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Summary']))
-			$model->attributes=$_GET['Summary'];
+		if(isset($_GET['Score']))
+			$model->attributes=$_GET['Score'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -193,7 +155,7 @@ class SummaryController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Summary::model()->findByPk($id);
+		$model=Score::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -205,11 +167,10 @@ class SummaryController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='summary-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='score-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-
 }

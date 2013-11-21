@@ -13,8 +13,9 @@
  	<?php echo $form->textFieldRow($model,'position_name',array('class'=>'span5','maxlength'=>100)); ?>
 
 
-<label>面试语言</label>
+
 <div class="col-md-3">
+    <label>面试语言</label>
     <label class="radio" >
         <input type="radio" name="Summary[language]" value="cn" data-toggle="radio" <?php if($model['language'] == 'cn') echo checked;?>>
     中文
@@ -29,8 +30,9 @@
     </label>
 </div> <!-- /radios col-md-3 -->
 
-<label>着装要求</label>
+
 <div class="col-md-3">
+    <label>着装要求</label>
     <label class="radio" >
         <input type="radio" name="Summary[dress]" value="0" data-toggle="radio" <?php if($model['dress'] == '0') echo checked;?>>
         正装
@@ -42,8 +44,9 @@
     </div> <!-- /radios col-md-3 -->
 
 
-<label>面试形式</label>
+
 <div class="col-md-3">
+    <label>面试形式</label>
     <label class="radio" >
         <input type="radio" name="Summary[format]"  value="0" data-toggle="radio" <?php if($model['format'] == '0') echo checked;?>>
         单面
@@ -55,8 +58,9 @@
 </div> <!-- /radios col-md-3 -->
 
 
-<label>面试气氛</label>
+
 <div class="col-md-3">
+    <label>面试气氛</label>
     <label class="radio" >
         <input type="radio" name="Summary[atmosphere]"  value="0" data-toggle="radio" <?php if($model['atmosphere'] == '0') echo checked;?>>
 紧张    </label>
@@ -66,12 +70,25 @@
     <label class="radio">
 </div> <!-- /radios col-md-3 -->
 
+<div class="col-md-3">
+    <label>职场环境</label>
+    <label class="radio" >
+        <input type="radio" name="Summary[impression]"  value="0" data-toggle="radio" <?php if($model['impression'] == '0') echo checked;?>>
+       差    </label>
+    <label class="radio">
+        <input type="radio" name="Summary[impression]"  value="1" data-toggle="radio" <?php if($model['impression'] == '1') echo checked;?>>
+        一般  </label>
+    <label class="radio">
+        <label class="radio">
+            <input type="radio" name="Summary[impression]"  value="1" data-toggle="radio" <?php if($model['impression'] == '2') echo checked;?>>
+            好  </label>
+        <label class="radio">
+</div> <!-- /radios col-md-3 -->
+
 	<?php echo $form->textFieldRow($model,'rounds',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'impression',array('class'=>'span5','maxlength'=>500)); ?>
-
-<label>面试结果</label>
 <div class="col-md-3">
+    <label>面试结果</label>
     <label class="radio" >
         <input type="radio" name="Summary[result]" value="0" data-toggle="radio" <?php if($model['result'] == '0') echo checked;?>>
         未通过
@@ -89,7 +106,7 @@
 
 <?php echo $form->textAreaRow($model, 'tips', array('class'=>'span8', 'rows'=>5)); ?>
 
-
+<!--
 <label>是否有笔试</label>
 <div class="col-md-3">
     <label class="radio" >
@@ -121,7 +138,6 @@
             'label'=>$model->isNewRecord ? '草稿' : '草稿',
             'htmlOptions'=>array('id'=>'draft'),
         )); ?>
-        &nbsp;同步到：
 	</div>
 <?php $this->endWidget(); ?>
 
@@ -133,7 +149,6 @@ $("#fabiao").click(function(){
     return true;
 });
 $("#draft").click(function(){
-
     $("#status").val("0");
     return true;
 });

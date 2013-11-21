@@ -22,8 +22,10 @@ $this->menu=array(
  <div class="jumbotron">
      <h1>自我介绍</h1>
      <p><?php echo $model->self_introduction; ?></p>
-     <p><a class="btn btn-primary btn-lg" role="button" href="index.php?r=SelfIntroduction/update&id=<?php echo $model->intro_id; ?>">编辑</a></p>
- </div>
+     <?php if (Yii::app()->user->name == $model->user_name)
+     echo "<p><a class='btn btn-primary btn-lg' role='button' href='index.php?r=SelfIntroduction/update&id=$model->intro_id'>编辑</a></p>"
+     ?>
+     </div>
 
 <?php
 $form=$this->beginWidget('CActiveForm', array(
@@ -36,12 +38,13 @@ $form=$this->beginWidget('CActiveForm', array(
 )); ?>
 
     <div>
-        <input type="textArea" name="SelfIntroductionComment[content]" rows=5 class="span12">
+       <!-- <input type="textArea" name="SelfIntroductionComment[content]" rows=5 class="span12">-->
+        <textarea class="form-control" name="SelfIntroductionComment[content]"></textarea>
         <input type="hidden" name="SelfIntroductionComment[intro_id]" value=<?php echo $model->intro_id ?> >
     </div>
 
     <div class="span2">
-        <button type="submit" class="btn btn-primary">评论</button>
+        <button type="submit" class="btn btn-primary" >评论</button>
     </div>
 <?php $this->endWidget(); ?>
 <br>

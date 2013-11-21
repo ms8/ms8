@@ -142,7 +142,7 @@ class SelfIntroductionController extends Controller
 	 */
 	public function actionIndex()
 	{
-        //获取当前登录用户下的自我介绍列表；
+//        //获取当前登录用户下的自我介绍列表；
             $user_name=Yii::app()->user->name;
 
         $dataProvider=new CActiveDataProvider('SelfIntroduction', array(
@@ -166,13 +166,16 @@ class SelfIntroductionController extends Controller
      */
     public function actionIndexAll()
     {
-        $dataProvider=new CActiveDataProvider('SelfIntroduction',array(
+        $count=Yii::app()->db->createCommand('SELECT COUNT(*) FROM self_introduction')->queryScalar();
+        $sql="SELECT intro_id,self_introduction.user_name, self_introduction,pic FROM user,self_introduction
+         where self_introduction.user_name=user.user_name order by intro_id desc";
+        $dataProvider=new CSqlDataProvider($sql, array(
+            'totalItemCount'=>$count,
             'pagination'=>array(
-                'pageSize'=>20,
-         ),
+                'pageSize'=>10,
+            ),
         ));
-
-        $this->render('/site/selfintroductionList',array(
+        $this->render('listall',array(
             'dataProvider'=>$dataProvider,
         ));
     }
