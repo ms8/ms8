@@ -1,12 +1,15 @@
-<!--    <div class="top3">-->
-<!--        更换头像-->
-<!--    </div>-->
-<!--    <div >-->
-<!--        <a --><?php //if($this->action->id == 'info'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/update'); ?><!--">基本设置</a>-->
-<!--        <a --><?php //if($this->action->id == 'myscore'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/changePic'); ?><!--">更换头像</a>-->
-<!--        <a --><?php //if($this->action->id == 'changepwd'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/changepwd'); ?><!--">修改密码</a>-->
-<!--		<a --><?php //if($this->action->id == 'myscore'){ ?><!--class="bai"--><?php //} ?><!-- href="--><?php //echo $this->createUrl('/user/myscore'); ?><!--">我的积分</a>-->
-<!--	</div>-->
+
+<div class="well" style="background-color: #F5F5F5;border: 1px solid #E3E3E3;padding: 10px;">
+    <div style="width: 260px;float: left;margin-left: 20px;">
+        <span style="font-weight: bold;">用户名：</span>
+        <span ><?php echo $model->user_name ?></span>
+    </div>
+
+    <div  style="width: 300px;float: left;margin-left: 10px;">
+        <span style="font-weight: bold;">注册邮箱：</span>
+        <span ><?php echo $model->email ?></span>
+    </div>
+</div>
 
 <ul class="nav nav-tabs" id="myTab">
     <li >
@@ -26,9 +29,11 @@
     <div >
         <div class="demo" style="float: left">
             <div class="files" style="display: none"></div>
-            <div style="height: 150px;width: 150px;margin-left:150px ">
+            <div style="height: 150px;width: 150px;margin-left:85px ">
                 <img id="showimg" src="<?php echo $model->pic ?>">
-                <h2 style="background: #69BC87;height: 35px;width: 100px;font-size: 15px;text-align: center;color: #FFFFFF;padding: 3px;margin-top: 15px">当前头像</h2>
+                <div style="background: #69BC87;height: 30px;width: 150px;font-size: 17px;text-align: center;color: #FFFFFF;padding: 8px 0 0 0;margin-top: 15px">
+                    当前头像
+                </div>
             </div>
 
         </div>
@@ -37,12 +42,12 @@
             <div class="thumbnail" style="width:200px;height:180px;float: left">
                 <img style="width: 170px;height: 170px;" class="imagePreview" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///////yH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/>
             </div>
-            <span id="picOper" class="btn btn-file" style="margin-top:10px;padding: 10px;">
+            <span id="picOper" class="btn btn-file btn-primary" style="margin-top:10px;padding: 13px 0 0 0;">
                 <span class="imagePre-new">选择新头像</span>
                 <span class="imagePre-exists">选择新头像</span>
                 <input type="file" name="file" id="fileupload" />
             </span>
-            <button id="submitfile" name="mypic" class="btn btn-file">上传</button>
+            <button id="submitfile" name="mypic" class="btn btn-file btn-primary">上传</button>
         </div>
 
     </div>
