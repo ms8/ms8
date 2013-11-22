@@ -1,7 +1,7 @@
 <div class="row-fluid" style="margin-bottom: 20px;">
     <div class="span3 pic">
         <a href="#">
-            <?php echo CHtml::image(Yii::app()->request->baseUrl."/"."$data[picPath]","",array("width"=>50,"class"=>"img-polaroid")); ?>
+            <?php echo CHtml::image(Yii::app()->request->baseUrl."/"."$data[picPath]","",array("class"=>"img-polaroid2")); ?>
         </a>
     </div>
     <div class="span9 info">

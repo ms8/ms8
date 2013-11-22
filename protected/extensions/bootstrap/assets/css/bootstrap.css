@@ -230,7 +230,7 @@ a:focus {
     -moz-border-radius: 6px;
     border-radius: 6px;
 }
-.img-polaroid {
+.img-polaroid, .img-polaroid2{
     padding: 4px;
     background-color: #fff;
     border: 1px solid #ccc;
@@ -238,8 +238,16 @@ a:focus {
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border-radius: 200px;
 }
+.img-polaroid{
+    width: 100px;
+    height: 100px;
+}
+.img-polaroid2{
+    width: 50px;
+    height: 50px;
+}
+
 .img-circle {
     -webkit-border-radius: 500px;
     -moz-border-radius: 500px;

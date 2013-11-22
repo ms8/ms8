@@ -10,7 +10,7 @@ if ($index%2===0 && $index !=0){
     </a>
     </div>
     <div class="span8 info">
-        <a href="#">
+        <a href="?r=prepare/interview&username=<?php echo $data['username'] ?>&prepareID=<?php echo $data['prepareID'] ?>">
             <?php echo "$data[username]  面试了<br/>"."$data[companyName]<br/>".
                 "<strong>$data[position]</strong>" ?>
         </a>
