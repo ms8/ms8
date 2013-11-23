@@ -35,7 +35,7 @@
         .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
         .items{padding-bottom: 20px;}
         .items li{list-style: none;display: inline-block;width:49%;margin-bottom: 20px;}
-        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 0px 5px 5px 10px;font-size: 13px;}
+        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 0px 5px 5px 10px;font-size: 13px;word-wrap: break-word;}
         .items .info a:hover{ text-decoration: none;}
         .items .info .datetime{margin-top:5px;font: 13px Helvetica,Arial,sans-serif;}
         .home_wrapper .list-view{padding-top: 0;}
