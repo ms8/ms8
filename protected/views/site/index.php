@@ -128,8 +128,7 @@ $this->pageTitle=Yii::app()->name;
             //格式化为链接
             function formaterLink(){
                 return 'CHtml::tag("p",array(),
-                                 CHtml::tag("strong",array()," $data[username] -- $data[major]",true),true)
-                                 .CHtml::tag("p",array("class"=>"introduction"),"$data[selfintroduction]",true)';
+                                 CHtml::tag("strong",array()," $data[username]",true),true) ';
             }
             //格式化为按钮
             function formaterButton(){
@@ -155,9 +154,8 @@ $this->pageTitle=Yii::app()->name;
                         'type'=>'raw',
                         'value'=>formaterLink() ,
                     ),
-                    array('name'=>'time',
+                    array('name'=>'selfintroduction',
                         'header'=>'时间',
-                        'type'=>'date',
                     ),
                     array('name'=>'title', 'header'=>'联系',
                         'type'=>'raw',
