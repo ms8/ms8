@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/images/favicon.ico" />
 
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/progress.stap.css" />
+
     <!-- 个人头像 -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.imgPre.css" media="screen, projection" />
     <?php
@@ -55,7 +57,7 @@
             float:left;
             margin-right:15px;
         }
-        /* --- end */
+
     </style>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -73,7 +75,7 @@
                 'class'=>'bootstrap.widgets.TbMenu',
                 'items'=>array(
                     array('label'=>'首页', 'url'=>array('/site/index')),
-                    array('label'=>'面试准备', 'url'=>array('/prepare/list')),
+                    array('label'=>'面试准备', 'url'=>array('/prepare/listall')),
                     array('label'=>'面试经验', 'url'=>array('/summary/list')),
                     array('label'=>'求人品', 'url'=>array('/renpin')),
                     array('label'=>'个人中心', 'url'=>'#', 'visible'=>!Yii::app()->user->isGuest, 'items'=>array(
