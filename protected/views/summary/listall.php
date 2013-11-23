@@ -15,7 +15,6 @@
             'sorterHeader'=>'更改排序：',//定义的文字显示在sorter可排序属性的前面
             'sorterFooter'=>'',//定义的文字显示在sorter可排序属性的后面
         ));
-
         ?>
     </div>
 </div>
