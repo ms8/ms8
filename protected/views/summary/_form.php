@@ -4,6 +4,48 @@
     'type'=>'vertical',
 )); ?>
 
+<!-- ************************************************* -->
+<div class="section4" id="process">
+    <div class="node fore ready">
+        <ul>
+            <li class="tx1">&nbsp;</li>
+            <li class="tx2">提交订单</li>
+        </ul>
+    </div>
+    <div class="proce ready"><ul><li class="tx1">&nbsp;</li></ul></div>
+    <div class="node ready">
+        <ul>
+            <li class="tx1">&nbsp;</li>
+            <li class="tx2">等待付款</li>
+            <li class="tx3">&nbsp;</li>
+        </ul>
+    </div>
+    <div class="proce wait"><ul><li class="tx1">&nbsp;</li></ul></div>
+    <div class="node wait">
+        <ul>
+            <li class="tx1">&nbsp;</li>
+            <li class="tx2">商品出库</li>
+            <li class="tx3">&nbsp;</li>
+        </ul>
+    </div>
+    <div class="proce wait"><ul><li class="tx1">&nbsp;</li></ul></div>
+    <div class="node wait">
+        <ul>
+            <li class="tx1">&nbsp;</li>
+            <li class="tx2">经验分享</li>
+            <li class="tx3">&nbsp;</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ************************************************* -->
+<!--<div class="control-group">-->
+<!--    <label class="control-label" >自我介绍</label>-->
+<!--    <div class="controls">-->
+<!--        <textarea class="form-control" rows="3" style="width: 80%"></textarea>-->
+<!--    </div>-->
+<!--</div>-->
+<div >
 	<?php echo $form->errorSummary($model); ?>
 
     <?php echo $form->textFieldRow($model,'title',array('class'=>'input-xxlarge','maxlength'=>500)); ?>
@@ -11,7 +53,7 @@
 	<?php echo $form->textFieldRow($model,'company_name',array('class'=>'input-large','maxlength'=>200)); ?>
 
  	<?php echo $form->textFieldRow($model,'position_name',array('class'=>'input-large','maxlength'=>100)); ?>
-
+</div>
 
 
 <div class="col-md-3">
