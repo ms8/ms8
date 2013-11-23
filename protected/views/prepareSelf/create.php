@@ -11,7 +11,7 @@ $this->menu=array(
 ?>
 
 <h1>面试准备</h1>
-
+<hr>
 <?php echo $this->renderPartial('_form', array('model'=>$model,'cn'=>$cn,'en'=>$en,'others'=>$others,'zhengzhuang'=>$zhengzhuang,
 'xiuxian'=>$xiuxian,
     'danmian'=>$danmian,

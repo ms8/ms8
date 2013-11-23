@@ -176,7 +176,7 @@ if($dataCompany->rawData == ""){
 
 <div>
 
-    <input type="button" value="进一步准备！" onclick="next();">
+    <input type="button" value="进一步准备！" class="btn btn-primary" onclick="next();">
 
 </div>
 <script type="text/javascript">
