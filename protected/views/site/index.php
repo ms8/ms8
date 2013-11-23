@@ -123,7 +123,7 @@ $this->pageTitle=Yii::app()->name;
 
             //格式化为图片
             function formaterImage(){
-                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."/"."$data[picPath]","",array("class"=>"img-polaroid")),"#",array("class"=>""))';
+                return 'CHtml::link(CHtml::image(Yii::app()->request->baseUrl."/"."$data[picPath]","",array("class"=>"img-polaroid","width"=>"100")),"#",array("class"=>""))';
             }
             //格式化为链接
             function formaterLink(){
@@ -148,7 +148,6 @@ $this->pageTitle=Yii::app()->name;
                         'name'=>'id',
                         'header'=>'发起人',
                         'type'=>'raw',
-                        'htmlOptions'=>array("width"=>"60"),
                         'value'=> formaterImage() ,
                     ),
                     array('name'=>'prepareID', 'header'=>'介绍',
