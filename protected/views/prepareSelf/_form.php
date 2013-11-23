@@ -4,6 +4,9 @@
     }
     p i{font-size: 15px;margin-right: 5px;}
     li {margin-bottom: 5px;}
+    ul, ol {
+        margin: 0 0 15px 0;
+    }
 </style>
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'prepare-self-form',

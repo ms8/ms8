@@ -14,7 +14,6 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/css/flat-ui.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/css/demo.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/images/favicon.ico" />
@@ -49,6 +48,7 @@
         .search-result a:link{ color:#0060a1;}
         .search-result a:hover{ color:#00a0e2;}
         .search-result a:active{ color:#005188;}
+        .grid-view .table th,.grid-view .table td {border-top-width:0;}
 
         /*add by shenyuede 面试总结css*/
         .col-md-3{

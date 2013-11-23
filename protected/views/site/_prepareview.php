@@ -14,7 +14,7 @@ if ($index%2===0 && $index !=0){
             <?php echo "$data[username]  面试了<br/>"."$data[companyName]<br/>".
                 "<strong>$data[position]</strong>" ?>
         </a>
-        <div class="datetime"><?php echo "$data[time]于$data[address]" ?></div>
+        <div class="datetime"><?php echo "$data[time]" ?></div>
     </div>
 
 </div>
