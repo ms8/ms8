@@ -147,5 +147,17 @@
 <!-- 个人头像-->
 <script  type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.form.js"></script>
 <script  type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.imgPre.js"></script>
+<!--start of feedback code powered by geekui-->
+<script type="text/javascript" src="http://geekui.com/static/js/widgets.js"></script>
+<script type="text/javascript" charset="utf-8">
+    var options = {};
+    options.company_sub_url = "ms8";
+    options.placement = "right";
+    options.tab_define = false;
+    options.display = "overlay";
+    options.style = "green_right.png";
+    var feedback_widget = new GKFN.feedback_widget(options);
+</script>
+<!--end of feedback code powered by geekui-->
 </body>
 </html>

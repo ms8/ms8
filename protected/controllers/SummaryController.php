@@ -50,8 +50,53 @@ class SummaryController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $model = $this->loadModel($id);
+        switch($model->language)
+        {
+            case 'cn':$model->language="中文";break;
+            case 'en':$model->language="英文";break;
+            case 'other':$model->language="其他";break;
+            default: $model->language="未反馈";
+        }
+        switch($model->dress)
+        {
+            case '0':$model->dress="正装";break;
+            case '1':$model->dress="休闲装";break;
+            default:$model->dress="未反馈";
+        }
+
+        switch($model->format)
+        {
+            case '0':$model->format="单面";break;
+            case '1':$model->format="群面";break;
+            default:$model->format="未反馈";
+        }
+
+        switch($model->atmosphere)
+        {
+            case '0':$model->atmosphere="紧张";break;
+            case '1':$model->atmosphere="";break;
+            default:$model->atmosphere="未反馈";
+        }
+
+        switch($model->impression)
+        {
+            case '0':$model->impression="差";break;
+            case '1':$model->impression="一般";break;
+            case '2':$model->impression="好";break;
+            default:$model->impression ="未反馈";
+        }
+        switch($model->result)
+        {
+            case '0':$model->result="未通过";break;
+            case '1':$model->result="通过但未要Offer";break;
+            case '2':$model->result="通过并获得Offer";break;
+            default:$model->result ="未反馈";
+        }
+
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=>$model,
 		));
 	}
 

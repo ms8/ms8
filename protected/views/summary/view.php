@@ -30,7 +30,6 @@ $this->menu=array(
 		'tips',
 		'exam_content',
 		'experience',
-		'status',
 	),
 ));
 ?>
