@@ -5,7 +5,7 @@ if ($index%2===0 && $index !=0){
 ?>
 <div class="span6">
     <div class="span4 pic">
-    <a href="index.php?r=prepare/view&id=<?php echo $data['prepare_id'];?>">
+        <a href="?r=prepare/interview&username=<?php echo $data['user_name'] ?>&prepareID=<?php echo $data['prepareID'] ?>">
         <?php echo CHtml::image(Yii::app()->request->baseUrl."/".$data['pic'],"",array("width"=>100,"class"=>"img-polaroid")); ?>
     </a>
     </div>
