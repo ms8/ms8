@@ -26,7 +26,7 @@ class PrepareController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view',"save","interview"),
+                'actions'=>array('index','view',"save","interview","list"),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -282,7 +282,8 @@ class PrepareController extends Controller
         $dataInterview = new CArrayDataProvider($ms);
         $this->render('interview',array(
             'dataInterview'=>$dataInterview,
-            'userName'=>""
+            'userName'=>"",
+            'prepareID'=>"",
         ));
     }
 }
