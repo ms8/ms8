@@ -21,10 +21,11 @@
 
     <!-- 个人头像 -->
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/jquery.imgPre.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/font-awesome/css/font-awesome.css" />
     <?php
     Yii::app()->bootstrap->register();
     ?>
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/font-awesome/css/font-awesome.css" />
+
     <!-- 百度地图js script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=2fce860d4f8d37ec4e70626f59ccf9ca"></script-->
     <style type="text/css">
         .row-fluid input[class*='span'] {min-height: 20px}
