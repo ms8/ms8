@@ -9,7 +9,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('company_name')); ?>:</b>
-	<?php echo CHtml::encode($data->company_name); ?>
+
+    <?php echo CHtml::encode($data->company_name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('position_name')); ?>:</b>
@@ -17,7 +18,8 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('language')); ?>:</b>
-	<?php echo CHtml::encode($data->language); ?>
+    <?php if($data->language=="cn") $language="中文";
+	 echo CHtml::encode($language); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('dress')); ?>:</b>

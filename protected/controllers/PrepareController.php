@@ -26,7 +26,7 @@ class PrepareController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view',"save","interview","list"),
+                'actions'=>array('index','view',"save","interview","list","listall"),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -286,4 +286,35 @@ class PrepareController extends Controller
             'prepareID'=>"",
         ));
     }
+
+    //全部的面试准备
+    public function actionListall()
+    {
+        if (Yii::app()->request->isAjaxRequest) {
+            $count=Yii::app()->db->createCommand('SELECT COUNT(*) FROM prepare')->queryScalar();
+            $sql='SELECT prepareID as id,prepareID, prepare.user_name, pic,companyName,position,time FROM user,prepare where prepare.user_name=user.user_name order by prepare.time desc';
+            $dataProvider=new CSqlDataProvider($sql, array(
+                'totalItemCount'=>2,
+                'pagination'=>array(
+                    'pageSize'=>10,
+                ),
+            ));
+            $this->renderPartial('listall',array(
+                'dataProvider'=>$dataProvider,
+            ));
+        }else{
+            $rawdata = Yii::app()->db->createCommand('SELECT prepareID as id,prepareID, prepare.user_name, pic,companyName,position,time FROM user,prepare
+             where prepare.user_name=user.user_name  order by prepare.time
+             desc')->queryAll();
+            $dataProvider=new CArrayDataProvider($rawdata, array(
+                'pagination'=>array(
+                    'pageSize'=>20,
+                ),
+            ));
+            $this->render('listall',array(
+                'dataProvider'=>$dataProvider,
+            ));
+        }
+    }
+
 }
