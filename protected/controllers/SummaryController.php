@@ -157,19 +157,47 @@ class SummaryController extends Controller
 
     public function actionList()
     {
-        $count=Yii::app()->db->createCommand('SELECT COUNT(*) FROM summary')->queryScalar();
-        $sql='SELECT summary_id, summary.user_name, pic,company_name,position_name,title,time,experience FROM user,summary
-         where summary.user_name=user.user_name and summary.status=1 order by summary.time
-         desc';
-        $dataProvider=new CSqlDataProvider($sql, array(
-            'totalItemCount'=>$count,
-            'pagination'=>array(
-                'pageSize'=>10,
-            ),
-        ));
-        $this->render('listall',array(
-            'dataProvider'=>$dataProvider,
-        ));
+//        $count=Yii::app()->db->createCommand('SELECT COUNT(*) FROM summary')->queryScalar();
+//        $sql='SELECT summary_id as id,summary_id, summary.user_name, pic,company_name,position_name,title,time,experience FROM user,summary
+//         where summary.user_name=user.user_name and summary.status=1 order by summary.time
+//         desc';
+//        $dataProvider=new CSqlDataProvider($sql, array(
+//            'totalItemCount'=>$count,
+//            'pagination'=>array(
+//                'pageSize'=>10,
+//            ),
+//        ));
+        if (Yii::app()->request->isAjaxRequest) {
+//            $rawdata = Yii::app()->db->createCommand('SELECT summary_id as id,summary_id, summary.user_name, pic,company_name,position_name,title,time,experience FROM user,summary  where summary.user_name=user.user_name and summary.status=1 order by summary.time')->queryAll();
+//            $dataProvider=new CArrayDataProvider($rawdata, array(
+//                'pagination'=>array(
+//                    'pageSize'=>20,
+//                ),
+//            ));
+            $count=Yii::app()->db->createCommand('SELECT COUNT(*) FROM summary')->queryScalar();
+            $sql='SELECT summary_id as id,summary_id, summary.user_name, pic,company_name,position_name,title,time,experience FROM user,summary
+             where summary.user_name=user.user_name and summary.status=1 order by summary.time
+             desc';
+            $dataProvider=new CSqlDataProvider($sql, array(
+                'totalItemCount'=>2,
+                'pagination'=>array(
+                    'pageSize'=>10,
+                ),
+            ));
+            	$this->renderPartial('listall',array(
+                         'dataProvider'=>$dataProvider,
+	            ));
+        }else{
+            $rawdata = Yii::app()->db->createCommand('SELECT summary_id as id,summary_id, summary.user_name, pic,company_name,position_name,title,time,experience FROM user,summary  where summary.user_name=user.user_name and summary.status=1 order by summary.time')->queryAll();
+            $dataProvider=new CArrayDataProvider($rawdata, array(
+                'pagination'=>array(
+                    'pageSize'=>20,
+                ),
+            ));
+            $this->render('listall',array(
+                'dataProvider'=>$dataProvider,
+            ));
+        }
     }
 	/**
 	 * Manages all models.

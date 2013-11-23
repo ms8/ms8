@@ -26,7 +26,7 @@ class PrepareController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view',"save","interview"),
+                'actions'=>array('index','view',"save","interview","list"),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -237,10 +237,16 @@ class PrepareController extends Controller
      */
     public function actionInterview()
     {
+        $userName =  Yii::app()->user->name;
+        $prepareID = "";
+        if(isset($_GET['username'])){
+            $userName = $_GET['username'];
+            $prepareID = $_GET['prepareID'];
+        }
         $ms = array();
         $pm  = new PrepareManagement();
         //取该用户最近十条面试准备信息
-        $myPrepares = $pm->getMyPrepare(Yii::app()->user->name,10);
+        $myPrepares = $pm->getMyPrepare($userName,10);
         foreach($myPrepares as $prepare){
             //取每条面试准备信息所保存的url和标题信息
             $details = $pm->getMyPrepareDetail($prepare['prepareID']);
@@ -252,7 +258,8 @@ class PrepareController extends Controller
         $dataInterview = new CArrayDataProvider($ms);
         $this->render('interview',array(
             'dataInterview'=>$dataInterview,
-            'userName'=>""
+            'userName'=>$userName,
+            'prepareID'=>$prepareID
         ));
     }
     /**
@@ -275,7 +282,8 @@ class PrepareController extends Controller
         $dataInterview = new CArrayDataProvider($ms);
         $this->render('interview',array(
             'dataInterview'=>$dataInterview,
-            'userName'=>""
+            'userName'=>"",
+            'prepareID'=>"",
         ));
     }
 }

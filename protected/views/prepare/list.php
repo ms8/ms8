@@ -30,7 +30,7 @@ $this->menu= array(
 
 <h1>
     <?php
-        if($userName == Yii::app()->user->name){
+        if($userName == ""){
             echo "我的面试";
         }else{
             echo $userName."的面试";
@@ -56,7 +56,7 @@ $this->menu= array(
         'dataProvider'=>$dataInterview,
         'itemView'=>'_interview',
         "itemsCssClass"=>"",
-        'template'=>'<ul class="timeline"><input id="prepareID" type="hidden" value="'.$prepareID.'">{items}</ul>',
+        'template'=>'<ul class="timeline">{items}</ul>',
     ));
     ?>
 </div>

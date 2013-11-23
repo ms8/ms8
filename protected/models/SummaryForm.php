@@ -8,6 +8,7 @@
  */
 
 class SummaryForm {
+    public $id;
     public $summaryID;
     public $username;
     public $picPath;
@@ -18,6 +19,7 @@ class SummaryForm {
     public $experience;
 
     public function __construct($summaryID,$username,$picPath,$time,$companyName,$position,$title,$experience){
+        $this->id = $summaryID;
         $this->summaryID = $summaryID;
         $this->username = $username;
         $this->picPath = $picPath;

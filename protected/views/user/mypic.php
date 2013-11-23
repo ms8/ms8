@@ -100,9 +100,14 @@
                     dataType:  'json',
                     success: function(data) {
                         showimg.attr("src",data.pic);
+                        btn = $("imagePre-new");
+                        btn.html("选择新头像");
+                        btn = $("imagePre-exists");
+                        btn.html("选择新头像");
                     },
                     error:function(xhr){
                         btn.html("上传失败");
+                        alert(xhr.responseText);
                         bar.width('0')
                         files.html(xhr.responseText);
                     }

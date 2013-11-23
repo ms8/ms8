@@ -28,11 +28,11 @@
 
     <div class="con clear">
 
-            <?php $form=$this->beginWidget('CActiveForm', array(
-                'id'=>'user-form',
-                'enableAjaxValidation'=>false,
-                'htmlOptions'=>array('class'=>'left2a'),
-            )); ?>
+<!--            --><?php //$form=$this->beginWidget('CActiveForm', array(
+//                'id'=>'user-form',
+//                'enableAjaxValidation'=>false,
+//                'htmlOptions'=>array('class'=>'left2a'),
+//            )); ?>
 
         <div class="control-group">
             <label class="control-label" for="password1">密码</label>
@@ -47,14 +47,8 @@
         </div>
 
 
-        <?php $this->endWidget(); ?>
-        <div class="right5a">
-            <!-- <div class="right5a1">小组创建  · · · · · ·</div>
-            <div class="right5a2">小组需要审核通过后才能完成创建,管理员会在3日内审核 申请, 审核结果会用豆邮通知你,请耐心等待。</div>
-            <div class="right5a1">小组标签  · · · · · ·</div>
-            <div class="right5a2">小组可以有不超过5个的标签，用来描述小组的目的。标签作为关键词可以被用户搜索到。 多个标签之间用空格分隔开。 </div>
-            <div class="right5a2">比如，"Philip K. Dick小组"可以用 "作者 作家 科幻 科学幻想 迪克"， "关中辰木" 可以用 "本地 同城 西北 陕西 西安"。小组名称本身可以被搜索，就不用再加在标签里了。 小组的名称、介绍、标签在创立后都可以随时更改。 </div> -->
-        </div>
+<!--        --><?php //$this->endWidget(); ?>
+
         
     </div>
 
@@ -73,7 +67,7 @@
                     type:'POST',
                     dataType:'json',
                     data:{'password':password},
-                    url:'?user/changepwdSave',
+                    url:'?user/changepwd',
                     success:function(json) {
                         if(json.result != ""){
                             alert('修改成功');
@@ -82,31 +76,31 @@
                 });
             }
         }
-//验证提示
-$('#member-form').ajaxForm({
-    dataType:'json',
-    success:function(data) {
-      var items = [];
-      $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
-      var length = items.length;
-      if(data.status != 1){
-        //items[i][0]错误节点名称
-        //items[i][1]对应错误提示
-        for(var i=0;i<length;i++){  
-            alert(items[i][1]);
-            return false;
-        }
-      }else{
-        alert('修改基本信息成功');
-      }
-    }
-  });
-
-//提交验证
-$('#sub').click( 
-    function(){
-        $('#user-form').submit();
-        return false;
-  }
-);
+////验证提示
+//$('#member-form').ajaxForm({
+//    dataType:'json',
+//    success:function(data) {
+//      var items = [];
+//      $.each(data,function(key, val){var tem=[key,val];items.push(tem)});
+//      var length = items.length;
+//      if(data.status != 1){
+//        //items[i][0]错误节点名称
+//        //items[i][1]对应错误提示
+//        for(var i=0;i<length;i++){
+//            alert(items[i][1]);
+//            return false;
+//        }
+//      }else{
+//        alert('修改基本信息成功');
+//      }
+//    }
+//  });
+//
+////提交验证
+//$('#sub').click(
+//    function(){
+//        $('#user-form').submit();
+//        return false;
+//  }
+//);
 </script>

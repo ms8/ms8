@@ -35,7 +35,7 @@
         .input-prepend .add-on{margin: 0.2em 0 0.5em 0;border: 2px solid #ccc;border-right: 0px}
         .items{padding-bottom: 20px;}
         .items li{list-style: none;display: inline-block;width:49%;margin-bottom: 20px;}
-        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 0px 5px 5px 10px;font-size: 13px;}
+        .items .info{letter-spacing: normal; word-spacing: normal;  padding: 0px 5px 5px 10px;font-size: 13px;word-wrap: break-word;}
         .items .info a:hover{ text-decoration: none;}
         .items .info .datetime{margin-top:5px;font: 13px Helvetica,Arial,sans-serif;}
         .home_wrapper .list-view{padding-top: 0;}
@@ -46,6 +46,16 @@
         .search-result a:link{ color:#0060a1;}
         .search-result a:hover{ color:#00a0e2;}
         .search-result a:active{ color:#005188;}
+
+        /*add by shenyuede 面试总结css*/
+        .col-md-3{
+            margin-top:10px;
+        }
+        .radio-label{
+            float:left;
+            margin-right:15px;
+        }
+        /* --- end */
     </style>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>

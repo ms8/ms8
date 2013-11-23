@@ -1,5 +1,5 @@
 <li class="event">
-    <input type="radio" name="interview" <?php if($index == 0)echo "checked"; ?>/>
+    <input type="radio" id="<?php echo $data['id']?>" name="interview" <?php if($index == 0)echo "checked"; ?> />
     <label></label>
     <div class="thumb"><?php echo $data['date'] ?></div>
     <div class="content-perspective">
@@ -9,7 +9,7 @@
                 <h4>准备了<strong><?php echo $data['companyName']."-".$data['position'] ?></strong>面试
                     &nbsp;&nbsp;
                     <?php
-                    if(Yii::app()->user->name == ""){
+                    if(Yii::app()->user->name == "" || Yii::app()->user->name != $data['userName']){
                     ?>
                         <button class="btn btn-primary"
                                 onclick="concern('<?php echo $data['id']?>',
@@ -32,7 +32,7 @@
                     <a href="javascript:;">对<strong><?php echo $data['companyName']."-".$data['position'] ?></strong>做了面试总结</a>
                     &nbsp;&nbsp;
                     <?php
-                    if(Yii::app()->user->name == ""){
+                    if(Yii::app()->user->name == "" || Yii::app()->user->name != $data['userName']){
                         ?>
                         <button class="btn btn-primary"
                                 onclick="concern('<?php echo $data['id']?>',
@@ -53,6 +53,14 @@
 </li>
 
 <script type="text/javascript">
+
+    var prepareID = $("#prepareID").val();
+    if(prepareID != ""){
+        $("input[checked]").removeAttr('checked');
+    }
+    $("#"+prepareID).attr("checked","");
+
+
     function concern(id,userName,company,position){
         $.ajax({
             type:'POST',
