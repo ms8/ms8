@@ -12,12 +12,7 @@ $this->menu=array(
 	array('label'=>'管理自我介绍','url'=>array('admin')),
 );
 ?>
-<?/*php $this->widget('bootstrap.widgets.TbDetailView',array(
-	'data'=>$model,
-	'attributes'=>array(
-		'self_introduction:html:',
-	),
-)); */?>
+
 
  <div class="jumbotron">
      <h1>自我介绍</h1>

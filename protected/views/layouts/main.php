@@ -46,6 +46,16 @@
         .search-result a:link{ color:#0060a1;}
         .search-result a:hover{ color:#00a0e2;}
         .search-result a:active{ color:#005188;}
+
+        /*add by shenyuede 面试总结css*/
+        .col-md-3{
+            margin-top:10px;
+        }
+        .radio-label{
+            float:left;
+            margin-right:15px;
+        }
+        /* --- end */
     </style>
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>

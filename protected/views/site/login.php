@@ -4,7 +4,7 @@
 /* @var $model LoginForm3 */
 /* @var $form CActiveForm  */
 
-$this->pageTitle=Yii::app()->name . ' - 登陆';
+$this->pageTitle=Yii::app()->name . ' - 登录';
 ?>
 
 <div class="row-fluid form" style="height: 600px;margin-top: 20px;">
