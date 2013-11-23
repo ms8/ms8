@@ -1,6 +1,4 @@
 
-<h1>面试准备</h1>
-
 <div class="row-fluid">
     <div class="span12">
         <?php

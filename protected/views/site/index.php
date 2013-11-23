@@ -9,7 +9,7 @@ $this->pageTitle=Yii::app()->name;
         <div class="span12">
             <div class="row-fluid">
                 <br>
-                <div class="span9 offset1 home-hero">
+                <div class="span10 home-hero">
 
                     <div class="row-fluid">
                         <div class="span11 offset1">
@@ -34,7 +34,7 @@ $this->pageTitle=Yii::app()->name;
                                     ),
                                 )); ?>
                                     <div class="span5">
-                                        <input type="text" id="company" required name="PrapareForm[company]"  class="span12 search_input" placeholder="您将面试的公司?">
+                                        <input type="text" id="company" required name="PrapareForm[company]"  class="span10 search_input" placeholder="您将面试的公司?">
                                     </div>
 
                                     <div class="span4">
@@ -42,7 +42,7 @@ $this->pageTitle=Yii::app()->name;
                                     </div>
 
                                     <div class="span2">
-                                        <button type="submit" class="btn btn-primary btn-success search_btn">准备面试</button>
+                                        <button type="submit" class="btn btn-primary btn-success search_btn">找攻略</button>
                                     </div>
                                 <?php $this->endWidget(); ?>
 
@@ -128,12 +128,11 @@ $this->pageTitle=Yii::app()->name;
             //格式化为链接
             function formaterLink(){
                 return 'CHtml::tag("p",array(),
-                                 CHtml::tag("strong",array(),CHtml::link("$data[username]","#",array("class"=>""))." -- $data[address] -- $data[major]",true),true)
-                                 .CHtml::tag("p",array("class"=>"introduction"),"$data[selfintroduction]",true)';
+                                 CHtml::tag("strong",array()," $data[username]",true),true) ';
             }
             //格式化为按钮
             function formaterButton(){
-                return 'CHtml::link("求点评","index.php?r=SelfIntroduction/view&id=$data[intro_id]",array("class"=>"btn btn-primary"))';
+                return 'CHtml::link("点评","index.php?r=SelfIntroduction/view&id=$data[intro_id]",array("class"=>"btn btn-primary"))';
 
 
             }
@@ -141,22 +140,22 @@ $this->pageTitle=Yii::app()->name;
             $this->widget('bootstrap.widgets.TbGridView', array(
                 'type'=>'striped',
                 'dataProvider'=>$introductiondata,
-                'hideHeader'=>false,
+                'hideHeader'=>true,
                 'template'=>"{items}",
                 'columns'=>array(
                     array(
                         'name'=>'id',
                         'header'=>'发起人',
                         'type'=>'raw',
+                        'htmlOptions'=>array("width"=>"120"),
                         'value'=> formaterImage() ,
                     ),
                     array('name'=>'prepareID', 'header'=>'介绍',
                         'type'=>'raw',
                         'value'=>formaterLink() ,
                     ),
-                    array('name'=>'time',
+                    array('name'=>'selfintroduction',
                         'header'=>'时间',
-                        'type'=>'date',
                     ),
                     array('name'=>'title', 'header'=>'联系',
                         'type'=>'raw',
@@ -180,7 +179,7 @@ $this->pageTitle=Yii::app()->name;
     <?php if(!Yii::app()->user->isGuest) echo "<div style='display: none'>"; ?>
     <h2>登陆</h2>
     <div class="row-fluid">
-        <div class="span12 form left alert home_content">
+        <div class="span12 form left alert  alert-info home_content">
             <?php
             $usernameattr = array("class"=>"input-medium focused","placeholder"=>"用户名");
             $passwordattr = array("class"=>"input-medium focused","placeholder"=>"密码");

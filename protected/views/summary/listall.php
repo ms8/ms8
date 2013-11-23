@@ -1,7 +1,3 @@
-
-<h1>面试总结</h1>
-
-
 <div class="row-fluid">
     <div class="span12">
         <?php
