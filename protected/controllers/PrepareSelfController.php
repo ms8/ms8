@@ -236,4 +236,7 @@ class PrepareSelfController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+
+
 }
