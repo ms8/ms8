@@ -131,13 +131,17 @@
 
 <div id="footer">
     <p>
-        <a href="#">关于面试吧</a> |
-        <a href="#">面试达人</a> |
-        <a href="#">联系我们</a> |
+        <a href="http://www.mianshi8.com">面试吧</a> |
+        <a href="http://www.mianshi8.com/index.php?r=prepare/listall">面试准备</a> |
+        <a href="http://www.mianshi8.com/index.php?r=summary/list">面试经验</a> |
         <a href="#">友情链接</a> |
-        <a href="#">意见反馈</a>
+        <a href="#">意见反馈</a>|
+        <script type="text/javascript">
+            var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+            document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe50cb621fc9afc02536c47e42586a85c' type='text/javascript'%3E%3C/script%3E"));
+        </script>
     </p>
-    &copy; <?php echo date('Y'); ?> MIANSHI8.COM 京ICP备1102461-7<br/>
+    &copy; <?php echo date('Y'); ?> MIANSHI8.COM 京ICP备11042501号-6<br/>
 </div><!-- footer -->
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/html5shiv.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/protected/extensions/flatui/js/flatui-radio.js"></script>
@@ -161,5 +165,7 @@
     var feedback_widget = new GKFN.feedback_widget(options);
 </script>
 <!--end of feedback code powered by geekui-->
+
+
 </body>
 </html>
