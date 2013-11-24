@@ -182,7 +182,7 @@
     )); ?>
 </div>
 
-	<div class="form-actions" style="display: none">
+	<div class="form-actions" style="display: none" id="finishBt">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
@@ -216,7 +216,8 @@
                 $("#step-3").attr("class", "node ready");
                 $("#progress-3").attr("class", "proce forReady");
                 $("#stepIndex").val('share-info');
-                $("#nextstap").text('完成');
+                $("#nextstap").hide();
+                $("#finishBt").show();
             }
 
         });
