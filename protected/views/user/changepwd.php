@@ -28,19 +28,13 @@
 
     <div class="con clear">
 
-<!--            --><?php //$form=$this->beginWidget('CActiveForm', array(
-//                'id'=>'user-form',
-//                'enableAjaxValidation'=>false,
-//                'htmlOptions'=>array('class'=>'left2a'),
-//            )); ?>
-
         <div class="control-group">
             <label class="control-label" for="password1">密码</label>
             <input id="password1" type="password" value="">
         </div>
         <div class="control-group">
             <label class="control-label" for="password2">确认密码</label>
-            <input id="password2" type="password" value="" onblur="checkvalue()">
+            <input id="password2" type="password" value="" >
         </div>
         <div style="width: 42%;padding: 0 0 0 150px;">
             <button onclick="submitForm()" class="btn btn-primary" >提交</button>
@@ -53,21 +47,23 @@
     </div>
 
     <script>
-        function checkvalue(){
-            if($('#password2').val() != $('#password1').val() ){
-                alert('两次填写密码不一致，请重新填写：）');
-            }
-        }
+//        function checkvalue(){
+//            if($('#password2').val() != $('#password1').val() ){
+//                alert('两次填写密码不一致，请重新填写：）');
+//            }
+//        }
         function submitForm(){
-            if($('#password2').val() != $('#password1').val() ){
+            var p2 = $('#password2').val();
+            var p1 = $('#password1').val();
+            if( p2 != p1 ){
                 alert('两次填写密码不一致，请重新填写：）');
             }else{
                 var password = $('#password1').val();
                 $.ajax({
                     type:'POST',
                     dataType:'json',
-                    data:{'password':password},
-                    url:'?user/changepwd',
+                    data:{'password':p1},
+                    url:'?r=user/changepwdSave',
                     success:function(json) {
                         if(json.result != ""){
                             alert('修改成功');

@@ -194,10 +194,9 @@ class UserController extends Controller
     public function actionChangepwdSave(){
         $user_name=Yii::app()->user->name;
         $model=$this->loadModel($user_name);
-
         $model->password = $_POST['password'];
-        $this->_userManagement=new UserManagement();
-        $this->_userManagement->register($model);
+        $um = new UserManagement();
+        $um->register($model);
         $result = json_encode(array("result"=>"ok"));
         echo $result;
     }
