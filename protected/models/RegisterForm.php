@@ -83,6 +83,7 @@ class RegisterForm extends CFormModel{
         $user->user_name=$this->username;
         $user->password=$this->password;
         $user->email=$this->email;
+        $user->pic = 'upload/grava.jpg';
         if($this->_userManagement===null)
         {
             $this->_userManagement=new UserManagement();

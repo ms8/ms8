@@ -23,6 +23,8 @@ class SummaryManagement {
             $summaryID=$sum['summary_id'];
              $username=$sum['user_name'];
              $picPath=$sum['pic'];
+             if($picPath == "")
+                 $picPath = 'upload/grava.jpg';
              $time=$sum['time'];
              $companyName=$sum['company_name'];
              $position=$sum['position_name'];

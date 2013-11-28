@@ -262,8 +262,10 @@ class UserController extends Controller
             if(!$model->update()){
                 $pic_path = 'upload/grava.jpg';
             }
-            //删除原有照片
-            unlink($oldPath);
+            //删除原有照片,但如果原有照片是默认头像，则不能删除
+            if($oldPath != "" && file_exists($oldPath) && $oldPath != "upload/grava.jpg"){
+                unlink($oldPath);
+            }
 
             $size = round($picsize/1024,2);
             $arr = array(

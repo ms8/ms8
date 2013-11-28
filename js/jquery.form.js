@@ -262,6 +262,7 @@ $.fn.ajaxSubmit = function(options) {
                         options.uploadProgress(event, position, total, percent);
                     };
                 }
+
                 return xhr;
             };
         }

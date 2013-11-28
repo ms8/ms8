@@ -27,11 +27,16 @@
 </ul>
 
     <div >
+        <!-- 进度条 -->
+        <div class="progress">
+            <div class="bar" style="width: 0%;"></div>
+        </div>
+
         <div class="demo" style="float: left">
             <div class="files" style="display: none"></div>
             <div style="height: 150px;width: 150px;margin-left:85px ">
-                <img id="showimg" src="<?php echo $model->pic ?>">
-                <div style="background: #69BC87;height: 30px;width: 150px;font-size: 17px;text-align: center;color: #FFFFFF;padding: 8px 0 0 0;margin-top: 15px">
+                <img class="img-polaroid" id="showimg" src="<?php echo $model->pic ?>">
+                <div style="background: #69BC87;height: 30px;width: 110px;font-size: 16px;text-align: center;color: #FFFFFF;padding: 8px 0 0 0;margin-top: 15px">
                     当前头像
                 </div>
             </div>
@@ -53,6 +58,19 @@
     </div>
 
     <script type="text/javascript">
+        var p = 0;
+//        $(function(){
+//            run();
+//        });
+        function run(){
+
+            $("div[class=bar]").css("width",p+"%");
+            if(p<90){
+                p+=15;
+                var timer=setTimeout("run()",500);
+            }
+        }
+
         $(document).ready(function() {
             $("#picChange").hide();
             $("#passwordChange").hide();
@@ -82,28 +100,65 @@
     </script>
 
     <script type="text/javascript">
+//        function uploadProgress(event) {
+//            // display uploading progress infomation...
+//            var position = event.loaded || event.position; /*event.position is deprecated*/
+//            var total = event.total;
+//            if (event.lengthComputable) {
+//                percent = Math.ceil(position / total * 100);
+//            }
+//            onprogress(event, position, total, percent);
+//        };
+//        var xhr_provider = function() {
+//            var xhr = jQuery.ajaxSettings.xhr();
+//            if(onprogress && xhr.upload) {
+//                xhr.upload.addEventListener('progress', onprogress, false);
+//            }
+//            return xhr;
+//        };
+
         $(function () {
             var bar = $('.bar');
             var percent = $('.percent');
             var showimg = $('#showimg');
             var progress = $(".progress");
             var files = $(".files");
-            var btn = $(".btn span");
+            var btn = $("imagePre-exists");
             $("#picOper").wrap("<form id='myupload' action='?r=user/savePic&act=0' method='post' enctype='multipart/form-data'></form>");
 
+            $("#picOper").live('click',function(){
+                $("div[class=bar]").css("width","0%");
+            });
+
             $("#submitfile").live('click',function(){
+                $("div[class=bar]").css("width","0%");
+                p=0;
+                run();
                 var upFiles = $("#fileupload").get(0).files;
                 if(upFiles == undefined || upFiles.length == 0){
                     return;
                 }
                 $("#myupload").ajaxSubmit({
                     dataType:  'json',
+                    uploadProgress: function(event, position, total, percentComplete) {
+                        var percent = 0;
+                        var position = event.loaded || event.position; /*event.position is deprecated*/
+                        var total = event.total;
+                        if (event.lengthComputable) {
+                            percent = Math.ceil(position / total * 100);
+                        }
+                        uploadProgress(event, position, total, percent);
+
+                        $("div[class=bar]").css("width",percentComplete+"%");
+                    },
                     success: function(data) {
                         showimg.attr("src",data.pic);
                         btn = $("imagePre-new");
                         btn.html("选择新头像");
                         btn = $("imagePre-exists");
                         btn.html("选择新头像");
+                        $("div[class=bar]").css("width","100%");
+                        p=100;
                     },
                     error:function(xhr){
                         btn.html("上传失败");

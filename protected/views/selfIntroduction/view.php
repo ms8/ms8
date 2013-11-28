@@ -15,12 +15,13 @@ $this->menu=array(
 
 
  <div class="jumbotron">
-     <h1>自我介绍</h1>
+         <h1 >自我介绍</h1>
+         <?php if (Yii::app()->user->name == $model->user_name)
+             echo "<p><a class='btn btn-primary btn-lg' role='button' href='index.php?r=SelfIntroduction/update&id=$model->intro_id'>编辑</a></p>"
+         ?>
      <p><?php echo $model->self_introduction; ?></p>
-     <?php if (Yii::app()->user->name == $model->user_name)
-     echo "<p><a class='btn btn-primary btn-lg' role='button' href='index.php?r=SelfIntroduction/update&id=$model->intro_id'>编辑</a></p>"
-     ?>
-     </div>
+
+</div>
 
 <?php
 $form=$this->beginWidget('CActiveForm', array(
